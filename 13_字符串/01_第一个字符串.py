@@ -2,3 +2,4 @@
 
 str1 = "hello world"
 print("第一个字符串是: %s " % str1)
+
