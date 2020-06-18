@@ -3,7 +3,7 @@ import requests
 import json
 
 
-def gettoken():
+def quick_login():
         # 创建快速登录帐号地址
         Quick_Create_Url = 'http://test.api.pokekara.com/api/user/login/?unique_device_id=test15755309420784'
         # 请求头

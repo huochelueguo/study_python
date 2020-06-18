@@ -9,7 +9,7 @@ print(get_client_id.get_clientid(list2))
 
 
 # 获取各uid的token
-dict = get_token.gettoken()
+dict = get_token.quick_login()
 # print(type(dict))
 print(dict)
 
