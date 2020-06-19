@@ -1,6 +1,6 @@
 
 
-def sum(a,b):
+def sum(a, b):
     """
     第一个函数
     :param a: 第一个形参

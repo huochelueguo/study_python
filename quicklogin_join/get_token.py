@@ -16,7 +16,8 @@ def quick_login():
         # 请求体
         body = {'platform': '7',
                 'token': 'register',
-                'id_token': '{"name":"sztest","gender":1}'}
+                'id_token': '{"name":"sztest","gender":1}'
+                }
         # 发送请求
         response = requests.post(Quick_Create_Url, data=body)
         # 使用uid_dict承接返回值，返回值为dict

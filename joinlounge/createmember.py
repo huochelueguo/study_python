@@ -17,14 +17,4 @@ while a < 2:
 print(uid_list)
 print(token_list)
 
-b = 0
-clientid_list = []
-while b < len(uid_list):
-    list = get_client_id.get_clientid(uid_list[b])
-    # print(list)
-    # clientid_list.insert(b, str(list))
-    b += 1
-print(list)
 
-# list = get_client_id.get_clientid(uid_list)
-# print(list)

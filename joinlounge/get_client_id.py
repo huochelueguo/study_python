@@ -10,7 +10,7 @@ def get_clientid(list_uid):
 
     url2 = url1 + 'uid=' + list_uid
         # print(f'拼接后地址为{url2}')
-    ws = create_connection(url2, timeout=5)
+    ws = create_connection(url2, timeout=15)
     if ws.connected:
         ws.send('')
         # 获取返回值

@@ -5,7 +5,7 @@ import join_lounge
 
 # while循环判断需要循环次数，循环次数 = 加入房间人数
 a = 0
-while a < 2:
+while a < 1:
     # 使用快速登录创建用户
     get_token.quick_login()
     a += 1
@@ -30,7 +30,6 @@ while a < 2:
     # print(type(client_id))
     print(f'用户对应的歌房client_id为：{client_id}')
 
-
     # 设置一个歌房room_id，根据token+client_id+room_id即可加入房间
-    room_id = 'bc000870-b205-11ea-a0b3-5254009bf4c3'
+    room_id = '6458c0ca-b22c-11ea-9bcc-5254009bf4c3'
     join_lounge.JoinLonunge(client_id, room_id, dict_token_new)
