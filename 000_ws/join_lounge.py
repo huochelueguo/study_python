@@ -1,18 +1,25 @@
-# 导入自己的包，可能报错，忽略即可
-import get_client_id
-import get_token
-
-# 获取各UID的client_id
-list2 = ['u1237326482846568448', 'u1218064453223043072', 'u1585628598650592149', 'u1592478885382154380']
-# 其他文件中调用，需要文件名.方法
-print(get_client_id.get_clientid(list2))
-
-
-# 获取各uid的token
-dict = get_token.quick_login()
-# print(type(dict))
-print(dict)
+# 使用get_uid文件中获取到的uid/token/client_id，走加入房间接口
+import requests
+import json
 
 
 
-# 设置一个歌房room_id，根据token+client_id+room_id即可加入房间
+def JoinLonunge(client_id, room_id, dict_token_new):
+    join_url = 'http://test.api.pokekara.com/x/lounge/join?'
+    # 请求头
+    header = {'Content-Type': 'application/json',
+              #'Cookie': 'poke_session_id=MTU5MjU1Mzk5NXw1OWVQcnJSTk9xUm5xUDZYdkRGc2VHWTBCcmpLMGFLX3otQ2dZZGZBMkRZWmRlT1FTenQxZWNYUVc4d1Y0VkZBQ1lzcWx4dElLcmRobklDZTNfM1JGemhLeE1abHd2WDZ80v66MFwNBe7VkTkox423bnOfrXYjsrKjcJHW79CQdYI='
+              'cookie': dict_token_new,
+              }
+    # 请求体
+    ran = str(random.randint(0, 100))
+    body = {"client_id": client_id,
+            "room_id": room_id,
+            }
+    # 参数要转为json
+    json_body = json.dumps(body)
+    respone = requests.post(url=join_url, headers=header, data=json_body)
+    print(respone.text)
+
+
+
