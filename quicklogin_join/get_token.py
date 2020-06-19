@@ -10,13 +10,13 @@ def quick_login():
         Quick_Create_Url = 'http://test.api.pokekara.com/api/user/login/?unique_device_id=test15755309420784'
         # 请求头
         header = {'Content-Type': 'application/json'}
-        # # name使用姓名+随机数，方便查看
+        # name使用姓名+随机数，方便查看
         # ran = str(random.randint(0, 100))
         # name = 'sztest' + ran
         # 请求体
         body = {'platform': '7',
                 'token': 'register',
-                'id_token': '{"name":sztest,"gender":1}'}
+                'id_token': '{"name":"sztest","gender":1}'}
         # 发送请求
         response = requests.post(Quick_Create_Url, data=body)
         # 使用uid_dict承接返回值，返回值为dict
