@@ -86,7 +86,7 @@ while a < len(uid_list):
     # 返回值为列表，取值
     clientid = list[0]
     clientid_list.insert(a, clientid)
-    room_id = '12d8c8da-b23c-11ea-9bcc-5254009bf4c3'
+    room_id = '5748d744-b47e-11ea-9bcc-5254009bf4c3'
     token_list_new = 'poke_session_id=' + token_list[a]
     join_lounge.JoinLonunge(clientid, room_id, token_list_new)
     a += 1
