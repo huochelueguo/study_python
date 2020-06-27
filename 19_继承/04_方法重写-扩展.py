@@ -12,7 +12,7 @@
 # - super() 就是使用super 类创建出来的对象
 # - 最常见的使用情况：重写父类方法时，调用父类中的方法实现
 
-# 覆盖父类的方法
+# 扩展父类的方法
 class Animal(object):
 
     def __init__(self, name):
