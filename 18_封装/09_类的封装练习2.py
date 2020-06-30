@@ -20,7 +20,7 @@ class JiaJu(object):
 
 class House(object):
     def __init__(self, huxing, area):
-        self.huxing =huxing
+        self.huxing = huxing
         self.area = area
 
         # 剩余面积
