@@ -12,11 +12,18 @@ class Dog(object):
         return f'狗狗的名字是：{self.name}'
 
 
-if __name__ == '__main__':
-    wangcai = Dog ('旺财')
+# 将不需要外部模块使用的代码，写到main函数中
+def main():
+    wangcai = Dog('旺财')
     print(wangcai)
     # 因为在文件本体汇总，因此下句输出内容为__main__
     print(__name__)
+
+
+# 在文件中，使用如下判断,如果在本体中，则会执行main()，如果不是，则不执行
+if __name__ == '__main__':
+    main()
+
 
 
 
