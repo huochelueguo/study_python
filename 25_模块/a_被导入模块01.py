@@ -1,6 +1,6 @@
 # 全局变量
 title = '全局变量-模块1'
-
+print('123')
 
 # 函数
 def hanshu():
