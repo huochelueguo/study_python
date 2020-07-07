@@ -13,7 +13,7 @@ def all_time(func):
         end_time = time.time()
         use_time = (end_time - start_time) * 1000
         print(f'执行消耗时间为: {use_time} 毫秒')
-        return 
+        # return
     return wrapper
 
 

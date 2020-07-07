@@ -5,7 +5,7 @@
 #
 # 使用方法：再需要的函数前加上@demo即可
 # 模版：
-#     def    装饰器名(func):                    #def 与 @之后的函数名称一致   调用函数func与ret=func(*args,**kwargs)内部函数一致
+#     def 装饰器名(func):                    #def 与 @之后的函数名称一致   调用函数func与ret=func(*args,**kwargs)内部函数一致
 #         def wrapper(*args,**kwargs):         #def 与 return 之后的函数名称一致
 #             ret = func(*args,**kwargs)
 #             return ret                       #return ret 与 ret=func(*args,**kwargs)一致
