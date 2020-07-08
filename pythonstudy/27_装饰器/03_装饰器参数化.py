@@ -12,15 +12,15 @@ def all_time(func):
         func(a, b)
         end_time = time.time()
         use_time = (end_time - start_time) * 1000
-        print(f'执行消耗时间为: {use_time} 毫秒')
-        # return
+        print(f'函数执行完成耗时：{use_time}毫秒')
+        return
     return wrapper
 
 
 # 函数本身功能仅为求和
 @all_time
 def f(a, b):
-    print('函数本身')
+    print('开始执行函数本体')
     time.sleep(1)
     print(f'函数本身仅有求和功能：a + b = {a + b}')
 
