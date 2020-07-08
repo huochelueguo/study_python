@@ -25,7 +25,8 @@
 def debug(func):
     def wrapper():
         print("[DEBUG]: enter {}()".format(func.__name__))
-        return func()
+        func()
+        # return func()
     # 返回内容和函数名一致
     return wrapper
 
