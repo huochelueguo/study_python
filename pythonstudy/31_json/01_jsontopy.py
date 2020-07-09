@@ -7,7 +7,7 @@
 @Time:NAME.py@Time:2020/7/9 上午12:28
 """
 # json.loads() — loads函数则是将json格式的数据解码，转换为Python字典;
-# json内部数据需要使用双引号
+
 
 import json
 
