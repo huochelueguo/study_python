@@ -1,0 +1,26 @@
+1.安装pytest
+pip install -U pytest
+
+2.查看安装版本
+pytest --version
+
+3.简单执行
+--使用cd命令切换到测试文件路径
+--使用命令py.test
+--使用命令pytest 脚本名称.py执行某一个文件
+
+4.pytest用例规则
+--测试文件以test_开头（以_test结尾也可以）
+--测试类以Test开头，并且不能带有 __init__ 方法
+--测试函数以test_开头
+--断言使用assert
+
+5.在pycharm里面运行pytest用例
+https://www.cnblogs.com/yoyoketang/p/9366638.html
+
+6.test_xx文件恢复正常运行模式
+https://blog.csdn.net/chenmozhe22/article/details/81700504
+
+
+
+
