@@ -1,0 +1,24 @@
+# !usr/bin/env python
+# -*- coding:utf-8 _*-
+"""
+@Author:孙泽
+@Github:https://github.com/huochelueguo
+@File:test_para.py
+@Time:NAME.py@Time:2020/7/11 20:26
+"""
+import pytest
+
+data = [
+    {1, 2, 3},
+    {3, 6, 9},
+    {2, 5, 8}]
+
+
+@pytest.mark.parametrize('a, b, add', data)
+def test_one(a, b, add):
+    print(f':{a}+{b}={a+b}')
+    assert a+b == add
+
+
+if __name__ == '__main__':
+    pytest.main()
