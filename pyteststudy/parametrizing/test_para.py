@@ -10,14 +10,15 @@ import pytest
 
 data = [
     {1, 2, 3},
-    {3, 6, 9},
+    {4, 5, 9},
     {2, 5, 8}]
 
 
 @pytest.mark.parametrize('a, b, add', data)
 def test_one(a, b, add):
     print(f':{a}+{b}={a+b}')
-    assert a+b == add
+    actual = a + b
+    assert actual == add
 
 
 if __name__ == '__main__':
