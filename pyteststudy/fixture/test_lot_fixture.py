@@ -46,12 +46,12 @@ def login2():
 
 @pytest.fixture()
 def login3():
-    print('this is fixture222')
+    print('this is fixture333')
     b = 5 + 5
     return b
 
 
-def test_needlogin2(login2, login3):
+def test_needlogin2(login2, login3):    # 根据括号中fixture函数得顺序，依次调用
 
     # 使用fixture的返回值是使用其函数名，因此可以直接函数名[字典索引]
     assert login2 == login3
