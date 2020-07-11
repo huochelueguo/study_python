@@ -13,6 +13,7 @@ import pytest
 def login_data(request):
     print(f'本次测试使用的数据是{request.param}')
     yield 2
+    print(f'测试执行完输出')
 
 
 @pytest.fixture(scope='class')
@@ -20,6 +21,13 @@ def login_data2():
     a = 5
     b = 5
     return a, b
+
+
+@pytest.fixture()
+def login_data3():
+    print(f'执行测试用例的前期')
+    yield 5
+    print('测试用例执行完成后')
 
 
 
