@@ -29,3 +29,4 @@ if __name__ == "__main__":
     print('普通模式下才输出')
     a = TestClass()
     a.test_one()
+    pytest.main()

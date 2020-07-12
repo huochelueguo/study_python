@@ -37,4 +37,4 @@ class Test_lei(object):
 if __name__ == '__main__':
     # g = Test_lei()
     # print(g)
-    pytest.main(g)
+    pytest.main()
