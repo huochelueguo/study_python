@@ -129,7 +129,5 @@ dmypy.json
 .pyre/
 "pythonstudy/08_\345\276\252\347\216\257/"
 pythonstudy/__init__.py
-
-
-
-
+pyteststudy/allure/report
+pyteststudy/report/allure_raw
