@@ -3,7 +3,7 @@
 """
 @Author:孙泽
 @Github:https://github.com/huochelueguo
-@File:test_login.py
+@File:test_login_list.py
 @Time:NAME.py@Time:2020/7/15 上午9:04
 """
 import pytest
@@ -15,25 +15,22 @@ data = [
      'body': {'platform': 4,
               'token': 'login',
               'id_token': '+8618500616906',
-              'secret': '111111'}}
+              'secret': '111111'}},
+    {'url1': 'http://test.api.pokekara.com/api/user/login',
+     'body': {'platform': 4,
+              'token': 'login',
+              'id_token': '+8618500616906',
+              'secret': '111112'}}
 ]
 
 
-@pytest.mark.parametrize('datas', data)
+@pytest.mark.parametrize('datas', data)     # 用一个参数接受数据，就是传入一个元组，元组里的数据运用索引的方法就可以提取出来；
 def test_login(datas):
     print(datas)
     r = requests.post(url=datas['url1'], data=datas['body'])
     print(r.json())
-    code = r.status_code
-    assert code == 200
-
-
-# @pytest.mark.parametrize('a', data)
-# def test_login2(a):
-#     r = requests.post(url=a['url'], data=a[1])
-#     print(r.json())
-#     code = r.status_code
-#     assert code == 200
+    test = r.text
+    assert 'success' in test
 
 
 if __name__ == '__main__':

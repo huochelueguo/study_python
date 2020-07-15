@@ -14,7 +14,7 @@ data = [
     {2, 5, 8}]
 
 
-@pytest.mark.parametrize('a, b, add', data)
+@pytest.mark.parametrize('a, b, add', data)     # 使用和参数数量一致得变量来接收，位置参数与实际测试数据一一对应即可
 def test_one(a, b, add):
     print(f':{a}+{b}={a+b}')
     actual = a + b
