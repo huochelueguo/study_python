@@ -23,5 +23,5 @@ https://blog.csdn.net/chenmozhe22/article/details/81700504
 
 7.路径中不能有中文
 
-
+8.每个文件夹中都有__init__.py文件夹
 
