@@ -130,5 +130,8 @@ dmypy.json
 "pythonstudy/08_\345\276\252\347\216\257/"
 # pythonstudy/__init__.py
 pyteststudy/allure/report
+pyteststudy/*/allure
 pyteststudy/report/allure_raw
+pyteststudy/*/allure_raw
+pyteststudy/pytest.ini
 
