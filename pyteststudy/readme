@@ -25,3 +25,5 @@ https://blog.csdn.net/chenmozhe22/article/details/81700504
 
 8.每个文件夹中都有__init__.py文件夹
 
+9.输出allure
+ allure generate allure_raw -o allure
