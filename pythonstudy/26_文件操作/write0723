@@ -1,0 +1,462 @@
+# 操作文件的函数/方法
+# --open函数负责打开文件，并且返回文件对象
+# --read/write/close三个方法需要通过文件对象来调用
+
+# 读取文件
+# open函数的第一个参数是要打开的文件名（文件名区分大小写）
+# -如果文件存在，则返回文件操作对象
+# -如果文件不存在，报错
+# read方法
+# -可以一次性调入病返回文件的所有内容
+# -方法执行后，文件指针将指向文件末尾
+# colse方法负责关闭文件
+# -如果忘记关闭文件，造成资源消耗，影响后续操作，因此写完open建议直接写colse方法，在补充中间的读写操作
+
+# 打开文件
+file = open("readme")
+# 读取文件内容
+text = file.read()
+print(text)
+print('-' * 20)
+# 读取完文件后，文件指针将指向末尾，因此下方输出为空
+text2 = file.read()
+print(text2)
+# 关闭文件
+a = file.close()
+# open函数默认以只读方式打开文件，并返回文件对象
+# 语法：
+# open('文件名','访问方法')
+# 其他访问方法：
+# r : 只读方式，文件指针初始在开头，默认模式 ；如果文件不存在，则抛出异常
+# w : 只写方式，文件已存在将会被覆盖 ；如果文件不存在，则会新建
+# a : 追加方式，如果文件已存在，指针将会放在末尾处，进行添加；如果文件不存在，则会新建
+# r+ : 读写方式，文件指针初始在开头
+# w+ : 读写方式，文件存在会被覆盖
+# a+ : 读写方式，文件存在，指针将会在末尾，不存在会新建
+# *** 频繁的移动指针，将会造成资源消耗，因此常用的是前三种方式
+
+# 从头写
+file = open('readme', 'w')
+file.write('hello 0'+'\n')
+file.close()
+# 追加写
+file = open('readme', 'a')
+file.write('hello 1'+'\n')
+file.close()
+# 只读
+file = open('readme', 'r')
+txt = file.read()
+print(txt)
+file.close()
+# 按行读取文件，使用readline(),每次仅读取一行
+# readline()有一个参数，参数size表示从文件读取的字节数。
+# 读取时，会将换行符'\n'也读取出来
+# 需要遍历每一行文件时，使用该方法遍历
+file = open('readme')
+txt = file.readline()
+print(txt)
+print('*' * 20)
+txt = file.readline()
+print(txt)
+print('*' * 20)
+txt = file.readline()
+print(txt)
+print('*' * 20)
+txt = file.readline(1000)
+print(txt)
+file.close()
+
+# readlines() #读取文本所有内容，并且以数列的格式返回结果，一般配合for in使用
+# readline和readlines的区别：
+# 1、readline()按行读取，readlines()一次性读取整个文件，返回的是所有行组成的列表。
+# 2、.readlines() 自动将文件内容分析成一个行的列表，该列表可以由 Python 的 for … in … 结构进行处理
+# 3、仅当没有足够内存可以一次读取整个文件时，才应该使用 .readline()。
+
+file = open('readme')
+txt = file.readlines()
+print(type(txt))
+print(txt[0:6])
+file.close()
+print('-' * 20)
+
+# 导出内容问题：
+# 导出内容中带有换行符如：['hello 0\n', 'hello 1\n', 'hello 3\n', 'hello 4\n', 'hello 5\n', 'hello 6\n']
+# 解决办法
+
+# 写入方法：
+# 1.打开文件时使用参数w：覆盖之前内容写入
+# 2.打开文件时使用参数a:从文件末尾处写入：append
+
+f = open('write', 'w')
+f.write('123' + '\n'
+        '234' + '\n')
+f.close()
+
+f = open('write', 'a')
+f.write('345' + '\n'
+        '456' + '\n')
+f.close()
+
+f = open('write')
+txt = f.readlines()
+print(txt)
+f.close()
+# 用with内置函数，它可以将文件自动关闭，格式如下：
+# with open（“”，“”）as f:
+
+with open('readme') as f:
+    txt = f.readlines()
+    print(txt)
+
+with open('write', 'a') as f:
+    f.write('使用with方法插入')
+
+# excel的读取写：Pandas方法
+# 安装方法：
+# 1、pip install pandas
+# 2、pip install xlrd
+# 参考：https://www.cnblogs.com/liulinghua90/p/9935642.html
+# https://mp.weixin.qq.com/s?__biz=MzU5Mjg2OTQ1MA==&mid=2247484097&idx=1&sn=ad8fabbd84bf67655996026fc0ac5688&chksm=fe1863e4c96feaf200e9398bb7c824e99d3fc01ec965666497ce584466dc93f83dd5d127a46d&scene=21#wechat_redirect
+# https://mp.weixin.qq.com/s?__biz=MzU5Mjg2OTQ1MA==&mid=2247484131&idx=1&sn=137286d36c707e10bbc761681a666654&chksm=fe1863c6c96fead0e7b2ab9af2db28f0c26df2b878eb66930e69f23bdc611b7f34cadb0b7d50&scene=21#wechat_redirect
+
+
+# 读取excel
+# 方法1：默认读取第一个表单；类似打开文件方法，将excel读取出来，得到的结果是一个二维矩阵
+import pandas as pd
+
+file_path = '/Users/sunwenxiao/Desktop/test.xlsx'
+excel = pd.read_excel(file_path)
+print(excel)
+print('*' * 100)
+
+# 方法二：通过指定表单名的方式来读取，读取代码中增加sheet_name参数
+excel = pd.read_excel(file_path, sheet_name='test1')
+print(f"可以通过指定sheet方法输出内容：\n{excel}")
+print('*' * 100)
+
+# 方法三：通过表单索引来指定要访问的表单，0表示第一个表单，即sheet_name值
+# 也可以采用表单名和索引的双重方式来定位表单
+# 也可以同时定位多个表单，方式都罗列如下所示
+try:
+    df = pd.read_excel(file_path, sheet_name=['test1', 'test2'])
+    print(f"可以通过制定sheet_name数组索引或者值方式输出：\n{excel}")
+except Exception as result:
+    print(f'出现问题啦：{format(result)}')
+finally:
+    print('*' * 100)
+
+
+import pandas as pd
+import numpy as np
+
+file_path = '/Users/sunwenxiao/Desktop/test.xlsx'
+# 默认读取前5行，df.head()，head后面也可以加参数
+df = pd.read_excel(file_path)
+print(df.head())
+print('*' * 50)
+
+# 默认读取后5行，df.tail(),括号中可以加参数
+df = pd.read_excel(file_path)
+# 输出后10行
+print(df.tail(10))
+print('*' * 50)
+
+# 索引操作
+#   不包含第一行
+#   df.iloc[行索引,列索引]（索引从0开始，输出内容含首不含尾）
+#   行索引：表示需要选取那几行
+#   列索引：表示需要选取那几列
+
+# 选择某几行
+df = pd.read_excel(file_path)
+print(df.iloc[3:8, :])
+print('*' * 50)
+
+# 选择某几列:
+# 如果我们要跨列选取，得先把位置参数构造成列表形式，这里就是[0,4]，
+# 如果是连续选取，则无需构造成列表，直接输入0:5
+# 1.连续列，使用x:y
+df = pd.read_excel(file_path)
+print(df.iloc[:, 0: 1])
+print('*' * 50)
+# 2.跨列选择，使用[x,y]
+df = pd.read_excel(file_path)
+print(df.iloc[:, [0, 2]])
+print('*' * 50)
+
+# 行列交叉选择：将行列选择合并到一起，选择对应的索引
+df = pd.read_excel(file_path)
+# 输出部分姓名和年年
+print(df.iloc[3:8, 0:2])
+print('*' * 50)
+
+# 基于名称（标签）的索引
+# 筛选出第一列满足的值：df['姓名'] == '小米'，返回结果是true/false
+# 使用df.loc根据筛选出来的值，展示true的内容
+df = pd.read_excel(file_path)
+print(df['姓名'] == '小米')
+print(df.loc[df['姓名'] == '小米', :])
+# !usr/bin/env python
+# -*- coding:utf-8 _*-
+"""
+@Author:孙泽
+@Github:https://github.com/huochelueguo
+@File:readandwrite.py
+@Time:NAME.py@Time:2020/7/23 19:21
+"""
+import os
+file_path = os.getcwd()
+list_file = os.listdir()
+print(list_file)
+for file_name in list_file:
+    # file_name2 = str.split(file_name, '.')[0]
+    with open(file_name, 'r', encoding='utf-8') as f:
+        # 读取每个文件，返回为列表
+        str = f.read()
+        print(f.read())
+    with open('write0723', 'a+', encoding='utf-8') as file:
+        file.write(str)
+
+
+hello 1
+hello 2
+hello 3
+hello 4
+hello 5
+hello 6
+hello 7
+123
+234
+345
+456
+# 操作文件的函数/方法
+# --open函数负责打开文件，并且返回文件对象
+# --read/write/close三个方法需要通过文件对象来调用
+
+# 读取文件
+# open函数的第一个参数是要打开的文件名（文件名区分大小写）
+# -如果文件存在，则返回文件操作对象
+# -如果文件不存在，报错
+# read方法
+# -可以一次性调入病返回文件的所有内容
+# -方法执行后，文件指针将指向文件末尾
+# colse方法负责关闭文件
+# -如果忘记关闭文件，造成资源消耗，影响后续操作，因此写完open建议直接写colse方法，在补充中间的读写操作
+
+# 打开文件
+file = open("readme")
+# 读取文件内容
+text = file.read()
+print(text)
+print('-' * 20)
+# 读取完文件后，文件指针将指向末尾，因此下方输出为空
+text2 = file.read()
+print(text2)
+# 关闭文件
+a = file.close()
+# open函数默认以只读方式打开文件，并返回文件对象
+# 语法：
+# open('文件名','访问方法')
+# 其他访问方法：
+# r : 只读方式，文件指针初始在开头，默认模式 ；如果文件不存在，则抛出异常
+# w : 只写方式，文件已存在将会被覆盖 ；如果文件不存在，则会新建
+# a : 追加方式，如果文件已存在，指针将会放在末尾处，进行添加；如果文件不存在，则会新建
+# r+ : 读写方式，文件指针初始在开头
+# w+ : 读写方式，文件存在会被覆盖
+# a+ : 读写方式，文件存在，指针将会在末尾，不存在会新建
+# *** 频繁的移动指针，将会造成资源消耗，因此常用的是前三种方式
+
+# 从头写
+file = open('readme', 'w')
+file.write('hello 0'+'\n')
+file.close()
+# 追加写
+file = open('readme', 'a')
+file.write('hello 1'+'\n')
+file.close()
+# 只读
+file = open('readme', 'r')
+txt = file.read()
+print(txt)
+file.close()
+# 按行读取文件，使用readline(),每次仅读取一行
+# readline()有一个参数，参数size表示从文件读取的字节数。
+# 读取时，会将换行符'\n'也读取出来
+# 需要遍历每一行文件时，使用该方法遍历
+file = open('readme')
+txt = file.readline()
+print(txt)
+print('*' * 20)
+txt = file.readline()
+print(txt)
+print('*' * 20)
+txt = file.readline()
+print(txt)
+print('*' * 20)
+txt = file.readline(1000)
+print(txt)
+file.close()
+
+# readlines() #读取文本所有内容，并且以数列的格式返回结果，一般配合for in使用
+# readline和readlines的区别：
+# 1、readline()按行读取，readlines()一次性读取整个文件，返回的是所有行组成的列表。
+# 2、.readlines() 自动将文件内容分析成一个行的列表，该列表可以由 Python 的 for … in … 结构进行处理
+# 3、仅当没有足够内存可以一次读取整个文件时，才应该使用 .readline()。
+
+file = open('readme')
+txt = file.readlines()
+print(type(txt))
+print(txt[0:6])
+file.close()
+print('-' * 20)
+
+# 导出内容问题：
+# 导出内容中带有换行符如：['hello 0\n', 'hello 1\n', 'hello 3\n', 'hello 4\n', 'hello 5\n', 'hello 6\n']
+# 解决办法
+
+# 写入方法：
+# 1.打开文件时使用参数w：覆盖之前内容写入
+# 2.打开文件时使用参数a:从文件末尾处写入：append
+
+f = open('write', 'w')
+f.write('123' + '\n'
+        '234' + '\n')
+f.close()
+
+f = open('write', 'a')
+f.write('345' + '\n'
+        '456' + '\n')
+f.close()
+
+f = open('write')
+txt = f.readlines()
+print(txt)
+f.close()
+# 用with内置函数，它可以将文件自动关闭，格式如下：
+# with open（“”，“”）as f:
+
+with open('readme') as f:
+    txt = f.readlines()
+    print(txt)
+
+with open('write', 'a') as f:
+    f.write('使用with方法插入')
+
+# excel的读取写：Pandas方法
+# 安装方法：
+# 1、pip install pandas
+# 2、pip install xlrd
+# 参考：https://www.cnblogs.com/liulinghua90/p/9935642.html
+# https://mp.weixin.qq.com/s?__biz=MzU5Mjg2OTQ1MA==&mid=2247484097&idx=1&sn=ad8fabbd84bf67655996026fc0ac5688&chksm=fe1863e4c96feaf200e9398bb7c824e99d3fc01ec965666497ce584466dc93f83dd5d127a46d&scene=21#wechat_redirect
+# https://mp.weixin.qq.com/s?__biz=MzU5Mjg2OTQ1MA==&mid=2247484131&idx=1&sn=137286d36c707e10bbc761681a666654&chksm=fe1863c6c96fead0e7b2ab9af2db28f0c26df2b878eb66930e69f23bdc611b7f34cadb0b7d50&scene=21#wechat_redirect
+
+
+# 读取excel
+# 方法1：默认读取第一个表单；类似打开文件方法，将excel读取出来，得到的结果是一个二维矩阵
+import pandas as pd
+
+file_path = '/Users/sunwenxiao/Desktop/test.xlsx'
+excel = pd.read_excel(file_path)
+print(excel)
+print('*' * 100)
+
+# 方法二：通过指定表单名的方式来读取，读取代码中增加sheet_name参数
+excel = pd.read_excel(file_path, sheet_name='test1')
+print(f"可以通过指定sheet方法输出内容：\n{excel}")
+print('*' * 100)
+
+# 方法三：通过表单索引来指定要访问的表单，0表示第一个表单，即sheet_name值
+# 也可以采用表单名和索引的双重方式来定位表单
+# 也可以同时定位多个表单，方式都罗列如下所示
+try:
+    df = pd.read_excel(file_path, sheet_name=['test1', 'test2'])
+    print(f"可以通过制定sheet_name数组索引或者值方式输出：\n{excel}")
+except Exception as result:
+    print(f'出现问题啦：{format(result)}')
+finally:
+    print('*' * 100)
+
+
+import pandas as pd
+import numpy as np
+
+file_path = '/Users/sunwenxiao/Desktop/test.xlsx'
+# 默认读取前5行，df.head()，head后面也可以加参数
+df = pd.read_excel(file_path)
+print(df.head())
+print('*' * 50)
+
+# 默认读取后5行，df.tail(),括号中可以加参数
+df = pd.read_excel(file_path)
+# 输出后10行
+print(df.tail(10))
+print('*' * 50)
+
+# 索引操作
+#   不包含第一行
+#   df.iloc[行索引,列索引]（索引从0开始，输出内容含首不含尾）
+#   行索引：表示需要选取那几行
+#   列索引：表示需要选取那几列
+
+# 选择某几行
+df = pd.read_excel(file_path)
+print(df.iloc[3:8, :])
+print('*' * 50)
+
+# 选择某几列:
+# 如果我们要跨列选取，得先把位置参数构造成列表形式，这里就是[0,4]，
+# 如果是连续选取，则无需构造成列表，直接输入0:5
+# 1.连续列，使用x:y
+df = pd.read_excel(file_path)
+print(df.iloc[:, 0: 1])
+print('*' * 50)
+# 2.跨列选择，使用[x,y]
+df = pd.read_excel(file_path)
+print(df.iloc[:, [0, 2]])
+print('*' * 50)
+
+# 行列交叉选择：将行列选择合并到一起，选择对应的索引
+df = pd.read_excel(file_path)
+# 输出部分姓名和年年
+print(df.iloc[3:8, 0:2])
+print('*' * 50)
+
+# 基于名称（标签）的索引
+# 筛选出第一列满足的值：df['姓名'] == '小米'，返回结果是true/false
+# 使用df.loc根据筛选出来的值，展示true的内容
+df = pd.read_excel(file_path)
+print(df['姓名'] == '小米')
+print(df.loc[df['姓名'] == '小米', :])
+# !usr/bin/env python
+# -*- coding:utf-8 _*-
+"""
+@Author:孙泽
+@Github:https://github.com/huochelueguo
+@File:readandwrite.py
+@Time:NAME.py@Time:2020/7/23 19:21
+"""
+import os
+file_path = os.getcwd()
+list_file = os.listdir()
+print(list_file)
+for file_name in list_file:
+    # file_name2 = str.split(file_name, '.')[0]
+    with open(file_name, 'r', encoding='utf-8') as f:
+        # 读取每个文件，返回为列表
+        str = f.read()
+        print(f.read())
+    with open('write0723', 'a+', encoding='utf-8') as file:
+        file.write(str)
+
+
+hello 1
+hello 2
+hello 3
+hello 4
+hello 5
+hello 6
+hello 7
+123
+234
+345
+456
