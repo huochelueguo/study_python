@@ -1,0 +1,377 @@
+# 1# 模块的概念：
+# --每一个以扩展名  .py 为结尾的Python文件都是一个模块
+# --模块名称同样也是标识符，需要符合命名规则
+# --在模块中定义的  全局变量、 函数、 类  都是提供给外部直接使用的工具
+
+import a_被导入模块01
+
+
+# 调用导入的全局变量
+print(a_被导入模块01.title)
+# 调用导入的函数
+print(a_被导入模块01.hanshu())
+# 调用导入的类
+h = a_被导入模块01.lei()
+print(h)
+# 当导入模块的名称过长是，可以使用给模块建一个别名，避免代码中模块名称够长
+# 模块导入的别名也应该符合大驼峰命名法
+import a_被导入模块01 as Im
+
+
+hanshu = Im.hanshu()
+print(f'{hanshu}')
+print(Im.title)
+lei = Im.lei()
+print(lei)# from ..import 导入部分
+# 如果希望从一个模块中，导入部分工具，就可以使用from ..import 导入
+# 局部导入的好处；
+# --使用不需要通过模块名.
+# --可以直接使用模块提供的工具--全部变量、函数、类
+# 局部导入注意问题：
+# --如果两个模块，存在同名函数，那后导入的函数会覆盖先导入的函数
+# --可以使用 from 模块名 import * 导入全部工具，但是不推荐使用，因为出现重名时不好排查
+
+
+from a_被导入模块01 import hanshu
+from a_被导入模块02 import lei02
+# 导入同名的全局变量，输出的内容为后导入模块中的
+from a_被导入模块01 import title
+from a_被导入模块02 import title
+# 局部导入后，可以直接使用其全部变量、函数、类
+print(hanshu())
+lei = lei02()
+print(lei)
+print(title)
+# 当局部导入的模块存在同名的情况时，可以对局部导入的内容起别名
+
+from a_被导入模块01 import hanshu as hanshu01
+from a_被导入模块02 import hanshu as hanshu02
+
+# 使用导入内容时，使用别名即可避免同名问题
+hs1 = hanshu01()
+print(hs1)
+hs2 = hanshu02()
+print(hs2)
+# 在导入文件时，文件中所有没有任何缩进的代码 都会被直接执行一遍
+# 原因：直接执行的代码，不属于给外部提供的工具，对外界提供的内容只有全局变量、函数、类
+
+# 由于{a_被导入模块01}模块有未缩进的代码块，因此导入后，未缩进得代码块就会被执行
+
+# 由于该模块使用了__name__判断，因此没有代码被直接执行
+
+import a_被导入的模块03
+
+# 因为在被导入得模块中，因此下方语句输出内容为:a_被导入的模块03
+print(a_被导入的模块03.__name__)
+# !usr/bin/env python
+# -*- coding:utf-8 _*-
+"""
+@Author:孙泽
+@Github:https://github.com/huochelueguo
+@File:a06_time模块.py
+@Time:NAME.py@Time:2020/7/8 下午11:44
+"""
+# #python time模块主要包含各种提供日期、时间功能的相关函数。
+# time模块既提供了把日期、时间格式化为字符串的功能，也提供了从字符串恢复日期、时间的功能。
+# 全局变量
+title = '全局变量-模块1'
+print('123')
+
+
+# 函数
+def hanshu():
+    return '函数-模块1'
+
+
+print(hanshu())
+
+
+# 类
+class lei(object):
+
+    def __str__(self):
+        return '类-模块1'
+
+
+lei = lei()
+print(lei)
+# 全局变量
+title = '全局变量-模块2'
+
+
+# 函数
+def hanshu():
+    return '函数-模块2'
+
+
+# 类
+class lei02(object):
+
+    def __str__(self):
+        return '类-模块2'# 模块使用__name__方法，将不需要被其他模块导入得内容，放置在main方法中
+# 在函数本身文件中，__name__恒等于__main__
+# 在被导入其他文件中时，__name__等于被导入文件名
+# 因此可以使用__name__，将不希望被其他模块使用得内容，放在main函数中
+
+
+class Dog(object):
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return f'狗狗的名字是：{self.name}'
+
+
+# 将不需要外部模块使用的代码，写到main函数中
+def main():
+    wangcai = Dog('旺财')
+    print(wangcai)
+    # 因为在文件本体汇总，因此下句输出内容为__main__
+    print(__name__)
+
+
+# 在文件中，使用如下判断,如果在本体中，则会执行main()，如果不是，则不执行
+if __name__ == '__main__':
+    main()
+
+
+
+
+
+# 写入希望被外部使用的模块名
+from . import receive_message
+from . import send_message
+
+
+
+包的概念
+1、包 是一个包含多模块的特殊目录
+2、目录下面有一个特殊的文件 __init__.py
+3、包名的命名方式 和变量名一致， 小写字母+_
+
+包的好处
+使用import 包名 可以一次性导入包中的所有模块
+
+__init__.py
+1、要在外界使用 包 中的模块，需要在 __init__.py中指定对外界提供的模块
+2、只有写在__init__.py中的模块，才能在其他模块中调用
+3、写法： from . import xxxdef receive_m(text):
+    print(f'收到的内容是：{text}')
+class Send_Message(object):
+    def __str__(self):
+        return '123123'
+import b_package
+
+# 导入包后，需要使用包名.模块名.方法/类等
+b_package.receive_message.receive_m('hello')
+a = b_package.send_message.Send_Message()
+
+print(f'{a}')
+print(b_package.send_message.Send_Message)
+# 1# 模块的概念：
+# --每一个以扩展名  .py 为结尾的Python文件都是一个模块
+# --模块名称同样也是标识符，需要符合命名规则
+# --在模块中定义的  全局变量、 函数、 类  都是提供给外部直接使用的工具
+
+import a_被导入模块01
+
+
+# 调用导入的全局变量
+print(a_被导入模块01.title)
+# 调用导入的函数
+print(a_被导入模块01.hanshu())
+# 调用导入的类
+h = a_被导入模块01.lei()
+print(h)
+# 当导入模块的名称过长是，可以使用给模块建一个别名，避免代码中模块名称够长
+# 模块导入的别名也应该符合大驼峰命名法
+import a_被导入模块01 as Im
+
+
+hanshu = Im.hanshu()
+print(f'{hanshu}')
+print(Im.title)
+lei = Im.lei()
+print(lei)# from ..import 导入部分
+# 如果希望从一个模块中，导入部分工具，就可以使用from ..import 导入
+# 局部导入的好处；
+# --使用不需要通过模块名.
+# --可以直接使用模块提供的工具--全部变量、函数、类
+# 局部导入注意问题：
+# --如果两个模块，存在同名函数，那后导入的函数会覆盖先导入的函数
+# --可以使用 from 模块名 import * 导入全部工具，但是不推荐使用，因为出现重名时不好排查
+
+
+from a_被导入模块01 import hanshu
+from a_被导入模块02 import lei02
+# 导入同名的全局变量，输出的内容为后导入模块中的
+from a_被导入模块01 import title
+from a_被导入模块02 import title
+# 局部导入后，可以直接使用其全部变量、函数、类
+print(hanshu())
+lei = lei02()
+print(lei)
+print(title)
+# 当局部导入的模块存在同名的情况时，可以对局部导入的内容起别名
+
+from a_被导入模块01 import hanshu as hanshu01
+from a_被导入模块02 import hanshu as hanshu02
+
+# 使用导入内容时，使用别名即可避免同名问题
+hs1 = hanshu01()
+print(hs1)
+hs2 = hanshu02()
+print(hs2)
+# 在导入文件时，文件中所有没有任何缩进的代码 都会被直接执行一遍
+# 原因：直接执行的代码，不属于给外部提供的工具，对外界提供的内容只有全局变量、函数、类
+
+# 由于{a_被导入模块01}模块有未缩进的代码块，因此导入后，未缩进得代码块就会被执行
+
+# 由于该模块使用了__name__判断，因此没有代码被直接执行
+
+import a_被导入的模块03
+
+# 因为在被导入得模块中，因此下方语句输出内容为:a_被导入的模块03
+print(a_被导入的模块03.__name__)
+# !usr/bin/env python
+# -*- coding:utf-8 _*-
+"""
+@Author:孙泽
+@Github:https://github.com/huochelueguo
+@File:a06_time模块.py
+@Time:NAME.py@Time:2020/7/8 下午11:44
+"""
+# #python time模块主要包含各种提供日期、时间功能的相关函数。
+# time模块既提供了把日期、时间格式化为字符串的功能，也提供了从字符串恢复日期、时间的功能。
+# 全局变量
+title = '全局变量-模块1'
+print('123')
+
+
+# 函数
+def hanshu():
+    return '函数-模块1'
+
+
+print(hanshu())
+
+
+# 类
+class lei(object):
+
+    def __str__(self):
+        return '类-模块1'
+
+
+lei = lei()
+print(lei)
+# 全局变量
+title = '全局变量-模块2'
+
+
+# 函数
+def hanshu():
+    return '函数-模块2'
+
+
+# 类
+class lei02(object):
+
+    def __str__(self):
+        return '类-模块2'# 模块使用__name__方法，将不需要被其他模块导入得内容，放置在main方法中
+# 在函数本身文件中，__name__恒等于__main__
+# 在被导入其他文件中时，__name__等于被导入文件名
+# 因此可以使用__name__，将不希望被其他模块使用得内容，放在main函数中
+
+
+class Dog(object):
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return f'狗狗的名字是：{self.name}'
+
+
+# 将不需要外部模块使用的代码，写到main函数中
+def main():
+    wangcai = Dog('旺财')
+    print(wangcai)
+    # 因为在文件本体汇总，因此下句输出内容为__main__
+    print(__name__)
+
+
+# 在文件中，使用如下判断,如果在本体中，则会执行main()，如果不是，则不执行
+if __name__ == '__main__':
+    main()
+
+
+
+
+
+# 写入希望被外部使用的模块名
+from . import receive_message
+from . import send_message
+
+
+
+包的概念
+1、包 是一个包含多模块的特殊目录
+2、目录下面有一个特殊的文件 __init__.py
+3、包名的命名方式 和变量名一致， 小写字母+_
+
+包的好处
+使用import 包名 可以一次性导入包中的所有模块
+
+__init__.py
+1、要在外界使用 包 中的模块，需要在 __init__.py中指定对外界提供的模块
+2、只有写在__init__.py中的模块，才能在其他模块中调用
+3、写法： from . import xxxdef receive_m(text):
+    print(f'收到的内容是：{text}')
+class Send_Message(object):
+    def __str__(self):
+        return '123123'
+import b_package
+
+# 导入包后，需要使用包名.模块名.方法/类等
+b_package.receive_message.receive_m('hello')
+a = b_package.send_message.Send_Message()
+
+print(f'{a}')
+print(b_package.send_message.Send_Message)
+# !usr/bin/env python
+# -*- coding:utf-8 _*-
+"""
+@Author:孙泽
+@Github:https://github.com/huochelueguo
+@File:文件夹包含文件夹读取.py
+@Time:NAME.py@Time:2020/7/24 上午8:46
+"""
+# 25_模块文件中，存在文件夹中还有文件夹的情况，通过嵌套的方法读取
+import os
+
+
+def get_file(path):
+    for file in os.listdir(path):
+        i = os.path.join(path, file)
+        print(i)
+        if os.path.isdir(i):    # 判断某个文件是否为文件夹时，最好使用os.path.join将路径和文件夹拼起来后再去判断
+            print(f'路径中有文件夹包含文件夹的为：{file}')
+            get_file(i)
+        else:
+            file_list.append(file)
+            with open(i, 'r', encoding='utf-8')as readfile:
+                read = readfile.read()
+            with open('/Users/sunwenxiao/PycharmProjects/study_python/pythonstudy/25_模块/write0724', 'a+', encoding='utf-8') as writefile:
+                writefile.write(read)
+            # return file
+
+
+if __name__ == '__main__':
+    path = '/Users/sunwenxiao/PycharmProjects/study_python/pythonstudy/25_模块'
+    file_list = []
+    get_file(path)
+    print(file_list)
+
+
+
+

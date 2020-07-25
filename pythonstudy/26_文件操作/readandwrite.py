@@ -8,7 +8,7 @@
 """
 import os
 file_path = os.getcwd()
-list_file = os.listdir()
+list_file = os.listdir()    # 读取当前文件夹所有文件
 print(list_file)
 for file_name in list_file:
     # file_name2 = str.split(file_name, '.')[0]
@@ -16,7 +16,10 @@ for file_name in list_file:
         # 读取每个文件，返回为列表
         str = f.read()
         # print(f.read())
-    with open('write0723', 'a+', encoding='utf-8') as file:
+    with open('write0723', 'a', encoding='utf-8') as file:
         file.write(str)
+
+
+
 
 
