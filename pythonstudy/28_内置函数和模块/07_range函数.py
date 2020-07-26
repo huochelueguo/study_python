@@ -7,7 +7,7 @@
 @Time:NAME.py@Time:2020/7/14 上午9:00
 """
 # python range函数可创建一个整数列表，一般用在 for 循环中，语法如下：
-# range(start, stop, step) //左开右闭区间：  start <= value < stop
+# range(start, stop, step) //左闭右开区间：  start <= value < stop
 # 参数说明：
 # start: 计数从 start 开始，默认是从0开始，例如：range（5）等价于range（0， 5）；
 # stop: 计数到 stop 结束，但不包括 stop。例如：range（0,5） 是[0,1,2,3,4]没有5；
