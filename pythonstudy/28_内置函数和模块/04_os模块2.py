@@ -26,7 +26,6 @@ class Get_Data(object):
 class Get_Path(object):
     # 将当前工作目录读取出来，获取文件名，去对应数据文件中读取数据封装类
 
-
     def get_path(self, file_path):
         path = os.path.split(file_path)[1]
         path_name = os.path.splitext(path)[0]
@@ -36,10 +35,15 @@ class Get_Path(object):
 
 if __name__ == '__main__':
     a = '/Users/sunwenxiao/PycharmProjects/study_python/pythonstudy/28_内置函数和模块/04_os模块2.py'
+    # 获取当前文件名
     print(f'文件名称是：{Get_Path().get_path(a)}')
-    print(type(Get_Path().get_path(a)))
+    # print(type(Get_Path().get_path(a)))
     file_name = Get_Path().get_path(a)
-    Get_Data.get_yaml('04_os模块2')
+    # 使用上方获取的文件名去对应路径下的yaml文件中读取数据
+    data = Get_Data(file_name)
+    print(data.get_yaml())
+    # print(type(data.get_yaml()))
+
 
 
 

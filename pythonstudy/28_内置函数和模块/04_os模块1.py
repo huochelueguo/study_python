@@ -24,10 +24,19 @@ file_name = '28_内置函数和模块'
 file = os.path.join(file_path, file_name)
 print(file)
 
-# 将文件名称和后缀分隔开,使用os.path.splitext
+# 获取当前文件名称，去掉后缀方法1,使用os.path.splitext
 file_path2 = '/Users/sunwenxiao/PycharmProjects/study_python/pythonstudy/28_内置函数和模块/04_os模块1.py'
 file_list = os.path.splitext(file_path2)
 print(file_list)
 
+# 获取当前文件名称，去掉后缀方法2，先使用分割文件名路径方法分开后，使用字符串的split方法进行切割
+list_os = os.path.split(__file__)
+print(list_os[-1].split('.')[0])
 
+# 获取当前文件名称，去掉后缀方法3，直接使用__file__获取当前文件路径，使用两次split对路径进行切割，获取返回值
+file_pa = __file__
+print((file_pa.split('.')[-2]).split('/')[-1])
+
+# 读取当前路径可以直接使用__file__
+print(__file__)
 
