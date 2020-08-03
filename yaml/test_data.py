@@ -12,12 +12,14 @@ import requests
 
 with open('test_data1', 'r', encoding='utf-8') as f:
     data = yaml.load(f, Loader=yaml.FullLoader)
-    # list = []
-    # list.append(data.values())
     print(data)
+    # 获取ids,直接输出存在乱码的情况
+    list_desc = []
+    for desc in data:
+        list_desc.append(desc['desc'])
 
 
-@pytest.mark.parametrize('datas', data)
+@pytest.mark.parametrize('datas', data, ids=list_desc)
 class Test_login(object):
 
     def test_login(self, datas):
