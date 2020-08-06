@@ -19,17 +19,17 @@ with open('test_data1', 'r', encoding='utf-8') as f:
         list_desc.append(desc['desc'])
 
 
-@pytest.mark.parametrize('datas', data, ids=list_desc)
-class Test_login(object):
-
-    def test_login(self, datas):
-        print(datas['url'])
-        print(datas['body'])
-        r = requests.post(url=datas['url'], data=datas['body'])
-        # print(r.json())
-        test = r.text
-        assert 'success' in test
-
-
-if __name__ == '__main__':
-    pytest.main()
+# @pytest.mark.parametrize('datas', data, ids=list_desc)
+# class Test_login(object):
+#
+#     def test_login(self, datas):
+#         print(datas['url'])
+#         print(datas['body'])
+#         r = requests.post(url=datas['url'], data=datas['body'])
+#         # print(r.json())
+#         test = r.text
+#         assert 'success' in test
+#
+#
+# if __name__ == '__main__':
+#     pytest.main()

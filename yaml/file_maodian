@@ -1,0 +1,12 @@
+- desc: '正确的密码'
+  url: &url  http://test.api.pokekara.com/api/user/login
+  body: &data
+    platform: 4
+    token: login
+    id_token: '+8618500616906'  # 电话号不加引号，会将+去掉
+    secret: 111111
+- desc: '错误的密码'
+  url: *url
+  body: *data
+
+
