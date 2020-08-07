@@ -22,6 +22,7 @@ print(list(data))
 print(map(func, List))
 
 # 练习，将列表中的不规范名称按照首字母大写，其余小写输出
+# 注意返回的结果只能迭代一次，如果需要多次使用请提前保存结果并处理
 li1 = ['TONY', 'PauL', 'tom']
 
 
@@ -32,6 +33,7 @@ def letter(s):
 
 
 li2 = map(letter, li1)
-print(list(li2))
+print(list(li2))    # ['Tony', 'Paul', 'Tom']
+print(list(li2))    # [] 由于迭代器只能迭代一次，因此在此输出时为空
 
 
