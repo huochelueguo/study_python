@@ -19,3 +19,18 @@ def add(a, b):
 
 num = reduce(add, li1)
 print(num)
+
+
+# 练习：输出阶乘
+li2 = []
+for i in range(1, 101):
+    li2.append(i)
+print(li2)
+
+
+def cheng(a, b):
+    return a * b
+
+
+sum2 = reduce(cheng, li2)
+print(sum2)
