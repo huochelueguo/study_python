@@ -24,3 +24,14 @@ print(map(func, List))
 # 练习，将列表中的不规范名称按照首字母大写，其余小写输出
 li1 = ['TONY', 'PauL', 'tom']
 
+
+def letter(s):
+    print(s, type(s))
+    str = s[0].upper()+s[1:].lower()  # 使用字符串切片，改变每个数据的大小写
+    return str
+
+
+li2 = map(letter, li1)
+print(list(li2))
+
+
