@@ -1,11 +1,11 @@
-- desc: 'ÕıÈ·µÄÃÜÂë'
+- desc: 'æ­£ç¡®çš„å¯†ç '
   url: &url  http://test.api.pokekara.com/api/user/login
   body: &data
     platform: 4
     token: login
-    id_token: '+8618500616906'  # µç»°ºÅ²»¼ÓÒıºÅ£¬»á½«+È¥µô
+    id_token: '+8618500616906'
     secret: 111111
-- desc: '´íÎóµÄÃÜÂë'
+- desc: 'æ­£ç¡®çš„å¯†ç '
   url: *url
   body: *data
 
