@@ -20,4 +20,14 @@ print(new1)
 new2 = current_time + timedelta(hours=24)   # 2020-08-08 20:53:35.386716
 print(new2)
 
+# 时间格式转换为字符串时间,和time模块一致，都是使用 时间.strftime('时间格式')
+now_time = datetime.now()
+print(now_time.strftime('%Y/%m/%d %H:%M'))
+
+# 字符串格式时间转换为时间格式,转换方法是通过datetime.strptime()实现，需要一个日期和时间的格式化字符串
+str_time = '2020/08/08 20:57:43'
+data_time = datetime.strptime(str_time, '%Y/%m/%d %H:%M:%S')
+print(str_time, type(str_time))     # 2020/08/08 20:57:43 <class 'str'>
+print(data_time, type(data_time))   # 2020-08-08 20:57:43 <class 'datetime.datetime'>
+
 
