@@ -59,10 +59,10 @@ print('*' * 20)
 列表生成式的多层嵌套
 """
 li5 = [m + n for m in 'ABC' for n in 'abc']
-print(li5)
+print(li5)  # ['Aa', 'Ab', 'Ac', 'Ba', 'Bb', 'Bc', 'Ca', 'Cb', 'Cc']
 
 
 # 练习：对该列表大小写进行调整L，除掉纯数字 = ['Hello', 'World', 18, 'Apple', None]
 L = ['Hello', 'World', 18, 'Apple', None]
 L2 = [a.lower() for a in L if type(a) == str]
-print(L2)
+print(L2)   # ['hello', 'world', 'apple']
