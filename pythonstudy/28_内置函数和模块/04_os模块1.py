@@ -43,3 +43,9 @@ print('*' * 50)
 # 读取当前路径可以直接使用__file__
 print(__file__)
 print('*' * 50)
+# 返回绝对路径
+abspath = os.path.abspath(__file__)
+print(f'绝对路径为:{abspath}')
+print('*' * 150)
+# 获取当前文件名称，直接使用os.path.basename()
+print(os.path.basename(__file__))
