@@ -10,9 +10,9 @@ def get_clientid(list_uid):
 
     url2 = url1 + 'uid=' + list_uid
         # print(f'拼接后地址为{url2}')
-    ws = create_connection(url2, timeout=15)
+    ws = create_connection(url2, timeout=105)
     if ws.connected:
-        ws.send ('')
+        ws.send('')
 
         # 下面为输出聊天内容4003，问题是room_id和uid怎么传入
         # ws.send(
