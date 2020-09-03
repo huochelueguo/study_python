@@ -15,7 +15,7 @@ data = [
      'body': {'platform': 4,
               'token': 'login',
               'id_token': '+8618500616906',
-              'secret': '111111'}},
+              'secret': '234567'}},
     {'url1': 'http://test.api.pokekara.com/api/user/login',
      'body': {'platform': 4,
               'token': 'login',
