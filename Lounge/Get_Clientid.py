@@ -23,13 +23,20 @@ class Get_Client(object):
     def GET_Id(self):
         try:
             ws = create_connection(url=self.url, timeout=100, cookie=self.token)
+
             if ws.connected:
+                self.ws = ws
                 res = ws.recv()
                 dict_res = json.loads(res)
                 dict_clientid = dict_res['track_id']
                 return dict_clientid
         except Exception as result:
             print(result)
+
+    # def send_message(self, data):
+    #
+    #     res = self.ws.send(data)
+    #     return res
 
 
 if __name__ == '__main__':
@@ -38,4 +45,16 @@ if __name__ == '__main__':
     a = Get_Client(token, uid).GET_Id()
     print(a)
     print(type(a))
+    # data1 = {
+    #   "command": 4003,
+    #   "data": {
+    #     "room_id": "0ef3b23b-eeb1-11ea-b5d0-5254009bf4c3",
+    #     "uid": "u1592560688671743535",
+    #     "type": 1,
+    #     "client_id": "16fe9514-eeb1-11ea-9e59-5254009bf4c3",
+    #     "content": "???"
+    #   },
+    #   "msg_id": "9ba6d529-e7ee-468b-aec3-a96dd1f99624"
+    # }
+    # a = Get_Client(token='', uid='').send_message(data=data1)
 
