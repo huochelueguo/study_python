@@ -14,8 +14,10 @@ from Lounge.Get_Clientid import Get_Client
 from Lounge.Read_Usertoken import Read_Uid_Token
 
 
-class Join_Lounge(object):
-
+class Post(object):
+    """
+    加房post接口
+    """
     def __init__(self, token, client_id, room_id):
         self.token = 'poke_session_id=' + token
         self.client_id = client_id
@@ -34,21 +36,30 @@ class Join_Lounge(object):
         return res.text
 
 
+class Join_Lounge(object):
+    """
+    遍历获取数据后，调用加房接口，按照顺序加房
+    data_uid: uid列表
+    data_token： token列表
+    data_clientid： clientid列表
+    """
+    def join(self, data_file, room_id):
+        # 获取用户uid和token
+        data = Read_Uid_Token(data_file).read()
+        data_uid = data[0]
+        data_token = data[1]
+        # 获取用户clientid
+        data_clientid = []
+        for i in range(len(data_uid)):
+            id = Get_Client(data_token[i], data_uid[i]).GET_Id()
+            data_clientid.append(id)
+        print(data_clientid)
+        # 使用clientid和token加入歌房
+        room_id = room_id
+        for i in range(len(data_uid)):
+            res = Post(token=data_token[i], client_id=data_clientid[i], room_id=room_id).Post_Join()
+            print(res)
+
+
 if __name__ == '__main__':
-    # 获取用户uid和token
-    data = Read_Uid_Token('user_18').read()
-    data_uid = data[0]
-    data_token = data[1]
-    # 获取用户clientid
-    data_clientid = []
-    for i in range(len(data_uid)):
-        id = Get_Client(data_token[i], data_uid[i]).GET_Id()
-        data_clientid.append(id)
-    print(data_clientid)
-    # 使用clientid和token加入歌房
-    room_id = 'cf6123f5-ee94-11ea-9231-5254009bf4c3'
-    for i in range(len(data_uid)):
-        res = Join_Lounge(token=data_token[i], client_id=data_clientid[i], room_id=room_id).Post_Join()
-        print(res)
-
-
+    Join_Lounge().join(data_file='user_18', room_id='99b3a814-ee9a-11ea-adfb-5254009bf4c3')
