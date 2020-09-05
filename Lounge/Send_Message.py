@@ -13,7 +13,7 @@ import os
 import yaml
 
 from Join_Lounge import Join_Lounge
-from Lounge.Get_Clientid import Lounge
+from Lounge.Lounge import Lounge
 from Read_Usertoken import Read_Uid_Token
 
 message = ["こんにちは！", "よろしくお願いします！", "うまい！", "やばい！", "www", "こんばんは！", "うんうん", "お邪魔します！",

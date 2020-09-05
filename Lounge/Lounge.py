@@ -3,7 +3,7 @@
 """
 @Author:孙泽
 @Github:https://github.com/huochelueguo
-@File:Get_Clientid.py
+@File:Lounge.py
 @Time:NAME.py@Time:2020/8/26 17:17
 @歌房功能封装模块
 """
