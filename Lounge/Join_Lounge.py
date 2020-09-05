@@ -51,7 +51,7 @@ class Join_Lounge(object):
         # 获取用户clientid
         data_clientid = []
         for i in range(len(data_uid)):
-            id = Get_Client(data_token[i], data_uid[i]).GET_Id()
+            id = Get_Client(data_token[i], data_uid[i]).get_id()
             data_clientid.append(id)
         print(data_clientid)
         # 使用clientid和token加入歌房
@@ -62,4 +62,4 @@ class Join_Lounge(object):
 
 
 if __name__ == '__main__':
-    Join_Lounge().join(data_file='user_18', room_id='99b3a814-ee9a-11ea-adfb-5254009bf4c3')
+    Join_Lounge().join(data_file='user_18', room_id='2b302227-eecc-11ea-b5d0-5254009bf4c3')
