@@ -13,12 +13,12 @@ import os
 import yaml
 
 from Join_Lounge import Join_Lounge
-from Lounge.Lounge import Lounge
+from Lounge.Get_Clientid import Lounge
 from Read_Usertoken import Read_Uid_Token
 
 message = ["こんにちは！", "よろしくお願いします！", "うまい！", "やばい！", "www", "こんばんは！", "うんうん", "お邪魔します！",
            "いらっしゃい", "可愛い", "ありがとう！", "最高！", "はじめまして！", "初見です", "いいね！", "お疲れ様", "(′^ω^｀)",
-           "666", "太牛逼了，必须赞一个", "给力！！！！"]
+           "666", "太牛逼了，必须赞一个", "给力！！！！", "小老弟儿，来跟华子不"]
 
 
 class Read_Client(object):
@@ -76,7 +76,7 @@ class Send(object):
 
 
 if __name__ == '__main__':
-    room_id = '01ec72dc-ef76-11ea-b5d0-5254009bf4c3'
+    room_id = '025ef27e-ef78-11ea-a9f8-5254009bf4c3'
     # 加入房间
     Join_Lounge().join(data_file='user_50', room_id=room_id)
     # 无限循环发送评论

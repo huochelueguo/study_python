@@ -12,7 +12,7 @@ import json
 import os
 import yaml
 
-from Lounge.Lounge import Lounge
+from Lounge.Get_Clientid import Lounge
 from Lounge.Read_Usertoken import Read_Uid_Token
 
 
