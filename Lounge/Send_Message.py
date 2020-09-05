@@ -16,31 +16,16 @@ from Join_Lounge import Join_Lounge
 from Lounge.Get_Clientid import Lounge
 from Read_Usertoken import Read_Uid_Token
 
-message = [ "こんにちは！",
-        "よろしくお願いします！",
-        "うまい！",
-        "やばい！",
-        "www",
-        "こんばんは！",
-        "うんうん",
-        "お邪魔します！",
-        "いらっしゃい",
-        "可愛い",
-        "ありがとう！",
-        "最高！",
-        "はじめまして！",
-        "初見です",
-        "いいね！",
-        "お疲れ様",
-        "(′^ω^｀)",
-        "666",
-       "给力！！！！"]
+message = ["こんにちは！", "よろしくお願いします！", "うまい！", "やばい！", "www", "こんばんは！", "うんうん", "お邪魔します！",
+           "いらっしゃい", "可愛い", "ありがとう！", "最高！", "はじめまして！", "初見です", "いいね！", "お疲れ様", "(′^ω^｀)",
+           "666", "太牛逼了，必须赞一个", "给力！！！！"]
 
 
 class Read_Client(object):
     """
     从clientid文件中读取出clientid，返回列表
     """
+
     def read_clientid(self):
         curr_path = os.path.split(__file__)[0]
         client_path = curr_path + '/user_data/clientid'
@@ -58,6 +43,7 @@ class Send(object):
     """
     发送文本接口
     """
+
     def send_txt(self):
         list = Read_Client()
         client_list = list.read_clientid()
