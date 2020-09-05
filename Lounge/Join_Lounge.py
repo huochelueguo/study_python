@@ -9,8 +9,10 @@
 # 加入房间接口，使用TOKEN/CLIENT_ID/room_id调用join接口
 import requests
 import json
+import os
+import yaml
 
-from Lounge.Get_Clientid import Get_Client
+from Lounge.Get_Clientid import Lounge
 from Lounge.Read_Usertoken import Read_Uid_Token
 
 
@@ -51,9 +53,14 @@ class Join_Lounge(object):
         # 获取用户clientid
         data_clientid = []
         for i in range(len(data_uid)):
-            id = Get_Client(data_token[i], data_uid[i]).get_id()
+            id = Lounge(data_token[i], data_uid[i]).get_id()
             data_clientid.append(id)
         print(data_clientid)
+        # 输出client_id到文件中，后续其他操作可能会用到
+        curr_path = os.path.split(__file__)[0]
+        data_path = curr_path + '/user_data/clientid'
+        with open(data_path, 'w', encoding='utf-8')as f:
+            yaml.dump(data_clientid, f)
         # 使用clientid和token加入歌房
         room_id = room_id
         for i in range(len(data_uid)):
@@ -62,4 +69,4 @@ class Join_Lounge(object):
 
 
 if __name__ == '__main__':
-    Join_Lounge().join(data_file='user_18', room_id='2b302227-eecc-11ea-b5d0-5254009bf4c3')
+    Join_Lounge().join(data_file='user_50', room_id='89744070-ef74-11ea-b5d0-5254009bf4c3')

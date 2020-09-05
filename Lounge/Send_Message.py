@@ -8,14 +8,15 @@
 @随机发送聊天消息
 """
 import random
-from websocket import create_connection
+import uuid
+import os
+import yaml
 
-from Lounge.Join_Lounge import Join_Lounge
-from Lounge.Get_Clientid import Get_Client
+from Join_Lounge import Join_Lounge
+from Lounge.Get_Clientid import Lounge
+from Read_Usertoken import Read_Uid_Token
 
-
-message = [
-        "こんにちは！",
+message = [ "こんにちは！",
         "よろしくお願いします！",
         "うまい！",
         "やばい！",
@@ -32,6 +33,67 @@ message = [
         "いいね！",
         "お疲れ様",
         "(′^ω^｀)",
-        "(*・ω・)ﾉ",
-        "(´ー｀*)"]
-Join_Lounge().join(data_file='user_18', room_id='99b3a814-ee9a-11ea-adfb-5254009bf4c3')
+        "666",
+       "给力！！！！"]
+
+
+class Read_Client(object):
+    """
+    从clientid文件中读取出clientid，返回列表
+    """
+    def read_clientid(self):
+        curr_path = os.path.split(__file__)[0]
+        client_path = curr_path + '/user_data/clientid'
+        with open(client_path, 'r')as f:
+            client_id = yaml.load(f, Loader=yaml.FullLoader)
+        return client_id
+
+
+class Send(object):
+
+    def __init__(self, roomm_id, user_data):
+        self.roomid = roomm_id
+        self.userdata = user_data
+
+    """
+    发送文本接口
+    """
+    def send_txt(self):
+        list = Read_Client()
+        client_list = list.read_clientid()
+
+        r = Read_Uid_Token(self.userdata).read()
+        uid = r[0]
+        token = r[1]
+        # print(uid)
+        # print(token)
+        for i in range(len(uid)):
+            # 随机读取评论内容
+            content = random.choice(message)
+            data = {
+                "msg_id": str(uuid.uuid4()),
+                "data": {
+                    "client_id": client_list[i],
+                    "message_id": str(uuid.uuid1()),
+                    "content": content,
+                    "type": 1,
+                    "room_id": self.roomid
+                },
+                "command": 4003
+            }
+            try:
+                ws = Lounge(token=token[i], uid=uid[i])
+                ws.send_message(data=data)
+            except Exception as result:
+                print('重新连接')
+                Lounge(token=token[i], uid=uid[i])
+
+
+if __name__ == '__main__':
+    room_id = '01ec72dc-ef76-11ea-b5d0-5254009bf4c3'
+    # 加入房间
+    Join_Lounge().join(data_file='user_50', room_id=room_id)
+    # 无限循环发送评论
+    while True:
+        roomid = room_id
+        Send(roomid, user_data='user_50').send_txt()
