@@ -16,6 +16,7 @@ def cook(**kwargs):
         print(f'做{kwargs[keys]}吃')
         time.sleep(4)
 
+
 def eat():
     for i in range(3):
         print('吃东西')
