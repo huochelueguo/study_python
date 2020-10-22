@@ -6,3 +6,9 @@ for suoyin in list1:
     if suoyin == 4:
         print(list1.index(suoyin))
 
+a = 2
+if a not in list1:
+    list1.append(8)
+    print(list1)
+else:
+    print(list1.index(a))
