@@ -43,3 +43,12 @@ for k, v in li5:
 dict4 = {k: v for k, v in sorted(dict1.items(), key=lambda key: key[1], reverse=True)}
 print(dict3)
 print(dict4)
+
+
+# practice
+dict5 = {2: 96, 5: 100, 10: 82, 1: 55}
+print(dict5)
+l1 = dict5.items()
+l2 = sorted(l1, key=lambda key: key[1], reverse=True)
+dict6 = {k: v for k, v in l2}
+print(dict6)
