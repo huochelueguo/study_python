@@ -76,7 +76,7 @@ class Send(object):
 
 
 if __name__ == '__main__':
-    room_id = '025ef27e-ef78-11ea-a9f8-5254009bf4c3'
+    room_id = '4ea9c944-3ec3-11eb-9498-5254009bf4c3'
     # 加入房间
     Join_Lounge().join(data_file='user_50', room_id=room_id)
     # 无限循环发送评论

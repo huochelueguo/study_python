@@ -27,7 +27,7 @@ class Lounge(object):
         self.token = token
         self.uid = uid
         self.url = 'ws://test.api.pokekara.com/ws?' + 'uid=' + self.uid
-        self.ws = create_connection(url=self.url, timeout=100, cookie=self.token)
+        self.ws = create_connection(url=self.url, timeout=2000, cookie=self.token)
 
     def get_id(self):
         """
@@ -61,7 +61,7 @@ if __name__ == '__main__':
             "message_id": "2F221282D-BD5F-4854-8786-67C6DCC7CC42",
             "content": "12132",
             "type": 1,
-            "room_id": "f316a444-ef5a-11ea-b5d0-5254009bf4c3"
+            "room_id": "dc8823ba-23f7-11eb-8d3d-5254009bf4c3"
         },
         "command": 4003
     }
