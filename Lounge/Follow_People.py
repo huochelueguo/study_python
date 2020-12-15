@@ -8,6 +8,8 @@
 歌房内批量关注用户【房主】
 """
 import uuid
+
+import jsonpath
 import requests
 
 from Join_Lounge import Join_Lounge
@@ -44,25 +46,31 @@ class Follow_People(object):
             body = {"t_uid": self.owner_uid,
                     "refer": 'lounge'
                     }
-            requests.post(url=url, data=body, headers=header)
-
-            # 再调用websoeket发送4031
-            websocket_data = {
-                "msg_id": str(uuid.uuid4()),
-                "data": {
-                    "client_id": client_list[i],
-                    "message_id": str(uuid.uuid1()),
-                    "to_uid": self.owner_uid,
-                    "type": 0,
-                    "room_id": self.romm_id
-                },
-                "command": 4031
-            }
             try:
-                ws = Lounge(token=token[i], uid=uid[i])
-                ws.send_message(data=websocket_data)
-            except Exception as e:
-                print(f'{e}')
+                res = requests.post(url=url, data=body, headers=header)
+                data = res.json()
+            except Exception as result:
+                print(f'{result}')
+            if 'success' == jsonpath.jsonpath(data, '$..err_msg'):
+                # 再调用websoeket发送4031
+                websocket_data = {
+                    "msg_id": str(uuid.uuid4()),
+                    "data": {
+                        "client_id": client_list[i],
+                        "message_id": str(uuid.uuid1()),
+                        "to_uid": self.owner_uid,
+                        "type": 0,
+                        "room_id": self.romm_id
+                    },
+                    "command": 4031
+                }
+                try:
+                    ws = Lounge(token=token[i], uid=uid[i])
+                    ws.send_message(data=websocket_data)
+                except Exception as e:
+                    print(f'{e}')
+            else:
+                print('api关注失败')
 
 
 if __name__ == '__main__':
