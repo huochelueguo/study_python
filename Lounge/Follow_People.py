@@ -7,6 +7,7 @@
 @Time:NAME.py@Time:2020/12/14 14:30
 歌房内批量关注用户【房主】
 """
+import json
 import uuid
 
 import jsonpath
@@ -77,7 +78,14 @@ if __name__ == '__main__':
     room_id = "a136443d-3ecf-11eb-9498-5254009bf4c3"
     owner_uid = 'u1593329556843533000'
     # 加入房间
-    Join_Lounge().join(data_file='user_1', room_id=room_id)
-    # 关注房主
-    Follow_People(room_id=room_id, user_data='user_1', owner_uid=owner_uid).follow_owner()
+    res_data = Join_Lounge().join(data_file='user_1', room_id=room_id)
+    lounge_status = json.loads(res_data)
+    close_tip = "このルームは終了しました！他のルーム見てみましょう！"
+    # print(jsonpath.jsonpath(lounge_status, '$..tip'))
+    if close_tip == jsonpath.jsonpath(lounge_status, '$..tip')[0]:
+        print('房间已关闭')
+    else:
+        Follow_People(room_id=room_id, user_data='user_1', owner_uid=owner_uid).follow_owner()
+
+
 

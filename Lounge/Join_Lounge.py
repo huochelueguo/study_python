@@ -65,7 +65,8 @@ class Join_Lounge(object):
         room_id = room_id
         for i in range(len(data_uid)):
             res = Post(token=data_token[i], client_id=data_clientid[i], room_id=room_id).Post_Join()
-            print(res)
+            # print(res)
+        return res
 
 
 if __name__ == '__main__':
