@@ -52,7 +52,7 @@ class Follow_People(object):
                 data = res.json()
             except Exception as result:
                 print(f'{result}')
-            if 'success' == jsonpath.jsonpath(data, '$..err_msg'):
+            if 'success' == jsonpath.jsonpath(data, '$..err_msg')[0]:
                 # 再调用websoeket发送4031
                 websocket_data = {
                     "msg_id": str(uuid.uuid4()),
@@ -68,6 +68,7 @@ class Follow_People(object):
                 try:
                     ws = Lounge(token=token[i], uid=uid[i])
                     ws.send_message(data=websocket_data)
+                    print('follow success')
                 except Exception as e:
                     print(f'{e}')
             else:
@@ -75,17 +76,18 @@ class Follow_People(object):
 
 
 if __name__ == '__main__':
-    room_id = "a136443d-3ecf-11eb-9498-5254009bf4c3"
-    owner_uid = 'u1593329556843533000'
+    room_id = "7b61ef0b-3f8b-11eb-9c4b-5254009bf4c3"
+    owner_uid = 'u1237326482846568448'
     # 加入房间
-    res_data = Join_Lounge().join(data_file='user_1', room_id=room_id)
+    res_data = Join_Lounge().join(data_file='user_50', room_id=room_id)
     lounge_status = json.loads(res_data)
     close_tip = "このルームは終了しました！他のルーム見てみましょう！"
+    res_tip = jsonpath.jsonpath(lounge_status, '$..tip')
     # print(jsonpath.jsonpath(lounge_status, '$..tip'))
-    if close_tip == jsonpath.jsonpath(lounge_status, '$..tip')[0]:
+    if not res_tip:
+        Follow_People(room_id=room_id, user_data='user_50', owner_uid=owner_uid).follow_owner()
+    elif close_tip == res_tip[0]:
         print('房间已关闭')
-    else:
-        Follow_People(room_id=room_id, user_data='user_1', owner_uid=owner_uid).follow_owner()
 
 
 
