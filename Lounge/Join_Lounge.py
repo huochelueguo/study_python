@@ -9,6 +9,7 @@
 # 加入房间接口，使用TOKEN/CLIENT_ID/room_id调用join接口
 import time
 
+import jsonpath
 import requests
 import json
 import os
@@ -63,10 +64,13 @@ class Join_Lounge(object):
             with open(data_path, 'w', encoding='utf-8')as f:
                 yaml.dump(data_clientid, f)
             # 使用clientid和token加入歌房
-            res = Post(token=data_token[i], client_id=data_clientid[i], room_id=room_id).Post_Join()
+            try:
+                res = Post(token=data_token[i], client_id=data_clientid[i], room_id=room_id).Post_Join()
+            except Exception as result:
+                print(f'{result}')
         print(data_clientid)
         return res
 
 
 if __name__ == '__main__':
-    Join_Lounge().join(data_file='user_50', room_id="ec5dd3e5-4047-11eb-9350-5254009bf4c3")
+    Join_Lounge().join(data_file='user_50', room_id="ec5dd3e5-4047-11eb-9350-5254009bf4c31")
