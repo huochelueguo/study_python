@@ -68,7 +68,6 @@ class Follow_People(object):
                 try:
                     ws = Lounge(token=token[i], uid=uid[i])
                     ws.send_message(data=websocket_data)
-                    print('follow success')
                 except Exception as e:
                     print(f'{e}')
             else:
