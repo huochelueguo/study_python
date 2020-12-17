@@ -7,6 +7,8 @@
 @Time:NAME.py@Time:2020/8/26 18:59
 """
 # 加入房间接口，使用TOKEN/CLIENT_ID/room_id调用join接口
+import time
+
 import requests
 import json
 import os
@@ -55,19 +57,16 @@ class Join_Lounge(object):
         for i in range(len(data_uid)):
             id = Lounge(data_token[i], data_uid[i]).get_id()
             data_clientid.append(id)
-        print(data_clientid)
-        # 输出client_id到文件中，后续其他操作可能会用到
-        curr_path = os.path.split(__file__)[0]
-        data_path = curr_path + '/user_data/clientid'
-        with open(data_path, 'w', encoding='utf-8')as f:
-            yaml.dump(data_clientid, f)
-        # 使用clientid和token加入歌房
-        room_id = room_id
-        for i in range(len(data_uid)):
+            # 输出client_id到文件中，后续其他操作可能会用到
+            curr_path = os.path.split(__file__)[0]
+            data_path = curr_path + '/user_data/clientid'
+            with open(data_path, 'w', encoding='utf-8')as f:
+                yaml.dump(data_clientid, f)
+            # 使用clientid和token加入歌房
             res = Post(token=data_token[i], client_id=data_clientid[i], room_id=room_id).Post_Join()
-            # print(res)
+        print(data_clientid)
         return res
 
 
 if __name__ == '__main__':
-    Join_Lounge().join(data_file='user_50', room_id="0511743b-3ec1-11eb-9498-5254009bf4c3")
+    Join_Lounge().join(data_file='user_50', room_id="ec5dd3e5-4047-11eb-9350-5254009bf4c3")
