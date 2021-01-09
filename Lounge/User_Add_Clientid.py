@@ -26,7 +26,7 @@ class Add_Clientid(object):
             clientid = []
             for i in clientid_data:
                 clientid.append(i[2:-1])
-            print(clientid)
+            # print(clientid)
             return clientid
 
     def get_uid_token_list(self):
@@ -37,7 +37,7 @@ class Add_Clientid(object):
         uid_token_data = Read_Uid_Token(path=user_path).read()
         uid_list = uid_token_data[0]
         token_list = uid_token_data[1]
-        print(uid_list, token_list)
+        # print(uid_list, token_list)
         return uid_list, token_list
 
     def uid_token_clientid(self):
@@ -49,7 +49,7 @@ class Add_Clientid(object):
         uid_list = self.get_uid_token_list()[0]
         token_list = self.get_uid_token_list()[1]
         uid_token_clientid_list = list(zip(uid_list, token_list, clientid_list))
-        print(uid_token_clientid_list)
+        # print(uid_token_clientid_list)
         return uid_token_clientid_list
 
 

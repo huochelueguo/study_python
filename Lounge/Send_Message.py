@@ -13,7 +13,7 @@ import os
 import yaml
 
 from Join_Lounge import Join_Lounge
-from Lounge.Get_Clientid import Lounge
+from Lounge.Get_Clientid import Get_Clientid
 from Read_Usertoken import Read_Uid_Token
 
 message = ["こんにちは！", "よろしくお願いします！", "うまい！", "やばい！", "www", "こんばんは！", "うんうん", "お邪魔します！",
@@ -68,15 +68,15 @@ class Send(object):
                 "command": 4003
             }
             try:
-                ws = Lounge(token=token[i], uid=uid[i])
+                ws = Get_Clientid(token=token[i], uid=uid[i])
                 ws.send_message(data=data)
             except Exception as result:
                 print('重新连接')
-                Lounge(token=token[i], uid=uid[i])
+                Get_Clientid(token=token[i], uid=uid[i])
 
 
 if __name__ == '__main__':
-    room_id = '4ea9c944-3ec3-11eb-9498-5254009bf4c3'
+    room_id = "3e254f1e-4f2f-11eb-8e43-5254009bf4c3"
     # 加入房间
     Join_Lounge().join(data_file='user_50', room_id=room_id)
     # 无限循环发送评论

@@ -14,7 +14,7 @@ import jsonpath
 import requests
 
 from Join_Lounge import Join_Lounge
-from Lounge.Get_Clientid import Lounge
+from Lounge.Get_Clientid import Get_Clientid
 from Read_Usertoken import Read_Uid_Token
 from Lounge.Send_Message import Read_Client
 
@@ -66,7 +66,7 @@ class Follow_People(object):
                     "command": 4031
                 }
                 try:
-                    ws = Lounge(token=token[i], uid=uid[i])
+                    ws = Get_Clientid(token=token[i], uid=uid[i])
                     ws.send_message(data=websocket_data)
                 except Exception as e:
                     print(f'{e}')

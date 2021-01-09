@@ -5,7 +5,7 @@
 @Github:https://github.com/huochelueguo
 @File:Get_Clientid.py
 @Time:NAME.py@Time:2020/8/26 17:17
-@歌房功能封装模块
+@歌房功能封装模块： 获取用户clientid
 """
 
 # 导入的模块是websocket_client，相似的比较多，容易混淆
@@ -16,7 +16,7 @@ import yaml
 from websocket import create_connection
 
 
-class Lounge(object):
+class Get_Clientid(object):
 
     def __init__(self, token, uid):
         """
@@ -65,5 +65,5 @@ if __name__ == '__main__':
         },
         "command": 4003
     }
-    user = Lounge(token=token1, uid=uid1)
+    user = Get_Clientid(token=token1, uid=uid1)
     user.send_message(data=data)

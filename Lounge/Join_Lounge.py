@@ -15,7 +15,7 @@ import json
 import os
 import yaml
 
-from Lounge.Get_Clientid import Lounge
+from Lounge.Get_Clientid import Get_Clientid
 from Lounge.Read_Usertoken import Read_Uid_Token
 
 
@@ -56,7 +56,7 @@ class Join_Lounge(object):
         # 获取用户clientid
         data_clientid = []
         for i in range(len(data_uid)):
-            id = Lounge(data_token[i], data_uid[i]).get_id()
+            id = Get_Clientid(data_token[i], data_uid[i]).get_id()
             data_clientid.append(id)
             # 输出client_id到文件中，后续其他操作可能会用到
             curr_path = os.path.split(__file__)[0]
@@ -73,4 +73,4 @@ class Join_Lounge(object):
 
 
 if __name__ == '__main__':
-    Join_Lounge().join(data_file='user_50', room_id="ec5dd3e5-4047-11eb-9350-5254009bf4c31")
+    Join_Lounge().join(data_file='user_50', room_id="059e1719-5268-11eb-8e43-5254009bf4c3")
