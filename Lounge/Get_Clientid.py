@@ -48,7 +48,7 @@ class Get_Clientid(object):
         data_json = json.dumps(data, indent=4, ensure_ascii=False)
         self.ws.send(data_json)
         a = self.ws.recv()
-        print(a)
+        # print(a)
 
 
 if __name__ == '__main__':

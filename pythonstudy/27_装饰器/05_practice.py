@@ -10,20 +10,23 @@
 import time
 
 
-def all_time(func):
-    def warpper():
+def time_use(func):
+    def wrapper(a, b):
         start = time.time()
-        func()
+        a = func(a, b)
+        time.sleep(2)
         end = time.time()
-        ti = end-start
-        print(f'耗时为:{ti}')
-    return warpper  # 此处返回值不要带（），否则就执行了
+        use = end - start
+        print(f'执行函数耗时{use}')
+        return a
+    return wrapper
 
 
-@all_time
-def cal():
-    for i in range(100000000):
-        pass
+@time_use
+def sum(a, b):
+    # return a+b
+    print(f'{a+b}')
 
 
-cal()
+print(sum(1, 2))
+

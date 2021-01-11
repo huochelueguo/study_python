@@ -34,7 +34,7 @@ class Add_Clientid(object):
 
         :return: 分别将用户uid.token返回，类型为list
         """
-        uid_token_data = Read_Uid_Token(path=user_path).read()
+        uid_token_data = Read_Uid_Token(path=self.user_path).read()
         uid_list = uid_token_data[0]
         token_list = uid_token_data[1]
         # print(uid_list, token_list)
@@ -49,7 +49,7 @@ class Add_Clientid(object):
         uid_list = self.get_uid_token_list()[0]
         token_list = self.get_uid_token_list()[1]
         uid_token_clientid_list = list(zip(uid_list, token_list, clientid_list))
-        # print(uid_token_clientid_list)
+        # print(uid_token_clientid_list[0])
         return uid_token_clientid_list
 
 
@@ -58,6 +58,7 @@ class Add_Clientid(object):
 
 if __name__ == '__main__':
     user_path = 'user_18'
-    clientid_path = 'E:/python-workspace/Lounge/user_data/clientid'
+    # clientid_path = 'E:/python-workspace/Lounge/user_data/clientid'
+    clientid_path = '/Users/sunwenxiao/PycharmProjects/study_python/Lounge/user_data/clientid'
     Add_Clientid(user_path, clientid_path).uid_token_clientid()
 
