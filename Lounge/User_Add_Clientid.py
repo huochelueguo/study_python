@@ -53,9 +53,6 @@ class Add_Clientid(object):
         return uid_token_clientid_list
 
 
-
-
-
 if __name__ == '__main__':
     user_path = 'user_18'
     # clientid_path = 'E:/python-workspace/Lounge/user_data/clientid'
