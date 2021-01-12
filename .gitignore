@@ -135,3 +135,4 @@ pyteststudy/report/allure_raw
 pyteststudy/*/allure_raw
 pyteststudy/pytest.ini
 
+!/Lounge/user_data/
