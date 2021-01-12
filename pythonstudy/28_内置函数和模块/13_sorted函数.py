@@ -26,10 +26,10 @@ print(sorted(dict1.keys()))   # [1, 2, 3, 4]
 print(sorted(dict1.values()))  # [9, 20, 86, 555]
 
 # 对整个字典根据key值进行排序
-li3 = dict1.items()
-li4 = sorted(li3)
+li3 = dict1.items()     # 将字典转换为列表：dict_items([(2, 86), (3, 20), (1, 9), (4, 555)])
+li4 = sorted(li3)   # 将转换的列表进行排序，默认为key[0]  ，等同为： li4 = sorted(li3, key = lambda x : x[0])
 dict2 = {}
-for k, v in li4:
+for k, v in li4:    # 将列表再转换为字典
     dict2[k] = v
 print(dict2)
 
