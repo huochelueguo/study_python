@@ -5,14 +5,13 @@
 @Github:https://github.com/huochelueguo
 @File:Send_Message_Threading.py
 @Time:NAME.py@Time:2021/1/9 18:06
-@ 多线程发送评论： 大致思路：使用uid获取clientid，将用户的uid/token/clientid组成一组数据，N组数据组成一个线程，分别取触发send_message
+@ 多线程发送评论：使用uid获取clientid，将用户的uid/token/clientid组成一组数据，N组数据组成一个线程，分别取触发send_message
 """
 import uuid
 import random
+import threading
 from Get_Clientid import Get_Clientid
 from Join_Lounge import Join_Lounge
-from Lounge.Send_Message import Send
-import threading
 from Lounge.User_Add_Clientid import Add_Clientid
 
 
@@ -51,44 +50,23 @@ class Send_Mess_Threading(object):
 
     def send_thread(self):
         thread_list = []
-        # thread_1 = threading.Thread(target=self.send_txt())
-        # thread_1.start()
         for i in range(self.thred_count):
             thread_list.append(threading.Thread(target=self.send_txt))
         for t in thread_list:
-            print(data)
-            print(thread_list)
+            # print(data)
+            # print(thread_list)
             t.start()
-        # for t in thread_list:
-        #
-        #     t.join()
 
 
 if __name__ == '__main__':
-    user_path = 'user_1'
+    user_path = 'user_18'
+    thread_count = 5
     clientid_path = '/Users/sunwenxiao/PycharmProjects/study_python/Lounge/user_data/clientid'
-    room_id = "592217b4-5360-11eb-8e43-5254009bf4c3"
+    room_id = "5cb5dc19-5421-11eb-8e43-5254009bf4c3"
     # 加入房间
     Join_Lounge().join(data_file=user_path, room_id=room_id)
-    # 无限循环发送评论
-    # while True:
-    #     data = Add_Clientid(user_path=user_path, clientid_path=clientid_path).uid_token_clientid()
-    #     print(data[0])
-    #     data_1 = data[0]
-    #     Send_Mess_Threading(thread_count=1, user_data=data_1, room_id=room_id).send_thread()
     data = Add_Clientid(user_path=user_path, clientid_path=clientid_path).uid_token_clientid()
-    count = 2
-    for i in range(count):
-        Send_Mess_Threading(thread_count=count, user_data=data[i], room_id=room_id).send_thread()
-
-    # thread_list = []
-    # for i in range(count):
-    #     # thread_list.append(Send_Mess_Threading(thread_count=count, user_data=data[i], room_id=room_id).send_txt())
-    #     thread_list.append(threading.Thread(target=Send_Mess_Threading(user_data=data[i], room_id=room_id).send_txt()))
-    #     print(thread_list)
-    # for th in thread_list:
-    #     th.start()
-    # for t in thread_list:
-    #     t.join()
+    for i in range(thread_count):
+        Send_Mess_Threading(thread_count=thread_count, user_data=data[i], room_id=room_id).send_thread()
 
 
