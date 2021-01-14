@@ -15,30 +15,34 @@ def cook(food):
     print(f'正在做:{food}')
 
 
-def clean_room(*args):
-    for i in range(2):
-        print(f'开始清理 {room[i]}')
+def clean_room(room_name):
+    for i in room_name:
+        print(f'开始清理 {i}')
         time.sleep(3)
         print('清理完毕')
 
 
-def wash_clothes(**kwargs):
+def wash_clothes(name,colthes):
     # kwargs的遍历
-    for keys in kwargs:
-        print(f'开始洗 {kwargs[keys]} 的衣服')
-        time.sleep(3)
-        print('洗完')
+    # for k,v in colthes:
+    #     print(f'{k}开始洗 {v} 的衣服')
+    #     time.sleep(3)
+    #     print('洗完')
+    print(f'{name}开始洗 {colthes} 的衣服')
 
 
 if __name__ == '__main__':
     room = ('卧室', '客厅')
-    clothes = {'0': 'father', '1': 'mother'}
+    clothes = {'name': 'father', 'colthes': 'mother'}
+    clothes_tup = ('son', 'sister')
     # 传入参数为元组时，参数名称为args
     # 传入参数为字典时，参数名称为kwargs
     t0 = threading.Thread(target=cook, args=('beef', ))
-    t1 = threading.Thread(target=clean_room, args=room)
-    t2 = threading.Thread(target=wash_clothes, kwargs=clothes)
+    t1 = threading.Thread(target=clean_room, args=(room,))
+    t2 = threading.Thread(target=wash_clothes, args=clothes_tup)
+    t3 = threading.Thread(target=wash_clothes, kwargs=clothes)
     t0.start()
     t1.start()
     t2.start()
+    t3.start()
 
