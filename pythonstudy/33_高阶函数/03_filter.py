@@ -29,3 +29,6 @@ def zhishu(x):
 data = filter(zhishu, li)
 print(list(data))
 
+# 使用lambda改写
+data = filter(lambda x: x % 2 ==0, li)
+print(list(data))
