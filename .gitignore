@@ -136,3 +136,4 @@ pyteststudy/*/allure_raw
 pyteststudy/pytest.ini
 
 !/Lounge/user_data/
+/.git/sourcetreeconfig
