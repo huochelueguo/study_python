@@ -34,3 +34,21 @@ def cheng(a, b):
 
 sum2 = reduce(cheng, li2)
 print(sum2)
+
+
+# 给出一个数组，输出他的数字，比如[1,2,3]输出123
+li = [1, 2, 3]
+
+# 方法1：
+str1 = ''
+for i in li:
+    str1 += str(i)
+print(int(str1), type(int(str1)))
+
+# 方法2：
+def func(x, y):
+    return x * 10 + y
+print(reduce(func, li))
+
+# 方法3：
+print(reduce(lambda x, y: x*10+y, li))
