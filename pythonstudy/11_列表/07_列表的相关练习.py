@@ -52,5 +52,17 @@ print(l1)
 """
 打印出列表索引
 """
-for k,v in enumerate(l1):
+for k, v in enumerate(l1):
     print(k)
+
+"""
+输出10-100，倒叙将偶数放入一个新列表中，在筛选出能被4整除的数
+"""
+l1 = []
+for i in range(10, 101):
+    if i % 2 == 0:
+        l1.append(i)
+        l1.sort(reverse=True)
+        print(l1)
+l1 = [x for x in l1 if x % 4 == 0]
+print(l1)
