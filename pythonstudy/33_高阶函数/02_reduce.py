@@ -48,7 +48,16 @@ print(int(str1), type(int(str1)))
 # 方法2：
 def func(x, y):
     return x * 10 + y
-print(reduce(func, li))
+print(reduce(func, li), type(reduce(func, li)))
 
 # 方法3：
 print(reduce(lambda x, y: x*10+y, li))
+
+# 将str转换成为int，不使用int()强转
+dict = {}
+str = '12346'
+for i in range(0, 11):
+    dict[str(i)] = i
+print(dict)
+for i in range(str):
+    https: // www.liaoxuefeng.com / wiki / 1016959663602400 / 1017329367486080
