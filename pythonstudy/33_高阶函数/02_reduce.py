@@ -52,12 +52,31 @@ print(reduce(func, li), type(reduce(func, li)))
 
 # 方法3：
 print(reduce(lambda x, y: x*10+y, li))
+print('-' * 20)
 
-# 将str转换成为int，不使用int()强转
-dict = {}
+
+# 将str转换成为int，不使用int()强转,如‘12346’
+dict1 = {}
+dict2 = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}
+l1 = []
 str = '12346'
-for i in range(0, 11):
-    dict[str(i)] = i
-print(dict)
-for i in range(str):
-    https: // www.liaoxuefeng.com / wiki / 1016959663602400 / 1017329367486080
+# for i in range(11):
+#     dict1[i] = i
+# print(dict1)
+# 方法1：
+for i in str:
+    l1.append(dict2[i])
+print(l1)
+def func(x, y):
+    return x * 10 + y
+print(reduce(func, l1), type(reduce(func, l1),))
+
+# 方法2：
+def func1(x):
+    return dict2[x]
+a = reduce(func, map(func1, str))
+print(a, type(a))
+
+# 方法3：
+b = reduce(lambda x,y : x*10+y, map(func1, str))
+print(b, type(b))
