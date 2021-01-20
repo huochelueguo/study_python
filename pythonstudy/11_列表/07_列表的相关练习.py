@@ -66,3 +66,37 @@ for i in range(10, 101):
         print(l1)
 l1 = [x for x in l1 if x % 4 == 0]
 print(l1)
+print('-' * 50)
+
+"""
+输入内容，将内容插入到一个列表中，如果输入内容与列表中内容重复，则用对应长度*代替
+"""
+# l1 = ['aaa', 'bb', 'c']
+# l2 = []
+# while True:
+#     str = input('请输入：')
+#     if str in l1:
+#         l2.append(str.replace(str, '*' * len(str)))
+#     else:
+#         l2.append(str)
+#     print(l2)
+# print('-' * 50)
+"""
+循环打印以下列表每个元素，同时将字母全部改为小写，遇到列表继续循环打印
+"""
+l1 = [1, 2, 3, 'A', 'Abc', [1, 'a', 'A', 'DS', 44], (5, 3)]
+for i in l1:
+    if isinstance(i, int):
+        print(i)
+    elif isinstance(i, str):
+        print(i.lower())
+    elif isinstance(i, list):
+        for j in i:
+            if isinstance(j, int):
+                print(j)
+            elif isinstance(j, str):
+                print(j.lower())
+            else:
+                print(j)
+    else:
+        print(i)
