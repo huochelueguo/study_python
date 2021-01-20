@@ -10,6 +10,8 @@
 # map()函数接收两个参数，一个是函数，一个是序列，map将传入的函数依次作用到序列的每个元素，并把结果作为新的list返回。
 # 使用方法：  map（函数名[无括号]，列表名）
 # 注意：Python3版本之后，map返回值为一个迭代器，需要强转成list
+from functools import reduce
+
 List = [1, 2, 3, 4, 5, 6, 7]
 
 
@@ -41,8 +43,18 @@ print(list(li2))    # [] 由于迭代器只能迭代一次，因此在此输出�
 l1 = ['adam', 'LISA', 'barT']
 def normalize(name):
     return name[0].upper() + name[1:].lower()
-
-# 测试:
 L1 = ['adam', 'LISA', 'barT']
 L2 = list(map(normalize, L1))
 print(L2)
+
+# 练习，将‘2312’输出为整形2312，不使用int的情况下
+dict1 = {}
+for i in range(10):
+    dict1[str(i)] = i
+print(dict1)
+def func1(j):
+    return dict1[j]
+def func2(x, y):
+    return x * 10 + y
+num = reduce(func2, map(func1, '2312'))
+print(num, type(2312))
