@@ -6,6 +6,9 @@
 @File:01.常用魔术方法.py
 @Time:2021/1/22 上午9:26
 """
+"""
+以 __XX__ 样式的方法都称为魔术方法
+"""
 class NewAdd():
 
     def __init__(self, a, b):
@@ -17,9 +20,18 @@ class NewAdd():
         # 修改过后为返回语句，注意返回必须为字符串
         return '这是修改过的类描述'
 
+    def __del__(self):
+        print('生命周期最后调用的一个方法')
 
-c = NewAdd(2, 2)
-print(c)
+    def __add__(self, b):
+        print('可以手动改写目前已经存在的魔术方法')
+        return 'a和b求和后的值为:a + b * 10 = {}'.format(self.a + b * 10)
+
+
+if __name__ == '__main__':
+    c = NewAdd(2, 2)
+    print(c)
+    print(c.__add__(3))
 
 
 
