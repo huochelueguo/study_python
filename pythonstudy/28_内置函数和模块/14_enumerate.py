@@ -11,6 +11,7 @@
 写法：enumerate(可迭代数据, start=)
     start代表从X开始，默认为0
 返回值：返回一个枚举，数据+下标组成的元组
+    字典返回的为字典的key
 """
 l1 = [1, 2, 3, 4, 5]
 for i in enumerate(l1):
@@ -19,3 +20,10 @@ for i in enumerate(l1):
 # 如果仅输出下标
 for k, v in enumerate(l1, start=1):
     print(k)
+
+dict1 = {'1': 'a', '2': 'b', '3': 'c'}
+for k,v in enumerate(dict1):
+    print(k,v)
+for i in enumerate(dict1):
+    print(i)
+print(list(enumerate(dict1)))
