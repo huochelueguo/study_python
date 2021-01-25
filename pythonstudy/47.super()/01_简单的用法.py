@@ -9,12 +9,19 @@
 
 """
 super() 
+https://blog.csdn.net/dxk_093812/article/details/87553937
 作用：
     当子类具有和父类同名的方法时，子类执行该方法将仅执行子类方法中的内容，如果同时想调用父类方法中的内容，就可以使用super().来调用
+写法：
+    super(type[, object-or-type])
+        type -- 类。
+        object-or-type -- 类，一般是 self
+        Python 3 可以使用直接使用 super().xxx 代替 super(Class, self).xxx :
 使用方法：
     1、构造方法中，有同名参数可以使用super().__init__(参数)
     2、普通方法中，使用super().xx()调用父类中的xx方法   
 """
+
 
 class Human():
 
