@@ -27,7 +27,7 @@ class Singel_lock(object):
     with_lock = Lock()
 
     def __init__(self):
-        time.sleep(1)
+        time.sleep(0.1)
 
     @classmethod
     def singer(cls):
@@ -66,12 +66,12 @@ if __name__ == '__main__':
     main_thred
     存在问题：多线程时，由于时间差，导致可能出现多次创建实例，因此需要枷锁
     """
-    # l1 = []
-    # for i in range(3):
-    #     i = Thread(target=task2)
-    #     l1.append(i)
-    # for i in l1:
-    #     i.start()
-    #     i.join()
-    # print('main_thred')
-    task2()
+    l1 = []
+    for i in range(3):
+        i = Thread(target=task2)
+        l1.append(i)
+    for i in l1:
+        i.start()
+        i.join()
+    print('main_thred')
+    # task2()
