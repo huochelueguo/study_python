@@ -8,17 +8,15 @@
 """
 
 
-def mppx(l1):
-    list_len = len(l1)
-    for i in range(list_len-1):
-        print(l1[i])
-        for j in range(list_len-i-1):
-            print(l1[j], l1[j+1])
-            if l1[j] > l1[j+1]:
-                l1[j], l1[j+1] = l1[j+1], l1[j]
-                print(l1)
-    return l1
+def mppx(testlist):
+    long = len(testlist)
+    for i in range(long-1):
+        for j in range(long-i-1):
+            if testlist[j] > testlist[j+1]:
+                testlist[j],testlist[j+1] = testlist[j+1],testlist[j]
+    return testlist
 
 
-list_1 = [4, 3, 2]
-print(mppx(list_1))
+
+lists= [30,24,5,58,18,36,12,42,39,18]
+print(mppx(lists))
