@@ -12,11 +12,11 @@ def mppx(testlist):
     long = len(testlist)
     for i in range(long-1):
         for j in range(long-i-1):
-            if testlist[j] > testlist[j+1]:
-                testlist[j],testlist[j+1] = testlist[j+1],testlist[j]
+            if testlist[j] > testlist[j+1]:  # 每次相邻的2个数进行比较，如果错误则交换顺序
+                testlist[j], testlist[j+1] = testlist[j+1], testlist[j]
+        print(testlist)
     return testlist
 
 
-
-lists= [30,24,5,58,18,36,12,42,39,18]
+lists = [30,24,5,58,18,36,12,42,39,18]
 print(mppx(lists))
