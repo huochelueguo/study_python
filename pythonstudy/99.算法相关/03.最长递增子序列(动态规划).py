@@ -34,14 +34,15 @@ def longlist(testlist, dp):
     for i in range(index-1, 0, -1):
         if testlist[i] < testlist[index] and dp[index] - 1 == dp[i]:
             # 求最长递增子序列时，如果i大于j且j的维护数组大于i的，会+1，这里属于逆向思维，-1
-            n -= 1
-            index = i
+            n -= 1  # 数组下标从0开始，因此赋值时需要-1
+            index = i   # 当满足条件后，循环起始值需要调整为新的，也就是从i开始再找就可以
             lis[n] = testlist[i]
     return lis
 
 
 if __name__ == '__main__':
     testlist = [3, 1, 24, 15, 49]
+    #     dp = [1, 1, 2, 2, 3]
     final_list = lenthoflist(testlist)
     print(f'每个元素为终点的最长子序列值为:{final_list}')
     print(f'最长递增子序列值为:{max(final_list)}')
