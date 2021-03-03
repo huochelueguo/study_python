@@ -37,6 +37,7 @@ def longlist(testlist, dp):
             n -= 1  # 数组下标从0开始，因此赋值时需要-1
             index = i   # 当满足条件后，循环起始值需要调整为新的，也就是从i开始再找就可以
             lis[n] = testlist[i]
+            print(f'%%{lis}')
     return lis
 
 
