@@ -14,21 +14,18 @@
 
 
 def longestCommonSubsequence(list1, list2):
-    len_list1 = len(list1)
-    len_list2 = len(list2)
-    dp = [[0 for x in range(len_list1+1)] for y in range(len_list2+1)]
-    for i in range(1, len_list1+1):
-        for j in range(1, len_list2+1):
-            if list1[i] == list2[j]:
+    m = len_list1 = len(list1)
+    n = len_list2 = len(list2)
+    dp = [[0 for i in range(m+1)] for j in range(n+1)]
+    # 创建一个二维数组，由于初始值为0，且对比时需要看上一位的值，因此长度可以+1，全部为0
+    for i in range(1, m):
+        for j in range(1, n):
+            if list1[i-1] == list2[j-1]:
                 dp[i][j] = dp[i-1][j-1]+1
             else:
-                dp[i][j] = max(dp[i-1][j],dp[i][j-1])
-    return dp[len_list1][len_list2]
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
 
-
-
-
-
+    return max(max(dp))
 
 
 if __name__ == '__main__':

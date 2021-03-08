@@ -31,7 +31,7 @@ def longlist(testlist, dp):
     index = dp.index(n)  # dp数组中最大值的索引下标：4
     n -= 1  # 最大值为n，数组下标从0开始，因此-1
     lis[n] = testlist[index]    # 递增子序列列表最大值赋值：【0，0，49】
-    for i in range(index-1, 0, -1):
+    for i in range(index-1, -1, -1):
         if testlist[i] < testlist[index] and dp[index] - 1 == dp[i]:
             # 求最长递增子序列时，如果i大于j且j的维护数组大于i的，会+1，这里属于逆向思维，-1
             n -= 1  # 数组下标从0开始，因此赋值时需要-1
@@ -42,8 +42,8 @@ def longlist(testlist, dp):
 
 
 if __name__ == '__main__':
-    testlist = [3, 1, 24, 15, 49]
-    #     dp = [1, 1, 2, 2, 3]
+    testlist = [2, 5, 6, 1, 8, 10, 4]
+    #     dp = [1, 2, 3, 1, 4, 5, 2]
     final_list = lenthoflist(testlist)
     print(f'每个元素为终点的最长子序列值为:{final_list}')
     print(f'最长递增子序列值为:{max(final_list)}')
