@@ -18,6 +18,8 @@
 """
 栈的列表实现
 """
+
+
 class Stack(object):
 
     def __init__(self):     # 栈初始化
@@ -40,8 +42,6 @@ class Stack(object):
 
     def len(self):  # 返回栈长度
         return len(self.stack)
-
-
 
 
 stack1 = Stack()
