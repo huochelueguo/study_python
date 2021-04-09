@@ -21,7 +21,7 @@ def sum(a, b):
 # 方法1：直接在函数内部添加
 # 存在问题：修改了内部的代码
 def sum(a, b):
-    start= time.time()
+    start = time.time()
     time.sleep(3)
     sum_num = a*1000 + b
     end = time.time()
