@@ -17,16 +17,18 @@ def find_num(li, num):
     middle = len(li) // 2
     if len(li) == 0:
         print('not in list')
-        return
-    if li[middle] == num:
-        print(f'find it')
-        return
-    elif li[middle] > num:
-        find_num(li[:middle], num)
-    elif li[middle] < num:
-        find_num(li[middle+1:], num)
+        return False
     else:
-        print('not in list')
+        if li[middle] == num:
+            print(f'find it')
+            return True
+        elif li[middle] > num:
+            return find_num(li[:middle], num)
+        elif li[middle] < num:
+            return find_num(li[middle+1:], num)
+        else:
+            print('not in list')
 
 
-find_num(li=list1, num=num1)
+res = find_num(li=list1, num=num1)
+print(res)
