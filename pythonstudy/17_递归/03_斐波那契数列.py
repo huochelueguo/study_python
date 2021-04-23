@@ -10,9 +10,9 @@
 
 
 def f(n):
-    if n == 1 or n == 2:
+    if n == 0 or n == 1:
         return 1
-    else:
+    elif n >= 2:
         m = f(n - 2) + f(n - 1)
         return m
 
@@ -27,15 +27,34 @@ def f2(n):
     return list2
 
 
+"""
+使用生成器产出斐波那契数列
+"""
+
+def f3():
+    a = b = 1
+    while True:
+        yield b
+        a, b = b, a+b
+
+
 if __name__ == '__main__':
     print(f(1))
     print(f(2))
     print(f(3))
     print(f(4))
-    print(f2(13))
     lis = []
-    for a in range(1, 12):
+    for a in range(12):
         lis.append(f(a))
     print(lis)
+    print('_' * 20)
 
+    print(f2(12))
+    print('_' * 20)
+
+    li2 = [1,]
+    ss = f3()
+    for i in range(11):
+        li2.append(next(ss))
+    print(li2)
 
