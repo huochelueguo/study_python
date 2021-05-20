@@ -20,7 +20,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 
 
-def test1(n):
+def Test(n):
     time.sleep(2)
     print(f'第{n}次执行')
     return n * n
@@ -35,7 +35,7 @@ if __name__ == '__main__':
     pool = ThreadPoolExecutor(max_workers=5)
     result = []
     for i in range(20):
-        res = pool.submit(test1, i)
+        res = pool.submit(Test, i)
         result.append(res)
     for j in result:
         j.add_done_callback(call_back)  # 调用异步调用函数，注意这里的参数即回调函数名称，没有回调函数的参数
