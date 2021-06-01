@@ -17,7 +17,7 @@ def singleton(func):
 
     def wrapper(*args, **kwargs):   # 将类传入装饰器，判断装饰器中的字典是否有该类，没有生成一个且返回
         if func not in single:
-            single[func] = func(*args, **kwargs)
+            single[func] = func(*args, **kwargs)    # func(*args, **kwargs) 表示实现原函数内容，及实现了类的__new__
             print(single)
         return single[func]
 
