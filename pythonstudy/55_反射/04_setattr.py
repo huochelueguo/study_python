@@ -9,7 +9,7 @@
 
 """
 serattr的作用：
-    为对象添加变量或方法
+    为对象添加变量或方法,可以先判断该实例是否有某一个值或者方法，如果有的话再继续对值进行重新赋值操作
 """
 
 
@@ -21,3 +21,9 @@ class Demo:
     def add(self):
         print('this is add method')
         return self.num + self.num
+
+
+de = Demo(200)
+if hasattr(de, 'num'):
+    setattr(de, 'num', 400)
+    print(de.add())

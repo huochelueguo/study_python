@@ -10,6 +10,7 @@
 """
 getattr的作用：
     用来获取对象中的方法或内存地址,一共三个参数：对象，名称，未找到时的返回值（如果设置了返回值，未找到时不会报错，否则会报错）
+    一般情况下hasattr和getattr混合使用
 """
 
 
@@ -27,4 +28,8 @@ de = Demo(233)
 print(getattr(de, 'num'))  # 获取实例的属性：233
 print(getattr(de, 'add'))  # 获取实例方法的内存地址：<bound method Demo.add of <__main__.Demo object at 0x10947d220>>
 print(getattr(de, 'add1', 'not found'))  # 由于设置了返回值，因此未报错
-print(getattr(de, 'add1'))  # 报错：AttributeError: 'Demo' object has no attribute 'add1'
+print(getattr(de, 'add'))  # 报错：AttributeError: 'Demo' object has no attribute 'add1'
+
+# hasattr和getattr混合使用
+if hasattr(de, 'add'):
+    print(getattr(de, 'add'))
