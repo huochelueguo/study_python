@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this file is about html-form</title>
+</head>
+<body>
+这个文档是关于html的表单的
+<form>
+    <br>
+    <hr>
+    <h2>label写法1:label和input中的id一致</h2>
+    <label for="b1">按钮1</label>
+    <input type="text" id="b1">
+    <br>
+    <hr>
+    <h2>label写法2:直接将input写在label中</h2>
+    <label for="b2">按钮2 <input type="text" id="b2"></label>
+    <br>
+    <hr>
+    <p>下面内容为input相关内容</p>
+    <script>
+        function msg() {
+            alert('点击了button按钮')
+        }
+    </script>
+    type:text<input type="text"><br>
+    type:password<input type="password"><br>
+    type:date<input type="date"><br>
+    type:submit<input type="submit" value="提交按钮" ><br>
+    type:button<input type="button", onclick="msg()"><br>
+    type:reset<input type="reset" value="重置按钮"><br>
+</form>
+</body>
+</html>
