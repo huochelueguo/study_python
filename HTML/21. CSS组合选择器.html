@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组合选择器</title>
+    <style>
+        /*id为div1的div，所有的后代标签都更新样式*/
+        div[id='div1'] {
+            background-color: #63a35c;
+        }
+        /*id为div2的div，标签为span的儿子标签会更新，其他孙子标签不会更新*/
+        div[id='div2']>span{
+            color: #d35ebe;
+        }
+        /*id为div3的div，选择的是该标签内部span的兄弟选择器，因此div下面第一个span会更新样式，其他不变*/
+        div[id='div3'] + span{
+            background-color: darkblue;
+            color: #e8e8e8;
+        }
+        /*id为div4的div，选择的是该标签外的弟弟选择器，选择的为p，因此div后面的p会更新，其他不变*/
+        div[id=div4] ~ p{
+            size: 10px;
+            color: lightpink;
+        }
+    </style>
+</head>
+<body>
+<h3>后代选择器</h3>
+<div id="div1">
+    <p>段落1</p>
+        <span>段落1的儿子</span>
+    <p>段落2</p>
+    <p>段落3</p>
+</div>
+    <p>P4不在div1里面</p>
+<hr>
+<h3>儿子选择器</h3>
+<div id="div2">
+    <span>段落1</span>
+    <p><span>段落1的儿子</span></p>
+    <span>段落2</span>
+    <p>div2的子标签</p>
+</div><hr>
+<h3>毗邻选择器</h3>
+<div id="div3">
+    <span>段落1</span>
+    <span>段落2</span>
+</div>
+<span>段落3</span>
+<span>段落4</span><hr>
+<h3>弟弟选择器</h3>
+<div id="div4">
+    <p>段落 1。 在 div 中。</p>
+    <p>段落 2。 在 div 中。</p>
+</div>
+<p>弟弟选择器外第一行p</p>
+<p>弟弟选择器外第二行p</p>
+<span><p>弟弟选择器外第一行span</p></span>
+</body>
+</html>
