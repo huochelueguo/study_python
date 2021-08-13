@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性选择器</title>
+    <style>
+        /*所有具有title属性的都会改变颜色*/
+        /*[title] {*/
+        /*    background-color: #63a35c;*/
+        /*}*/
+
+        /*span且title为s1的将会改变颜色*/
+        /*span[title='s1']{*/
+        /*    color: #d35ebe;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div>
+    <span id="s1" title="s1">span1</span>
+    <span id="s2" title="s1">span2</span>
+    <span id="s3" title="s2">span3</span>
+    <span id="s4">span4</span>
+</div>
+<p title="s1">p1</p>
+</body>
+</html>

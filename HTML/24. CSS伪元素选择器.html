@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伪元素选择器</title>
+    <style>
+        p:first-letter{
+            font-size: xx-large;
+            color: #df5000;
+        }
+        p:before{
+            content: '这几个字无法复制，因为是css';
+            color: #63a35c;
+        }
+        p:after{
+            content: '这几个字无法复制，因为是css';
+            color: #63a35c;
+        }
+    </style>
+</head>
+<body>
+    <p id="p1">这是一句话，发师傅师傅撒饭食饭迪<br>嘉迪嘉迪嘉迪嘉我可是开房间房</p>
+</body>
+</html>
