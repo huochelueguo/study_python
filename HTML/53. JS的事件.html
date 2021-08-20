@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <script>
+        // 由于上从上往下加载，如果不加的话，代码就找不到s1标签导致报错
+        // document.getElementById('s1').style.color='red';
+        window.onload = function () {
+            document.getElementById('s1').style.color='red';
+        }
+    </script>
+</head>
+<body>
+<p>第一种绑定方法</p>
+<button id="b1" onclick="f1()">点我</button><hr>
+<p>第二种绑定方法</p>
+<button id="b2">点我</button><hr>
+<p>windows.onload()相关</p>
+<span id="s1">这段话默认为黑色，执行script会变颜色</span>
+</body>
+<script>
+    function f1() {
+        alert('第一种绑定方法，通过在标签中调用')
+    }
+    var btnEle = document.getElementById('b2');
+    btnEle.onclick = function () {
+        alert('第二种绑定方法，在script中找到标签，直接给该标签定义函数')
+    }
+</script>
+</html>
