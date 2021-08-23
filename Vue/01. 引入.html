@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>引入vue</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="d1">
+    {{message}}
+</div>
+<script>
+    new Vue({
+        el: '#d1',
+        data:{
+            message: 'hello world!'
+        }
+    })
+</script>
+</body>
+</html>

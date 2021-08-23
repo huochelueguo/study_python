@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on指令</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <style>
+        button{
+            background-color: #999999;
+            border-radius: inherit;
+        }
+    </style>
+</head>
+<body>
+<div id="d1">
+    <button id="b1" value="正常写法" v-on:click="alert1">v-on:click</button>
+    <button id="b2" value="简写为@" @click="alert1">简写@click</button>
+    <button id="b3" value="双击@dblclick" @dblclick="alert1">双击@dblclick</button>
+    <h2 id="h2" @click="changefood">{{food}}</h2>
+</div>
+<script>
+    var app = new Vue({
+        el:'#d1',
+        data:{
+           food:'this is button1 text'
+        },
+        methods:{
+            alert1:function () {
+                alert('click button1')
+            },
+            changefood:function () {
+               this.food += 'food'
+                // 通过this关键字，能够访问vue中的data数据
+            }
+        },
+    })
+</script>
+</body>
+</html>

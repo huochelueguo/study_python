@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>el挂载点</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<!-- p属于div的后代，由于挂在了d1，所以p也可以通过message获取值-->
+<div id="d1">{{message}}
+    <p id="p1">{{message}}+'这个是div内部的P标签'</p>
+</div>
+<script>
+    new Vue({
+        el: '#d1',
+        data:{
+            'message':'this is div and p'
+        }
+    })
+</script>
+</body>
+</html>
