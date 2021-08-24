@@ -10,6 +10,7 @@
             color: #df5000;
             font-size: large;
             width: 50px;
+            margin: 0;
         }
         #b1{
             border-radius: 12px 0 0 12px;
@@ -31,17 +32,27 @@
     <button id="b2" @click="add">+</button>
 </div>
 <script>
-    var cl = new Vue({
-        el: 'div',
-        data:{
-          num: 1
+    var but = new Vue({
+        el: '#d1',
+        data: {
+            num : 1
         },
         methods:{
-            add:function () {
-                this.num +=1
-            },
             sub:function () {
-                this.num -=1
+                if( this.num>0){
+                    this.num -=1
+                }
+                else {
+                    alert('最小值为0')
+                }
+            },
+            add:function () {
+                if (this.num<10){
+                    this.num +=1
+                }
+                else{
+                    alert('最大值为10！')
+                }
             }
         }
     })
