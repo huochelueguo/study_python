@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show & if</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="d1">
+    <button @click="show">展示文案 v-show</button><br><br>
+    <span v-show="showtext">默认未不展示文案</span><br><br>
+<!--    showtext初始值false,因此无法展示文案，只有点击了按钮，调用了show方法，将showtext设置未true，才会展示文案-->
+    <hr>
+    <button @click="agebtn">展示文案 v-if</button><br><br>
+    <span v-if="age>20">{{title}}</span><hr>
+<!--    span展示文案的条件是age大于20，初始值未18因此不会展示，只有点击按钮，让年纪自增，大于20时就会展示出文案-->
+    <button @click="show2">展示文案 v-show2</button><br><br>
+    <span v-show="showtext2">默认展示文案</span>
+</div>
+<script>
+    var app = new Vue({
+        el: '#d1',
+        data:{
+            title:'年龄小于20不展示文案',
+            showtext: false,
+            age: 18,
+            showtext2: true
+        },
+        methods:{
+            show: function () {
+                this.showtext = true;
+            },
+            agebtn: function () {
+                this.age +=1;
+            },
+            show2: function () {
+                if (this.age < 20){
+                    this.showtext2 = false
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

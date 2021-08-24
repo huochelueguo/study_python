@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="d1">
+    <p>没有过滤器时，就按照message内容进行展示</p>
+    <span>未使用过滤器的文案是：{{message}}</span><br><hr>
+    <p>使用无参过滤器时，就按照绑定参数的返回值进行展示</p>
+    <span>使用过滤器后的文案是：{{message | fil1}}</span><br><hr>
+    <p>多参数过滤器，第一个参数默认为绑定左侧的数据，其他参数以此类推</p>
+    <span>使用有参数过滤器后的文案是：{{message | fil2('参数a' , '参数b')}}</span><br><hr>
+    <p>过滤器串联，就是将绑定参数分别按照顺序执行过滤器，最后的结果展示出来</p>
+    <span>使用串联过滤器后的文案是：{{message | fil1 | fil2('参数a' , '参数b')}}</span>
+</div>
+<script>
+    new Vue({
+        el: '#d1',
+        // methods:{},
+        data:{
+            message:"hello"
+        },
+        filters:{
+            fil1: function (message) {
+                return message+' ' +'world!'
+            },
+            fil2: function (message, a, b) {
+                return message+a+b
+            }
+        }
+    })
+</script>
+</body>
+</html>

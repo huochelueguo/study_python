@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="d1">
+    <span>{{message}}</span><br>
+    <input v-model="message"><br><br><hr>
+    <p>span绑定data里面的male，默认为男，当select切换选择时，因为其绑定了v-model的male，因此每次切换都会展示在span中</p>
+    <span>选择的是:{{male}}</span><br>
+    <select v-model="male">
+        <option>男</option>
+        <option>女</option>
+        <option>保密</option>
+    </select>
+</div>
+<script>
+    new Vue({
+        el: '#d1',
+        data:{
+            message:'this is v-model',
+            male:'男'
+        }
+
+    })
+</script>
+</body>
+</html>

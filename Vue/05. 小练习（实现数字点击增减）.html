@@ -18,17 +18,20 @@
         #b2{
             border-radius: 0 12px 12px 0 ;
         }
-        textarea{
+        span{
             width: 100px;
             height: 20px;
             margin: 8px;
+            background: #eaffea;
+            border-style: outset;
         }
     </style>
 </head>
 <body>
 <div id="d1">
     <button id="b1" v-on:click="sub">-</button>
-    <textarea>{{num}}</textarea>
+<!--    <textarea>{{num}}</textarea>-->
+    <span>{{num}}</span>
     <button id="b2" @click="add">+</button>
 </div>
 <script>

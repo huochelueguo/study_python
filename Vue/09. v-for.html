@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="d1">
+    <ol>
+        <p>v-for中的'x in xx'类似于for循环，将x依次读取出来</p>
+        <li v-for="name in lists">{{name}}</li><br><hr>
+    </ol>
+    <ol>
+        <p>对于字典，也可以循环展示出来，默认展示字典的value</p>
+        <li v-for="dic in dict1">{{dic}}</li><br><hr>
+    </ol>
+    <ol>
+        <p>对于列表嵌套字典的，可以设置仅展示value，同时可以和v-if配合使用，简单一个判断</p>
+        <li v-for="dic in dict2" v-if="dic.score > 80">{{dic.score}}</li><br><hr>
+    </ol>
+</div>
+<script>
+    new Vue({
+        el: '#d1',
+        data:{
+            lists:['zhangsan', 'lisi', 'wangwu', 'zhangmazi'],
+            dict1: {
+                'ningxia': 'yinchuan',
+                'henan': 'zhengzhou',
+                'hainan': 'haikou',
+            },
+            dict2:[
+                {score: 99},
+                {score: 100},
+                {score: 20},
+                {score: 86}
+            ]
+        }
+    })
+</script>
+</body>
+</html>
