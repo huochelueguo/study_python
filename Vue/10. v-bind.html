@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <style>
+        .img1{
+            border-style: outset;
+            border-color: #63a35c;
+
+        }
+    </style>
+</head>
+<body>
+<div id="d1">
+    <p> v-bind非简写的方式 v-bind:xxx属性，例如img v-bind:src="img_url"  </p>
+    <img v-bind:src="img_url"><br><hr>
+    <p>v-bind的简写方式  :xxx属性 ,例如 img :src="img_url"</p>
+    <img :src="img_url"><br><hr>
+    <p>一个标签可以绑定多个属性</p>
+    <img :src="img_url+1" :title="title" v-bind:alt="err"><br><hr>
+    <p>也可以结合其他内容控制标签的样式切换,通过点击事件切换border的波尔值，class通过绑定波尔值，使用三元运算符判断是否为真，真则展示边框</p>
+    <img :src="img_url" :title="title" :class="border?'img1':''" @click="border_display">
+</div>
+<script>
+    new Vue({
+        el: '#d1',
+        data:{
+            img_url : 'https://p.ssl.qhimg.com/dmsmty/74_74_100/t01cb3fb0c094694741.webp',
+            title: '这个是图片点击时的提示',
+            err:'这个是图片无法加载时展示的内容,',
+            border: true
+        },
+        methods:{
+          border_display:function () {
+              this.border = !this.border
+          }
+        }
+    })
+</script>
+</body>
+</html>

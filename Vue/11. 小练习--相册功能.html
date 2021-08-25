@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>相册</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <style>
+        button{
+            border-color: #999999;
+            background-color: #cccccc;
+            border-radius: 50%;
+            width: auto;
+            height: auto;
+        }
+        img{
+            width: auto;
+            height: auto;
+            border-color: black;
+            border-style: outset;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <button id="b1" @click="sub_number">上一张</button>
+    <img id="image1" :src="img_list[index]" :title="'这是第'+index+'张'">
+    <button id="d2" @click="add_number">下一张</button>
+</div>
+<script>
+    new Vue({
+        el: '#div1',
+        data:{
+            img_list:['https://rescdn.pokekara.com/pokekara/member/avatar/pendant/169dec822b2b5b2e_1579093878.png',
+            'https://rescdn.pokekara.com/pokekara/member/avatar/pendant/fdd77642ef413466_1579094208.png',
+            'https://rescdn.pokekara.com/pokekara/member/avatar/pendant/c75a50834fed2b2d_1579094154.png',
+            'https://rescdn.pokekara.com/pokekara/member/avatar/pendant/3851a92cf6817b19_1579094093.png',
+            'https://rescdn.pokekara.com/pokekara/member/avatar/pendant/346d0cd73114e432_1579094007.png',
+            'https://rescdn.pokekara.com/pokekara/member/avatar/pendant/71ae470281259155_1579093981.png',
+            'https://rescdn.pokekara.com/pokekara/member/avatar/pendant/8a185d8095fdf839_1579093947.png'],
+            index: 0,
+        },
+        methods:{
+            add_number:function () {
+                if (this.index < this.img_list.length-1){
+                    this.index +=1
+                }else{
+                    alert('没有照片啦!')
+                }
+            }  ,
+            sub_number:function () {
+                if(this.index > 0){
+                    this.index -=1
+                }else{
+                    alert('没有照片啦!')
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

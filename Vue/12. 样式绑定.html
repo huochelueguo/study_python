@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <style>
+        .active1{
+            border: #999999;
+            border-style: outset;
+        }
+        .active2{
+            font-size: xx-large;
+        }
+        .active3{
+            background-color: #63a35c;
+        }
+    </style>
+</head>
+<body>
+<div id="d1">
+    <p>当class只有一个标签时</p>
+    <span id="s1" :class="{active1: isactive}">span1</span><br><hr>
+    <p>当class中有多个标签时，按照字典key：value写即可</p>
+    <span id="s2" :class="{active1: isactive, active2: isactive2}">span2</span>
+    <p>绑定的值不一定非是波尔值，如果为其他数据，将会自动转化为波尔值进行赋值</p>
+    <span id="s3" :class="{active1: isactive, active2: isactive2, active3: isactive3}">span3</span>
+    <p>也可以使用三元表达式来书写： {判断条件？为真的值 ：为假的值}</p>
+    <span id="s4" :class="{isactive2?active:''}">span4</span>
+</div>
+<script>
+    new Vue({
+        el: '#d1',
+        data:{
+            isactive: false,
+            isactive2: true,
+            isactive3: 2 < 4,
+            // active: active1
+        }
+    })
+</script>
+</body>
+</html>
