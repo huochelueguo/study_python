@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>键盘事件</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="d1">
+    请输入内容：<input v-model="text" v-on:keyup.enter="clickEnter">
+    <P>输入内容为:{{text}}</P>
+</div>
+<script>
+    new Vue({
+        el: '#d1',
+        data:{
+            text:'',
+        },
+        methods:{
+            clickEnter:function () {
+                alert(this.text)
+            },
+        }
+    })
+</script>
+</body>
+</html>

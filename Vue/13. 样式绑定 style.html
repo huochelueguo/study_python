@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>style样式绑定</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="d1">
+    <p>绑定样式，样式为一个字典，比较清晰</p>
+    <p :style="styleObject">this is a p, bind a dict</p><br><hr>
+    <p>绑定样式，样式为多组数据，注意中间使用逗号隔开，类似于data中书写</p>
+    <p v-bind:style="{fontSize: font_size, color: color}">this is a p, bind two </p><br><hr>
+    <p>通过style直接书写样式，注意：相同的样式两者的书写单词不一样</p>
+    <p style="{font-size: large; background-color: blueviolet; border-color: #63a35c}">{{styleObject.fontSize}}  {{styleObject.color}}  {{text}}</p>
+</div>
+<script>
+    new Vue({
+        el: '#d1',
+        data:{
+            styleObject: {
+                color: 'red',
+                fontSize: '30px'
+            },
+            text: 'ssadsdfsfsfdsfdsfsfsf',
+            font_size: '40px',
+            color: 'green',
+        }
+    })
+</script>
+</body>
+</html>

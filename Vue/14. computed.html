@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computed</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="d1">
+    <p>调用methods:{{me()}}</p>
+    <p>调用methods:{{me()}}</p>
+    <p>调用computed:{{co}}</p>
+    <p>调用computed:{{co}}</p>
+<!--    输出如下，因为num值未变，因此执行computed时只执行了一次-->
+<!--    调用methods:3-->
+<!--    调用methods:4-->
+<!--    调用computed:5-->
+<!--    调用computed:5-->
+</div>
+<script>
+    var num = 2;
+    new Vue({
+        el: '#d1',
+
+        methods:{
+          me:function () {
+                return num +=1
+          }
+        },
+        computed:{
+            co:function () {
+                return num +=1
+            },
+
+        }
+    })
+</script>
+</body>
+</html>

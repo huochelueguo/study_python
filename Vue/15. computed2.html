@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computed---get/set</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<h3>computed get set相关讲解</h3>
+<p>computed默认具有get属性，set属性需要用户手动添加</p>
+<div id="d1">
+<!--    姓：<input v-model="firstname"><br>-->
+<!--    名：<input v-model="lastname"><br>-->
+    姓：<input v-model="changefirstname"><br>
+    名：<input v-model="changelastname"><br>
+    姓名为：<input v-model="name">
+</div>
+<script>
+    var name=new Vue({
+        el: '#d1',
+        data:{
+            firstname :'',
+            lastname : '',
+            name :'',
+        },
+        computed:{
+            // 一般情况下，get和set结合在一起，对一个元素进行操作使用，因此习惯定义一个值以字典的形式将get和set包起来处理
+            // get函数的作用类似于正常情况下写的一个函数，通过return将数据返回
+            // 由于computed的特性，渲染元素没有改变时，不会重新计算；那么就可以利用这个特性，当元素改变时，重新设置这个值，达到了改变这个值的目的
+            // 下面的changefirstname函数中，get获取当前姓，通过v-model进行双向绑定，当用户输入时，执行computed，通过set获取最新的输入值，将新的输入值传递给name
+            changefirstname:{
+                get:function () {
+                    return this.firstname
+                },
+                set: function (newval) {
+                    this.firstname = newval;
+                    this.name = newval + ' ' + this.lastname
+                }
+            },
+            changelastname:{
+                get:function () {
+                    return this.lastname
+                },
+                set:function (newval) {
+                    this.lastname = newval;
+                    this.name = this.firstname + ' '+ newval
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

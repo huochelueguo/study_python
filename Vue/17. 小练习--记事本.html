@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>记事本</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <style>
+        #d1{
+            text-align: center;
+        }
+        h1{
+            font-size: xx-large;
+            /*border-color: #63a35c;*/
+            color: #df5000;
+            /*border-radius: inherit;*/
+            /*border-style: outset;*/
+        }
+        input{
+            outline-style: none ;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 13px 14px;
+            width: 620px;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: "Microsoft soft";
+        }
+        #o1{
+            width: 620px;
+            border: 1px solid #ccc;
+            text-align: center;
+            margin: 0 auto;
+        }
+        button{
+            /*font-size: 14px;*/
+            /*font-weight: 700;*/
+            /*font-family: "Microsoft soft";*/
+            /*border-color: #df5000;*/
+            /*text-align: left;*/
+            border: none;
+            color: #0086b3;
+            font-family:Arial;
+            padding: 10px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        p{
+            font-size: large;
+            /*border-color: #63a35c;*/
+            color: #0086b3;
+            text-align: left;
+            margin-left: 430px;
+        }
+        #d2{
+            text-align: left;
+            margin-left: 430px;
+        }
+    </style>
+</head>
+<body>
+<br><br><br>
+<div id="d1">
+    <h1>记事本</h1><br>
+    <input id="i1" placeholder="输入内容回车后即保存" v-model="inputvalue" v-on:keyup.enter="addText"><br><br>
+    <div id="d2">
+        <button id="b2" @click="clearnum">删除</button>
+        <button id="b1" @click="clearText" v-if="textlist.length>0">清空记事本</button>
+        <button @click="refresh">刷新未实现</button>
+        <br><br>
+    </div>
+    <input placeholder="输入要删除的序号" v-model="delnum"><br>
+    <br><p>当前记事本内容为：</p>
+    <p>一共{{textlist.length}}条</p>
+    <ol id="o1">
+        <li v-for="text in textlist" >{{text}}</li>
+    </ol>
+</div>
+<script>
+    new Vue({
+        el: '#d1',
+        data:{
+            textlist :['zhangsan', 'lisi', 'wangwu'],
+            inputvalue:'',
+            delnum:'',
+        },
+        methods:{
+            addText:function () {
+                this.textlist.push(this.inputvalue);
+                this.inputvalue=''
+            },
+            clearText:function () {
+                this.textlist = []
+            },
+            clearnum: function () {
+                lenlist = this.textlist.length;
+                if (this.delnum<= lenlist){
+                    this.textlist.splice(this.delnum-1, 1);
+                    this.delnum=''
+                }else {
+                    alert('输出错误，请重新输入');
+                    this.delnum=''
+                }
+            },
+            refresh: function () {
+                window.reload()
+            }
+        }
+
+    })
+</script>
+</body>
+</html>
