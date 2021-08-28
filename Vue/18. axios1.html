@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>axios</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="d1">
+    <button @click="getwea">点击查询</button><br>
+    <p style="color: #df5000">使用that代替this</p>
+    <span>{{info}}</span><hr><br><br>
+    <button @click="getweabind">点击查询</button><br>
+    <p style="color: #df5000">使用bind(this)</p>
+    <span>{{info}}</span><hr><br><br>
+    <button @click="getweabind">点击查询</button><br>
+    <p style="color: #df5000">使用箭头函数</p>
+    <span>{{info}}</span><hr><br><br>
+</div>
+<script>
+    new Vue({
+        el: '#d1',
+        data:{
+            info:''
+        },
+        methods:{
+            getwea:function () {
+                var that = this;
+                axios.get('http://wthrcdn.etouch.cn/weather_mini?city=石嘴山')
+                    .then(
+                    function (response) {
+                        that.info = response.data;
+                        console.log(that.info)
+                        // console.log(this.info)
+                    },function (err) {
+
+                    }
+                )
+            },
+            getweabind:function () {
+                axios.get('http://wthrcdn.etouch.cn/weather_mini?city=1')
+                    .then(
+                        function (response) {
+                            this.info = response.data;
+                        }.bind(this),)
+                        .catch(function (err) {
+                            alert(err)
+                            console.log(err)
+                        }
+                    )
+            },
+            getweajiantou:function () {
+                axios.get('http://wthrcdn.etouch.cn/weather_mini?city=石嘴山')
+                    .then((resp)=>{
+                        this.info = resp
+                    },
+                    function (err) {
+
+                    })
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

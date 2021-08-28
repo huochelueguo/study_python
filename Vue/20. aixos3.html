@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>aixos的并发</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="d1">
+    <p>{{f1}}</p>
+    <hr>
+    <p>{{f2}}</p>
+</div>
+<script>
+    var app = new Vue({
+        el: '#d1',
+        data:{
+          f1:'',
+          f2:'',
+        },
+        methods:{
+            getdesc1:function () {
+                return axios.get('https://autumnfish.cn/fruitApi/fruit/1');
+            },
+            getdesc2: function () {
+                return axios.get('https://autumnfish.cn/fruitApi/fruit/2');
+            }
+        },
+        mounted:function(){
+            var that = this;
+            axios.all([that.getdesc1(), that.getdesc2()])
+            .then(axios.spread(function (getdesc1, getdesc2) {
+                that.f1 = getdesc1.data.data.desc;
+                that.f2 = getdesc2.data.data.desc;
+                console.log(getdesc1.data.data.desc);
+                console.log(getdesc2.data.data.desc);
+            }))
+        }
+    })
+</script>
+</body>
+</html>
