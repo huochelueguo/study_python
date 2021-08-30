@@ -3,7 +3,7 @@
 
     function renderImage(src) {
         return '<div class="screen-diff__container">' +
-            '<img class="screen-diff__image" src="data/attachments/' + src + '">' +
+            '<images class="screen-diff__image" src="data/attachments/' + src + '">' +
             '</div>';
     }
 
@@ -22,7 +22,7 @@
         var expectedImage = findImage('expected');
 
         if (!diffImage && !actualImage && !expectedImage) {
-            return '<span>Diff, actual and expected image have not been provided.</span>';
+            return '<span>Diff, actual and expected images have not been provided.</span>';
         }
 
         if (type === 'diff') {
@@ -33,9 +33,9 @@
         }
         if (type === 'overlay') {
             return '<div class="screen-diff__overlay screen-diff__container">' +
-                '<img class="screen-diff__image" src="data/attachments/' + expectedImage.source + '">' +
+                '<images class="screen-diff__image" src="data/attachments/' + expectedImage.source + '">' +
                 '<div class="screen-diff__image-over">' +
-                '<img class="screen-diff__image" src="data/attachments/' + actualImage.source + '">' +
+                '<images class="screen-diff__image" src="data/attachments/' + actualImage.source + '">' +
                 '</div>' +
                 '</div>';
         }
@@ -78,7 +78,7 @@
             const diffType = settings.get('diffType');
             this.$('[name="screen-diff-type"][value="' + diffType + '"]').prop('checked', true);
             if (diffType === 'overlay') {
-                this.$('.screen-diff__image-over img').on('load', this.adjustImageSize.bind(this));
+                this.$('.screen-diff__image-over images').on('load', this.adjustImageSize.bind(this));
             }
         },
         onOverlayMove: function (event) {
