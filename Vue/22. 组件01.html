@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<p>全局组件写法1</p>
+<div id="d1">
+    <com1></com1>
+    <com1></com1>
+</div><hr>
+
+<p>全局组件写法2</p>
+<div id="d2">
+    <com2></com2>
+</div><hr>
+
+<p>局部组件</p>
+<div id="d3">
+    <com3></com3>
+</div>
+
+<template id="tem1">
+    <div>
+        <h3>this template in body</h3>
+        <p>第二种绑定方式，将template放在body中</p>
+    </div>
+</template>
+<script>
+    // 创建和注册组件
+    // Vue.component('标签名称', {template:'注册的模板内容')
+    // 注意：必须要先注册组件，之后在绑定标签，否则标签将无法找到组件内容，不会展示出来
+    Vue.component('com1', {template:
+            '<div>this is a div<h1>this is h1</h1><h2>this is h2</h2></div>' });
+
+    // 将template放置在body里面，此处绑定即可
+    Vue.component('com2', {template: '#tem1'});
+
+    new Vue({
+        el: '#d1',
+    });
+    new Vue({
+        el: '#d2'
+    });
+
+    // 局部组件的使用方法，在构造器中使用components来注册组件，上方调用即可
+    // 注意名称是components，和全局注册的名称不一样，多了一个s
+    var vm1 = new Vue({
+        el:'#d3',
+        components:{
+            com3:{
+                template:'<h3>这是局部组件</h3>'
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
