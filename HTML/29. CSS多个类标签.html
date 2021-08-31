@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多个类标签</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        .one{
+            border-color: #df5000;
+            border-style: outset;
+        }
+        .one.two{
+            border-color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+<div id="img">
+    <img  src="../Vue/19. axios2/img/logo.png" height="47" width="158" class="one" :class="two"/><br><br>
+    <button @click="styleTwo">样式1</button>
+</div>
+<script>
+    var app = new Vue({
+        el: '#img',
+        data:{
+            two:'',
+        },
+       methods:{
+            styleTwo: function(){
+                this.two = 'two';
+                console.log(this.two);
+                alert(this.two)
+    },
+       }
+    })
+</script>
+</body>
+</html>

@@ -16,48 +16,50 @@
     <div class="play_wrap" id="player">
       <div class="search_bar">
         <img src="./images/player_title.png" alt="" />
-        <!-- 搜索歌曲 -->
+        <!-- 搜索歌曲 输入内容后回车，调用搜索接口-->
         <input type="text" v-model="serchText" @keyup.enter="serchMusic"/>
       </div>
       <div class="center_con">
-<!--         搜索歌曲列表-->
+<!-- 搜索歌曲列表 将上方搜索到的歌曲名称展示在左侧，通过mvid是否为空控制是否展示视频按钮-->
         <div class='song_wrapper'>
           <ul class="song_list">
             <li v-for="item in musicList">
               <a href="javascript:;"  @click="playMusic(item.id)" ></a>
               <b>{{item.name}}</b>
-              <span v-if="item.mvid>0"><i></i></span>
+              <span v-if="item.mvid>0" @click="playMV(item.mvid)"><i></i></span>
             </li>
           </ul>
           <img src="./images/line.png" class="switch_btn" alt="">
         </div>
-<!--         歌曲信息容器-->
-        <div class="player_con" >
+<!-- 歌曲信息容器，通过音频播放器的播放/暂停设置isplay的波尔值，当播放时isplay为真，
+因此下面的class就成有了2个属性player_con.playing，也因此开始播放动画-->
+        <div class="player_con" :class="{playing: isplay}">
           <img src="./images/player_bar.png" class="play_bar" />
           <!-- 黑胶碟片 -->
           <img src="./images/disc.png" class="disc autoRotate" />
-          <img class="cover autoRotate" />
+          <img :src="musicAlbum" class="cover autoRotate" />
         </div>
         <!-- 评论容器 -->
         <div class="comment_wrapper">
           <h5 class='title'>热门留言</h5>
           <div class='comment_list'>
-            <dl >
-              <dt><img  alt=""></dt>
-              <dd class="name"></dd>
-              <dd class="detail">
-              </dd>
+            <dl v-for="item in musicCommentslist" >
+              <dt><img :src="item.user.avatarUrl"  :alt="item.user.nickname"></dt>
+              <dd class="name">{{item.user.nickname}}</dd>
+              <dd class="detail">{{item.content}}</dd>
             </dl>
           </div>
           <img src="./images/line.png" class="right_line">
         </div>
       </div>
+<!-- 音频播放器，html标签，只要有播放地址，因为配置了autoplay将会自动播放，通过play/pause点击时间返回isplay的波尔值，供动画播放使用-->
       <div class="audio_con">
-        <audio ref='audio' :src="musicURL"  controls autoplay loop class="myaudio"></audio>
+        <audio ref='audio' :src="musicURL" @play="play" @pause="pause" controls autoplay loop class="myaudio"></audio>
       </div>
-      <div class="video_con"  style="display: none;">
-        <video  controls="controls" ref='video'></video>
-        <div class="mask" ></div>
+<!--        视频播放器，html标签，返回播放地址即可，下面的div默认不可见，当showVideo为真时就会展示视频，因此当点击视频播放时，将其v-show设置为真即可-->
+      <div class="video_con"  style="display: none;" v-show="showVideo">
+        <video :src="videoURL" controls autoplay ref='video'></video>
+        <div class="mask" @click="closeMV"></div>
       </div>
     </div>
   </div>
