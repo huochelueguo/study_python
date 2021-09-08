@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证data返回函数的必要性</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<p>返回值函数的情况</p>
+<div id="example-1">
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+</div>
+<hr>
+<p>返回值是函数的情况</p>
+<div id="example-2">
+    <button-counter2></button-counter2>
+    <button-counter2></button-counter2>
+</div>
+
+<script>
+    // 定义一个名为 button-counter 的新组件，返回值为函数
+    Vue.component('button-counter', {
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    })
+    new Vue({
+        el: '#example-1'
+    })
+
+    // 定义一个名为 button-counter 的新组件，返回值非函数
+    Vue.component('button-counter2', {
+        data: {
+            count:0
+        },
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    })
+    new Vue({
+        el: '#example-2'
+    })
+
+
+</script>
+</body>
+</html>
