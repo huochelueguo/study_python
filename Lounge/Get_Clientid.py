@@ -26,8 +26,12 @@ class Get_Clientid(object):
         """
         self.token = token
         self.uid = uid
-        self.url = 'ws://test.api.pokekara.com/ws?' + 'uid=' + self.uid
-        self.ws = create_connection(url=self.url, timeout=2000, cookie=self.token)
+        self.url = 'ws://test.api.pokekara.com/ws'
+        self.ws = create_connection(url=self.url, timeout=2000, header={
+            'Cookie': self.token,
+            'User-Agent':'okhttp/4.9.0'
+        })
+        # print(f'recv是{self.ws.recv()}')
 
     def get_id(self):
         """
@@ -37,33 +41,37 @@ class Get_Clientid(object):
             res = self.ws.recv()
             dict_res = json.loads(res)
             dict_clientid = dict_res['track_id']
+            print(dict_clientid)
             return dict_clientid
         else:
             print('连接失败，请重试')
 
-    def send_message(self,data):
+    def send_message(self, data):
         """
         发送消息接口
         """
         data_json = json.dumps(data, indent=4, ensure_ascii=False)
         self.ws.send(data_json)
         a = self.ws.recv()
-        # print(a)
+        print(a)
 
 
 if __name__ == '__main__':
+
     uid1 = 'u1592560688671743535'
-    token1 = 'MTU5MjU2MDY4OHxEM3ZNd0poRkpvWkN6QmQwdU03aThDZWZaOW1qb0RMOHJUZGREci1xakIxMnlSX0gtRWt0Q1ZSREhLREU2RGUtMHpvNnVGNmhLeVJGdkRfa2x0aFM1YktYTGZ1RUNDbWZ8075exn7Hw5Gcrvm1wSkHHkAy'
+    token1 = 'poke_session_id' \
+             '=MTYzMTc5NzA5OHxpZWZnYnRpS2FIOVBrSGtIb3UzR3hPZkluRm9tZEFEVHExUGxnMzZ0aFdEWkJXS05ER1VCeHZudnFuWnl6clJxelBaNk45U3NkZTNFRkNQU1p0ZzFXd3Z2czVvSTF3cjd8-cgiYxBE13XVwX1PoLKLoccv9BeyafYsLejgPk6KiT4= '
+    user = Get_Clientid(token=token1, uid=uid1)
     data = {
         "msg_id": "e21aaf6b-ef53-11ea-9e59-5254009bf4c3",
         "data": {
-            "client_id": "b030ac51-ef5b-11ea-9e59-5254009bf4c3",
+            "client_id": user.get_id(),
             "message_id": "2F221282D-BD5F-4854-8786-67C6DCC7CC42",
             "content": "12132",
             "type": 1,
-            "room_id": "dc8823ba-23f7-11eb-8d3d-5254009bf4c3"
+            "room_id": "a419b7c2-16ef-11ec-8a1d-5254002d7e9a"
         },
         "command": 4003
     }
-    user = Get_Clientid(token=token1, uid=uid1)
+    print(data)
     user.send_message(data=data)
