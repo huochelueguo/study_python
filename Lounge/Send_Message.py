@@ -12,9 +12,9 @@ import uuid
 import os
 import yaml
 
-from Join_Lounge import Join_Lounge
 from Lounge.Get_Clientid import Get_Clientid
-from Read_Usertoken import Read_Uid_Token
+from Lounge.Join_Lounge import Join_Lounge
+from Lounge.Read_Usertoken import Read_Uid_Token
 
 message = ["こんにちは！", "よろしくお願いします！", "うまい！", "やばい！", "www", "こんばんは！", "うんうん", "お邪魔します！",
            "いらっしゃい", "可愛い", "ありがとう！", "最高！", "はじめまして！", "初見です", "いいね！", "お疲れ様", "(′^ω^｀)",
