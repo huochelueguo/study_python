@@ -25,5 +25,5 @@ class Read_Uid_Token(object):
 
 
 if __name__ == '__main__':
-    r = Read_Uid_Token('user_18').read()
+    r = Read_Uid_Token('user_10').read()
     print(r)

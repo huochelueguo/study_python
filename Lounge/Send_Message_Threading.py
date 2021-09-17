@@ -59,7 +59,7 @@ class Send_Mess_Threading(object):
 
 
 if __name__ == '__main__':
-    user_path = 'user_18'
+    user_path = 'user_10'
     thread_count = 5
     clientid_path = '/Users/sunwenxiao/PycharmProjects/study_python/Lounge/user_data/clientid'
     room_id = "5cb5dc19-5421-11eb-8e43-5254009bf4c3"

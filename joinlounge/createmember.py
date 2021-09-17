@@ -1,11 +1,11 @@
 # 导入自己的包，可能报错，忽略即可
-import get_client_id
-import get_token
+
+from joinlounge import get_token
 
 a = 0
 uid_list = []
 token_list = []
-while a < 2:
+while a < 10:
     get_token.quick_login()
     dict1 = get_token.quick_login()
     a += 1
