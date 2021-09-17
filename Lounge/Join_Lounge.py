@@ -73,4 +73,4 @@ class Join_Lounge(object):
 
 
 if __name__ == '__main__':
-    Join_Lounge().join(data_file='user_50', room_id="059e1719-5268-11eb-8e43-5254009bf4c3")
+    Join_Lounge().join(data_file='user_1', room_id="f3b6d206-176b-11ec-8a1d-5254002d7e9a")
