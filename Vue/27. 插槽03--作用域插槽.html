@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域插槽</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="d1">
+        <com1>
+            <template slot-scope="scope" slot="list">
+                {{scope.data}}
+<!--                <li v-for="item in scope">{{item}}</li>-->
+            </template>
+        </com1>
+    </div>
+</body>
+<script>
+    Vue.component('com1', {
+        data: function () {
+            return {
+                data: ['zhangsan','lisi','wanwu','zhaoliu','tianqi','xiaoba']
+            }
+        },
+        template:'<div><h4>该子组件的slot具有数据</h4><slot :data="data" name="list"></slot></div>'
+    })
+
+    new Vue({
+        el: '#d1',
+    })
+</script>
+</html>

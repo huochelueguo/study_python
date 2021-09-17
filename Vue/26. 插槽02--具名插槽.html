@@ -8,6 +8,41 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-
+<div id="d1">
+    <com1>
+        <template>
+            <p>该组件插槽没有name</p>
+        </template>
+    </com1><hr>
+    <com2>
+        <template slot="com1">
+            <h3 style="color: #55a532">
+                该组件只有一个插槽,但是如果设置了name，那么也需要绑定slot，否则找不到
+            </h3>
+        </template>
+    </com2><hr>
+    <com3>
+        <template slot="com2-1">
+            <h3>组件com3有多个插槽，通过绑定不同插槽，展示不同内容----com2-1插槽</h3>
+        </template>
+        <template slot="com2-2">
+            <h4 style="border-color: #ecb7e2 ; color: silver">组件com3有多个插槽，通过绑定不同插槽，展示不同内容----com2-2插槽</h4>
+        </template>
+    </com3>
+</div>
 </body>
+<script>
+    Vue.component('com1', {
+        template:'<div><h3>this is com1</h3><slot></slot></div>'
+    })
+    Vue.component('com2', {
+        template:'<div><h3>this is com2</h3><slot name="com1"></slot></div>'
+    })
+    Vue.component('com3', {
+        template:'<div><h3>this is com2</h3><slot name="com2-1"></slot><slot name="com2-2"></slot></div>'
+    })
+    new Vue({
+        el: '#d1'
+    })
+</script>
 </html>
