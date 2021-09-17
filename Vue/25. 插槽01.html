@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插槽</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="d1">
+<!--        正常情况下在一个插槽内部添加其他内容是不会展示的，因此要使用插槽-->
+        <com1>3333</com1>
+<!--        com2这个组件，因为在定义时有插槽slot，因此在调用的时候，可以在该位置插入其他内容-->
+        <com2>
+            <h2 style="color: #63a35c">这句话是通过插槽插入的</h2>
+        </com2>
+    </div>
+</body>
+<script>
+
+    Vue.component('com1', {template:
+            '<div><h3>这句话是com1组件内部的，该组件没有插槽</h3></div>'})
+    Vue.component('com2', {template:
+            '<div><h3>这句话是com2组件内部的，该组件有插槽</h3><slot></slot></div>'})
+    new Vue({
+        el : '#d1'
+    });
+</script>
+</html>
