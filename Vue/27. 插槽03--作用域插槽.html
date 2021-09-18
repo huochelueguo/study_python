@@ -9,16 +9,16 @@
 </head>
 <body>
     <div id="d1">
-        <com1>
+        <com-1>
             <template slot-scope="scope" slot="list">
                 {{scope.data}}
 <!--                <li v-for="item in scope">{{item}}</li>-->
             </template>
-        </com1>
+        </com-1>
     </div>
 </body>
 <script>
-    Vue.component('com1', {
+    Vue.component('com-1', {
         data: function () {
             return {
                 data: ['zhangsan','lisi','wanwu','zhaoliu','tianqi','xiaoba']

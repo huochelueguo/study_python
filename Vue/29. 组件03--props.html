@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>props</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="d1">
+        <p>动态传值，使用v-bind将data值和子组件绑定在一起就可以展示，这种情况子组件无法修改父组件传来的值，只能用来展示</p>
+        <com1 :user-name="user_name" :user-age="user_age">
+        </com1>
+        <hr>
+        <p>静态传值，不需要使用v-bind</p>
+        <com1 user-name="静态姓名" user-age="静态年龄">
+        </com1>
+        <hr>
+        <p>动态传值，在组件的data中对数据再次赋值，在组件中引用该值，就实现了子组件修改父组件传来的值</p>
+        <com1 :user-name="name1" :user-age="age">
+        </com1>
+        <hr>
+    </div>
+</body>
+<script>
+ Vue.component('com1', {
+     props:['userName', 'userAge'],
+     template:'<div>this is 组件1<p>姓名为：{{userName}}，该值为父组件提供</p><br><span>{{userAge}}，该值为父组件提供</span></div>',
+     data(){
+         return {
+             name1: this.userName,
+             age: this.userAge
+         }
+     }
+ })
+new Vue({
+    el:'#d1',
+    data:{
+            user_name:'sunsunsun',
+            user_age:20
+    }
+})
+</script>
+</html>
