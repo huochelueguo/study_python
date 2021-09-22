@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="d1">
+        <h3>购物车</h3>
+        <com1
+            v-for="items in list"
+            :name="items.name"
+            :count="items.count"
+            @count-change="totalCount += $event"
+        ></com1>
+        <p>总数为：{{totalCount}}</p>
+    </div>
+</body>
+<script>
+// 子组件
+    Vue.component('com1', {
+        props:['name', 'count'],
+        template:'<div>商品名称是：{{name}},商品个数为:{{count}}.<button @click="count1">点我个数+1</button><button @click="count5">点我个数+5</button></div>',
+        methods:{
+            count1(){
+                this.count ++;
+                // 当要向父组件传值时，需要在自定义的事件中写this.$emit('名称',值)，父组件根据$emit里面的名称进行绑定，获取其值
+                this.$emit('count-change', 1)
+            },
+            count5(){
+                this.count +=5;
+                this.$emit('count-change', 5)
+            }
+        }
+    })
+// 父组件绑定
+    new Vue({
+        el:'#d1',
+        data:{
+            list:[
+                {name: '苹果', count: 1},
+                {name: '西瓜', count: 1},
+                {name: '芒果', count: 1},
+            ],
+            totalCount:3
+        }
+    })
+</script>
+</html>
