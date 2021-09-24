@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>兄弟组件传值</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="31.%20eventBus.js"></script>
+</head>
+<body>
+    <div id="d1">
+        <h3>购物车</h3>
+        <porduect-item></porduect-item>
+        <porduect-total></porduect-total>
+    </div>
+
+
+</body>
+<script>
+// 兄弟组件1，发出数据，使用bus.emit
+    Vue.component('porduect-item', {
+        template:'\n' +
+            '<div>\n' +
+            '    <span>商品名称：苹果，个数：{{count}}</span>\n' +
+            '    <button @click="countIn">+1</button>\n' +
+            '</div>',
+        data(){
+            return{
+                count:0,
+            }
+        },
+        methods:{
+            countIn(){
+                this.count ++;
+                // 通过bus.emit(xx)将值传递给eventBus
+                bus.$emit('countChange', 1)
+            }
+        }
+    });
+
+    Vue.component('porduect-total', {
+        template: '<div>\n' +
+            '    <p>兄弟组件传过来的总个数是：{{totalCount}}</p>\n' +
+            '</div>',
+        data(){
+            return{
+                totalCount:0
+            }
+        },
+        created (){
+            // 实例创建完毕，可以使用data等功能时触发
+            // 给bus注册事件，并且接受传过来的值count，对count进行处理
+            bus.$on('countChange', (count)=>{
+                this.totalCount += count
+            })
+        }
+    })
+
+    // 根实例
+    new Vue({
+        el:'#d1',
+        data:{
+
+        }
+    })
+</script>
+</html>
