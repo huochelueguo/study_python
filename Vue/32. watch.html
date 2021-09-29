@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watch</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+    <div id="d1">
+        <h4>请输入一个数字,输入后将会有弹窗</h4>
+        <input v-model="num1" placeholder="请输入数量"><hr>
+        <h4>复杂数据的监听</h4>
+        <input v-model="dict.name" placeholder="请输入姓名">
+        <input v-model="dict.age" placeholder="请输入年龄">
+        <input v-model="dict.male" placeholder="请输入性别"><hr>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#d1',
+        data:{
+            'num1': '',
+            dict:{
+                'name': '',
+                'age': '',
+                'male': '',
+            }
+        },
+        watch:{
+            // 对于单独的数据，直接监听即可
+            num1(){
+                alert('数据改变了，输入的数字是：'+ this.num1)
+            },
+            // 对于data这种数据对象，直接监听无法实现内部数据改变时，监听成功，除非是将dict数据整体修改才会被监听到，因此要使用deep:true
+            // data(){
+            //   alert(1234)
+            // }
+            dict:{
+                deep: true,
+                // immediate: true,
+                handler(val, oldVal){
+                    console.log(val.name)
+                    console.log(oldVal.name)
+                },
+            },
+            'dict.age':function(){
+                alert('也可以针对数据中的某一个进行监听，这次只监听了age')
+            }
+        }
+    })
+</script>
+</html>
