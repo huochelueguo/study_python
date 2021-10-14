@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入elementui -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+    <div id="d1">
+      <el-form label-width="100px" class="demo-ruleForm" v-model='dataForm'>
+          <el-form-item label="活动名称" >
+            <el-input v-model="dataForm.name" placeholder="请输入名称"></el-input>
+          </el-form-item>
+          <el-form-item label="活动区域">
+            <el-select v-model="dataForm.area" placeholder="请选择活动区域">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+          </el-form-item>
+    </el-form>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#d1',
+            data:{
+                dataForm:{
+                    name:"",
+                    area:''
+                }
+            }
+        })
+    </script>
+</body>
+</html>
