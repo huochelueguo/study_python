@@ -9,13 +9,20 @@
 <body>
     <div id="d1">
         <button ref="btn1">this is button</button>
+<!--        组件需要在引用处设置ref值-->
+        <com1 ref="com1"></com1>
     </div>
 <script>
+    Vue.component('com1', {
+        template:'<div> <p>this is component</p> </div>'
+    }),
     new Vue({
         el:'#d1',
         mounted(){
             // 对于普通节点，使用refs可以减少dom节点消耗
-            console.log(this.$refs.btn1)
+            console.log(this.$refs.btn1),
+            // 对于组件，使用refs获取得是该组件根节点信息
+            console.log(this.$refs.com1)
         }
     })
 </script>
