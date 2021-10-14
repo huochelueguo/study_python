@@ -76,10 +76,10 @@ class Send(object):
 
 
 if __name__ == '__main__':
-    room_id = "14f988ae-1d22-11ec-9579-5254002d7e9a"
+    room_id = "412f1b78-1ea7-11ec-bf2e-5254002d7e9a"
     # 加入房间
-    Join_Lounge().join(data_file='user_1', room_id=room_id)
+    Join_Lounge().join(data_file='user_10', room_id=room_id)
     # 无限循环发送评论
     while True:
         roomid = room_id
-        Send(roomid, user_data='user_1').send_txt()
+        Send(roomid, user_data='user_10').send_txt()

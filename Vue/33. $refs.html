@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <title>$refs</title>
     <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
-
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
     <div id="d1">
         <button ref="btn1">this is button</button>
 <!--        组件需要在引用处设置ref值-->
         <com1 ref="com1"></com1>
+        <el-form >
+             <el-form-item label="审批人">
+                <el-input v-model="formData1" placeholder="审批人"ref="form1" ></el-input>
+             </el-form-item>
+            <el-button type="primary" @click="onSubmit">提交</el-button>
+        </el-form>
     </div>
 <script>
     Vue.component('com1', {
@@ -23,6 +32,22 @@
             console.log(this.$refs.btn1),
             // 对于组件，使用refs获取得是该组件根节点信息
             console.log(this.$refs.com1)
+            // 获取表单信息，可以使用value
+            console.log(this.$refs.form1.value)
+        },
+        data(){
+            return {
+                formData1 :'123'
+            }
+        },
+        methods:{
+            onSubmit(){
+                // 点击时获取表单信息
+                console.log('submit!');
+                // 使用$refs和V-model双向绑定都能实现表单数据得获取
+                console.log(this.$refs.form1.value)
+                console.log(this.formData1)
+            }
         }
     })
 </script>
