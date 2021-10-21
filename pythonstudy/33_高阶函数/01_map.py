@@ -30,19 +30,22 @@ li1 = ['TONY', 'PauL', 'tom']
 
 def letter(s):
     print(s, type(s))
-    str = s[0].upper()+s[1:].lower()  # 使用字符串切片，改变每个数据的大小写
+    str = s[0].upper() + s[1:].lower()  # 使用字符串切片，改变每个数据的大小写
     return str
 
 
 li2 = map(letter, li1)
-print(list(li2))    # ['Tony', 'Paul', 'Tom']
-print(list(li2))    # [] 由于迭代器只能迭代一次，因此在此输出时为空
-
+print(list(li2))  # ['Tony', 'Paul', 'Tom']
+print(list(li2))  # [] 由于迭代器只能迭代一次，因此在此输出时为空
 
 # 利用map()函数，把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']：
 l1 = ['adam', 'LISA', 'barT']
+
+
 def normalize(name):
     return name[0].upper() + name[1:].lower()
+
+
 L1 = ['adam', 'LISA', 'barT']
 L2 = list(map(normalize, L1))
 print(L2)
@@ -52,9 +55,15 @@ dict1 = {}
 for i in range(10):
     dict1[str(i)] = i
 print(dict1)
+
+
 def func1(j):
     return dict1[j]
+
+
 def func2(x, y):
     return x * 10 + y
+
+
 num = reduce(func2, map(func1, '2312'))
 print(num, type(2312))
