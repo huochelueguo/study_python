@@ -4,6 +4,8 @@ import random
 from multiprocessing import Pool
 
 
+# 主要还是使用concurent.future模块来实现池，参考53_池和携程
+
 def work(n):
     print('%s run' %os.getpid())
     time.sleep(random.randrange(0, 3))
