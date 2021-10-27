@@ -6,8 +6,12 @@
 @File:01_gevent.py
 @Time:2021/5/19 上午9:31
 """
-import time
 
+from gevent import spawn
+from gevent import monkey
+monkey.patch_all()
+import gevent
+import time
 """
 进程：资源单位
 线程：执行单位
@@ -21,9 +25,7 @@ import time
     2.在协程中，某一个函数存在IO或者被占用时，线程就会切换到其他函数执行，在适当的时机在切换回来继续执行，循环往复，给系统造成一种不停顿的感觉
     3.协程中耗时即该协程中最大函数运行时间       
 """
-from gevent import spawn
-from gevent import monkey
-monkey.patch_all()
+
 
 
 def heng():
@@ -46,10 +48,14 @@ def call_back(r):
 start_time = time.time()
 # heng()
 # ha()
-g1 = spawn(heng)    # 查看源码得知spwn会自动调用start，类似多线程的启动
+g1 = spawn(heng)  # 查看源码得知spwn会自动调用start，类似多线程的启动
 g2 = spawn(ha)
 g1.add_spawn_callback(call_back)
-g1.join()   # 因此可以使用join()方法，来制造类似线程阻塞，最后再执行主线程的print
+g1.join()  # 因此可以使用join()方法，来制造类似线程阻塞，最后再执行主线程的print
 g2.join()
 
-print(f'时间是：{time.time()-start_time}')
+# 以上两个可以简写为下面代码
+# gevent.joinall([g1, g2])
+# 获取返回值也可以使用gx.value
+
+print(f'时间是：{time.time() - start_time}')
