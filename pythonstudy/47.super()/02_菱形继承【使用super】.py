@@ -3,7 +3,7 @@
 """
 @Author:孙泽
 @Github:https://github.com/huochelueguo
-@File:02.菱形继承.py
+@File:02_菱形继承【使用super】.py
 @Time:NAME.py@Time:2021/1/25 20:36
 """
 """
