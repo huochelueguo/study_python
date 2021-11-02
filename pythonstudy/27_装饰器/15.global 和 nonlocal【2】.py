@@ -32,9 +32,9 @@ def outter3():
         global a  #
         a = 30
         print(a)
-        print(f'因为声明了global，因此将会改变全局的a，此处输出a为30')
+        print(f'相对于创建了一个新的全局变量a，和outter中的不是一个，值为30')
 
-    print(f'外部的a值也将改为30:{a}')
+    print(f'外部的a值依旧为10:{a}')
     return inner3
 
 
