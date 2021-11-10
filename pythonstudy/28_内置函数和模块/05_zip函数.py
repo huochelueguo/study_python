@@ -17,3 +17,8 @@ print(type(zip_data))
 list_zip = list(zip_data)
 print(list_zip)
 # 输出：[(1, 5, 9), (2, 6, 10), (3, 7, 0)]
+
+# 对于单一数组里面嵌套其他数据类型如字符串的，也可以进行zip压缩,使用*xx
+strs = ["flower","flow","flight"]
+for i in zip(*strs):
+    print(i)
