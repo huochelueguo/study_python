@@ -38,5 +38,5 @@ def findLongest(list1, list2):
 
 if __name__ == '__main__':
     lis = 'abcde'
-    lis2 = 'abce'
+    lis2 = 'ace'
     print(findLongest(lis, lis2))
