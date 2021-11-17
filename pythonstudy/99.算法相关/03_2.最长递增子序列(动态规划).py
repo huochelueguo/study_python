@@ -3,7 +3,7 @@
 """
 @Author:孙泽
 @Github:https://github.com/huochelueguo
-@File:03.最长递增子序列(动态规划).py
+@File:03_2.最长递增子序列(动态规划).py
 @Time:NAME.py@Time:2021/3/2 11:38
 """
 

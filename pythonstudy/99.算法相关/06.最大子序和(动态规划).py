@@ -15,10 +15,8 @@
 
 def maxsum(testlist):
     m = len(testlist)
-    # dp = [0] * m
-    # dp[0] = testlist[0]
     for i in range(1, m):
-        nums[i] = max(nums[i], nums[i] + nums[i-1])
+        testlist[i] = max(testlist[i], testlist[i] + testlist[i-1])
     return max(nums)
 
 
