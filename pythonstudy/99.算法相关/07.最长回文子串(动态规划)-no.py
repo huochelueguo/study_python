@@ -23,7 +23,7 @@ class Solution:
                         dp[i][j] = True
                         cur_len = j-i+1
                 else:
-                    if s[i] == s[j] and s[i+1][j-1]:
+                    if s[i] == s[j] and dp[i+1][j-1]:
                         dp[i][j] = True
                         cur_len = j-i+1
                 if dp[i][j] == True:
@@ -35,5 +35,5 @@ class Solution:
         print(dp)
         return s[start:start+max_len]
 
-s = 'babad'
+s = 'cbbcca'
 print(Solution().longestPalindrome(s))
