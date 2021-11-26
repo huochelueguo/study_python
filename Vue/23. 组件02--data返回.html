@@ -14,7 +14,7 @@
     <button-counter></button-counter>
 </div>
 <hr>
-<p>返回值是函数的情况</p>
+<p>返回值不是函数的情况</p>
 <div id="example-2">
     <button-counter2></button-counter2>
     <button-counter2></button-counter2>
@@ -23,16 +23,16 @@
 <script>
     // 定义一个名为 button-counter 的新组件，返回值为函数
     Vue.component('button-counter', {
-        data: function () {
+        data() {
             return {
                 count: 0
             }
         },
         template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
-    })
+    });
     new Vue({
         el: '#example-1'
-    })
+    });
 
     // 定义一个名为 button-counter 的新组件，返回值非函数
     Vue.component('button-counter2', {
@@ -40,7 +40,7 @@
             count:0
         },
         template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
-    })
+    });
     new Vue({
         el: '#example-2'
     })
