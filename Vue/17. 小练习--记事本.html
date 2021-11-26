@@ -67,12 +67,14 @@
     <h1>记事本</h1><br>
     <input id="i1" placeholder="输入内容回车后即保存" v-model="inputvalue" v-on:keyup.enter="addText"><br><br>
     <div id="d2">
-        <button id="b2" @click="clearnum">删除</button>
+
+        <button id="b3" @click="clearinput">清空输入框</button>
         <button id="b1" @click="clearText" v-if="textlist.length>0">清空记事本</button>
         <button @click="refresh">刷新未实现</button>
         <br><br>
     </div>
     <input placeholder="输入要删除的序号" v-model="delnum"><br>
+    <button id="b2" @click="clearnum">删除</button>
     <br><p>当前记事本内容为：</p>
     <p>一共{{textlist.length}}条</p>
     <ol id="o1">
@@ -95,18 +97,21 @@
             clearText:function () {
                 this.textlist = []
             },
+            clearinput:function(){
+                this.inputvalue = ''
+            },
             clearnum: function () {
                 lenlist = this.textlist.length;
-                if (this.delnum<= lenlist){
+                if (this.delnum <= lenlist){
                     this.textlist.splice(this.delnum-1, 1);
                     this.delnum=''
                 }else {
-                    alert('输出错误，请重新输入');
+                    alert('输入错误，请重新输入');
                     this.delnum=''
                 }
             },
             refresh: function () {
-                window.reload()
+                this.textlist.reload()
             }
         }
 
