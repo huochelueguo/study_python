@@ -7,6 +7,7 @@
 @Time:NAME.py@Time:2020/8/7 18:16
 """
 import random
+
 # 常用函数：
 # random.random:随机输出[0,1)之间的数
 a = random.random()
@@ -35,5 +36,10 @@ li1 = [1, 2, 3, 4, 5, 6, 7]
 print(random.sample(li1, 2))
 
 # random.choice(seq) — 从 seq 序列中随机抽取一个元素，如果 seq 为空，则引发 IndexError 异常。
-li2 = []
-print(random.choice(li2))   # IndexError: Cannot choose from an empty sequence
+li2 = [1, 2, 3]
+print(random.choice(li2))  # IndexError: Cannot choose from an empty sequence
+
+# random.shuffle,用于将一个列表中的元素打乱,即将列表内的元素随机排列
+p = ['A', 'B', 'C', 'D', 'E']
+random.shuffle(p)
+print(p)  # ['C', 'E', 'A', 'D', 'B'],每次输出的内容不一样
