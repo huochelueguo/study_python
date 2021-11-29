@@ -12,7 +12,7 @@
 </head>
 <body>
     <div id="example1">
-        <demo1></demo1>
+        <demo1 ref="demo1"></demo1>
     </div>
 </body>
 <script>
@@ -31,10 +31,12 @@
             this.city ="杭州";
             var x = document.getElementById("name");//第一个命令台错误，此时html没有渲染出来
             console.log(x.innerHTML);
+            console.log(this.$refs.demo1)
         },
         mounted:function(){
             var x = document.getElementById("name");//第二个命令台输出的结果
             console.log(x.innerHTML);
+            console.log(this.$refs.demo1)
         }
     });
     var vm = new Vue({
