@@ -34,13 +34,13 @@
 <script>
     Vue.component('com1', {
         template:'<div><h3>this is com1</h3><slot></slot></div>'
-    })
+    });
     Vue.component('com2', {
         template:'<div><h3>this is com2</h3><slot name="com1"></slot></div>'
-    })
+    });
     Vue.component('com3', {
         template:'<div><h3>this is com2</h3><slot name="com2-1"></slot><slot name="com2-2"></slot></div>'
-    })
+    });
     new Vue({
         el: '#d1'
     })

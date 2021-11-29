@@ -8,10 +8,13 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
+
+<!--运行异常，暂未解决-->
+
     <div id="d1">
         <com-1>
-            <template slot-scope="scope" slot="list">
-                {{scope.data}}
+            <template v-slot:list="data" >
+                <h4>{{data.value}}</h4>
 <!--                <li v-for="item in scope">{{item}}</li>-->
             </template>
         </com-1>
@@ -24,8 +27,12 @@
                 data: ['zhangsan','lisi','wanwu','zhaoliu','tianqi','xiaoba']
             }
         },
-        template:'<div><h4>该子组件的slot具有数据</h4><slot :data="data" name="list"></slot></div>'
-    })
+        template:
+            '<div>' +
+                    '<h4>该子组件的slot具有数据</h4>' +
+                    '<slot  :data="data" name="list"></slot>' +
+            '</div>'
+    });
 
     new Vue({
         el: '#d1',
