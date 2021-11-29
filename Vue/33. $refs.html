@@ -24,14 +24,14 @@
 <script>
     Vue.component('com1', {
         template:'<div> <p>this is component</p> </div>'
-    }),
+    });
     new Vue({
         el:'#d1',
         mounted(){
             // 对于普通节点，使用refs可以减少dom节点消耗
-            console.log(this.$refs.btn1),
+            console.log(this.$refs.btn1);
             // 对于组件，使用refs获取得是该组件根节点信息
-            console.log(this.$refs.com1)
+            console.log(this.$refs.com1);
             // 获取表单信息，可以使用value
             console.log(this.$refs.form1.value)
         },
@@ -45,7 +45,7 @@
                 // 点击时获取表单信息
                 console.log('submit!');
                 // 使用$refs和V-model双向绑定都能实现表单数据得获取
-                console.log(this.$refs.form1.value)
+                console.log(this.$refs.form1.value);
                 console.log(this.formData1)
             }
         }
