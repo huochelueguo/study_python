@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入elementui -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+    <div id="example1">
+        <demo1></demo1>
+    </div>
+</body>
+<script>
+    Vue.component("demo1",{
+        data:function(){
+            return {
+                name:"",
+                age:"",
+                city:""
+            }
+        },
+        template:"<ul><li id='name'>{{name}}</li><li>{{age}}</li><li>{{city}}</li></ul>",
+        created:function(){
+            this.name="唐浩益";
+            this.age = "12";
+            this.city ="杭州";
+            var x = document.getElementById("name");//第一个命令台错误，此时html没有渲染出来
+            console.log(x.innerHTML);
+        },
+        mounted:function(){
+            var x = document.getElementById("name");//第二个命令台输出的结果
+            console.log(x.innerHTML);
+        }
+    });
+    var vm = new Vue({
+        el:"#example1"
+    })
+</script>
+</html>
