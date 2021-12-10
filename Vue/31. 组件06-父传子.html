@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入elementui -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+    <div id="d1">
+        <span>this is father</span>
+
+<!--        当父组件使用子组件时，可以使用:绑定的方式，将父组件的数据绑定给子组件指定的数据，这样子组件就可以渲染出父组件想要的效果了-->
+        <son1 :changestatus1="false" :changestatus2="true"></son1>
+    </div>
+</body>
+<script>
+    Vue.component('son1',
+        {
+            // 父组件引用子组件，在子组件props中写上需要父组件传入的数据，数据有三个常用参数，required：是否必须；default:默认值，type:数据类型
+            props:{
+                changestatus1:{
+                    required: true,
+                    default: false,
+                    type: Boolean
+                },
+                changestatus2:{
+                    required: true,
+                    default: false,
+                    type: Boolean
+                },
+            },
+            // 子组件模板，样式中包含了props字段
+            template:'<div>' +
+            '<button v-show="changestatus1">btn1</button>' +
+             '<br>'+
+             '<br>'+
+            '<button v-show="changestatus2">btn2</button>' +
+             '<br>'+
+             '<br>'+
+                    '<span>{{changestatus1}}+{{changestatus1}}</span>'+
+            '</div>',
+            data(){
+                return {
+
+                }
+            }
+
+
+    });
+    new Vue({
+         el:'#d1',
+    })
+
+</script>
+</html>
