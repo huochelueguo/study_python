@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实践出真知</title>
+    <!--引入vue 和 axios -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入elementui -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+    <div id="d1">
+        <span>子组件区域</span>
+        <son1 @money="sum_money"></son1>
+        <hr>
+        <span>父组件区域</span><br>
+        <span>当点击子组件的按钮时，通过this.$emit将子组件的数据和事件传递给父组件</span>
+        <br>
+         <span>父组件通过绑定该事件，获取子组件传来的值，并且展示在下面</span>
+        <br>
+         <span>一共花费：{{this.mount}} 元</span>
+    </div>
+</body>
+<script>
+     Vue.component('son1', {
+         template:'<div>' +
+             '<span>苹果一斤5元</span>' +
+             '<button @click="buy5">+1斤</button>' +'<br>' +
+             '<span>西瓜一斤1元</span>' +
+             '<button @click="buy1">+1斤</button>'+
+             '</div>',
+         methods:{
+             buy5(){
+                this.$emit('money',5)
+                 console.log(5)
+             },
+              buy1(){
+                this.$emit('money',1)
+                 console.log(1)
+             }
+         }
+     });
+
+
+
+    new Vue({
+        el:'#d1',
+        data(){
+           return{
+                mount:0
+           }
+        },
+        methods:{
+            sum_money(data){
+                this.mount += data
+            }
+        }
+    })
+</script>
+</html>
