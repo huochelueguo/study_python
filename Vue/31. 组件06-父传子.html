@@ -12,10 +12,10 @@
 </head>
 <body>
     <div id="d1">
-        <span>this is father</span>
-
+        <span>this is father：</span>
+        <button @click="change_data">切换子组件展示状态</button>
 <!--        当父组件使用子组件时，可以使用:绑定的方式，将父组件的数据绑定给子组件指定的数据，这样子组件就可以渲染出父组件想要的效果了-->
-        <son1 :changestatus1="false" :changestatus2="true"></son1>
+        <son1 :changestatus1="this.changestatus1" :changestatus2="this.changestatus1"></son1>
     </div>
 </body>
 <script>
@@ -25,24 +25,26 @@
             props:{
                 changestatus1:{
                     required: true,
-                    default: false,
+                    default: true,
                     type: Boolean
                 },
                 changestatus2:{
                     required: true,
-                    default: false,
+                    default: true,
                     type: Boolean
                 },
             },
             // 子组件模板，样式中包含了props字段
             template:'<div>' +
-            '<button v-show="changestatus1">btn1</button>' +
+            '<button v-show="changestatus1">子组件：btn1</button>' +
              '<br>'+
              '<br>'+
-            '<button v-show="changestatus2">btn2</button>' +
+            '<button v-show="changestatus2">子组件：btn2</button>' +
              '<br>'+
              '<br>'+
-                    '<span>{{changestatus1}}+{{changestatus1}}</span>'+
+                    '<span>默认值：{{changestatus1}}+{{changestatus1}}</span>'+
+                    '<hr>'+
+                    '<span>传值后：{{changestatus1}}+{{changestatus1}}</span>'+
             '</div>',
             data(){
                 return {
@@ -54,6 +56,23 @@
     });
     new Vue({
          el:'#d1',
+        data:{
+            changestatus1:true,
+            changestatus2:true
+        },
+        methods:{
+             change_data(){
+                 if(this.changestatus1 === true){
+                     this.changestatus1 = false;
+                     this.changestatus2 = false
+                 }
+                 else{
+                      this.changestatus1 = true;
+                     this.changestatus2 = true
+                 }
+
+             }
+        }
     })
 
 </script>
