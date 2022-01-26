@@ -10,8 +10,8 @@
 import uuid
 import random
 import threading
-from Get_Clientid import Get_Clientid
-from Join_Lounge import Join_Lounge
+from Lounge.Get_Clientid import Get_Clientid
+from Lounge.Join_Lounge import Join_Lounge
 from Lounge.User_Add_Clientid import Add_Clientid
 
 
@@ -61,8 +61,8 @@ class Send_Mess_Threading(object):
 if __name__ == '__main__':
     user_path = 'user_10'
     thread_count = 5
-    clientid_path = '/Users/sunwenxiao/PycharmProjects/study_python/Lounge/user_data/clientid'
-    room_id = "5cb5dc19-5421-11eb-8e43-5254009bf4c3"
+    clientid_path = 'E:/pythonworkspace/python_study/Lounge/user_data/clientid'
+    room_id = "89219d9b-7e85-11ec-ab9f-5254002d7e9a"
     # 加入房间
     Join_Lounge().join(data_file=user_path, room_id=room_id)
     data = Add_Clientid(user_path=user_path, clientid_path=clientid_path).uid_token_clientid()
