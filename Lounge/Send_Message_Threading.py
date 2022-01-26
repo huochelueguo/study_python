@@ -59,10 +59,10 @@ class Send_Mess_Threading(object):
 
 
 if __name__ == '__main__':
-    user_path = 'user_10'
+    user_path = 'user_50'
     thread_count = 5
     clientid_path = 'E:/pythonworkspace/python_study/Lounge/user_data/clientid'
-    room_id = "89219d9b-7e85-11ec-ab9f-5254002d7e9a"
+    room_id = "618282d5-7ea4-11ec-8b42-5254002d7e9a"
     # 加入房间
     Join_Lounge().join(data_file=user_path, room_id=room_id)
     data = Add_Clientid(user_path=user_path, clientid_path=clientid_path).uid_token_clientid()

@@ -68,7 +68,7 @@ class Join_Lounge(object):
                 res = Post(token=data_token[i], client_id=data_clientid[i], room_id=room_id).Post_Join()
             except Exception as result:
                 print(f'{result}')
-        print(data_clientid)
+        # print(data_clientid)
         return res
 
 
