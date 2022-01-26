@@ -5,7 +5,6 @@
 @Github:https://github.com/huochelueguo
 @File:Follow_People.py
 @Time:NAME.py@Time:2020/12/14 14:30
-歌房内批量关注用户【房主】
 """
 import json
 import uuid
@@ -23,7 +22,7 @@ class Follow_People(object):
 
     def __init__(self, room_id, user_data, owner_uid=None):
         """
-
+            歌房内批量关注用户【房主】
         :param room_id: 房间ID
         :param user_data: 加入房间用户数据
         :param owner_uid: 房主UID
