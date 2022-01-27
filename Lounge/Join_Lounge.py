@@ -18,8 +18,8 @@ import yaml
 from Lounge.Get_Clientid import Get_Clientid
 from Lounge.Read_Usertoken import Read_Uid_Token
 
-ROOM_NID = 1486643677795405824
-ROOM_ID = 'dd13173a-7f59-11ec-9fcb-5254002d7e9a'
+ROOM_NID = 1486656650620612608
+ROOM_ID = '109fb3af-7f61-11ec-ac21-5254002d7e9a'
 CLIENTID_PATH = 'E:/pythonworkspace/python_study/Lounge/user_data/clientid'
 
 
@@ -73,7 +73,7 @@ class Join_Lounge(object):
             try:
                 res = Post(token=data_token[i], client_id=data_clientid[i], room_id=room_id).post_join()
             except Exception as result:
-                print(f'{result}')
+                print(f'join err:{result}')
         return res
 
 

@@ -29,7 +29,7 @@ def create_user(num):
 
 
 if __name__ == '__main__':
-    res = create_user(5)
+    res = create_user(500)
     uid = res[0]
     token = res[1]
     print(uid)

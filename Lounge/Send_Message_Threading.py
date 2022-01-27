@@ -45,24 +45,22 @@ class Send_Mess_Threading(object):
             try:
                 ws = Get_Clientid(token=self.user_data[1], uid=self.user_data[0])
                 ws.send_message(data=data)
-                print(f'{self.user_data[0]} + success')
+                # print(f'{self.user_data[0]} + success')
             except Exception as result:
-                print(result)
+                print(f'send_txt err:{result}')
 
     def send_thread(self):
         thread_list = []
         for i in range(self.thred_count):
             thread_list.append(threading.Thread(target=self.send_txt))
         for t in thread_list:
-            # print(data)
-            # print(thread_list)
-            time.sleep(0.5)
             t.start()
+        # time.sleep(0.5)
 
 
 if __name__ == '__main__':
     user_path = 'user_50'
-    thread_count = 5
+    thread_count = 15
     clientid_path = CLIENTID_PATH
     room_id = ROOM_ID
     # 加入房间

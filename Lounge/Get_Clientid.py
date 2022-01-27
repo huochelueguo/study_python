@@ -50,9 +50,9 @@ class Get_Clientid(object):
         """
         data_json = json.dumps(data, indent=4, ensure_ascii=False)
         self.ws.send(data_json)
-        print(f'ws请求体{data}')
-        a = self.ws.recv()
-        print(f'ws消息回执：{a}')
+        # print(f'ws请求体{data}')
+        # a = self.ws.recv()
+        # print(f'ws消息回执：{a}')
 
 
 if __name__ == '__main__':
