@@ -27,10 +27,11 @@ class SendCoinGift:
         :param to_uid: 收礼用户ID
         :return: 返回response
         """
-        #  接口部分
+        #  接口部分，调用接口送出礼物后，服务端会发出第一次5004，is_summary为false,此时展示从左至右送礼消息
         cookie = 'poke_session_id=' + token
         header = {'Cookie': cookie, 'Content-Type': 'application/json'}
         gift_list = [5001, 5002, 5004]
+        # gift_list = [5001]
         gift_id = random.choice(gift_list)
         payload = {
             "action_type": 0,
@@ -47,7 +48,7 @@ class SendCoinGift:
         }
         res = requests.post(self.coin_url, data=json.dumps(payload), headers=header)
 
-        # ws部分
+        # ws部分，模拟客户端收起送礼面板，发送4004请求，收到消息后服务端会再次发送5004消息，此时is_summary为true，评论区展示该送礼
         data = {
             "extra_data": {
                 "client_timestamp": int(round(time.time() * 1000))
@@ -80,7 +81,7 @@ class SendCoinGift:
         for i in range(thred_count):
             thred_list.append(threading.Thread(target=self.send_to_lounge_random, kwargs=send_data))
         for j in thred_list:
-            time.sleep(1)
+            time.sleep(0.05)
             j.start()
 
 
@@ -99,9 +100,11 @@ if __name__ == '__main__':
             print(uid_token_clientid)
         else:
             # 从下面列表随机选择收礼用户UID
-            uid_list = ['u1631851507772944570', 'u1631851508262603387', 'u1631851508743789077', 'u1631851509220699117',
-                        'u1631851510712099790', 'u1631851511202067772', 'u1631851511702191247', 'u1631851512183538782',
-                        'u1631851512683747505', 'u1631851513172051612']
+            # uid_list = ['u1631851507772944570', 'u1631851508262603387', 'u1631851508743789077', 'u1631851509220699117',
+            #             'u1631851510712099790', 'u1631851511202067772', 'u1631851511702191247', 'u1631851512183538782',
+            #             'u1631851512683747505', 'u1631851513172051612']
+
+            uid_list = ['u1486639927451791360']
             for i in range(20):
                 send_gift_user_info = random.choice(uid_token_clientid)
                 token = send_gift_user_info[1]
@@ -111,4 +114,4 @@ if __name__ == '__main__':
                 data = {'room_nid': room_nid, 'room_id': room_id, 'token': token, 'to_uid': to_uid,
                         "from_uid": from_uid,
                         "client_id": client_id}
-                SendCoinGift().send_to_lounge_random_thred(thred_count=1, send_data=data)
+                SendCoinGift().send_to_lounge_random_thred(thred_count=10, send_data=data)

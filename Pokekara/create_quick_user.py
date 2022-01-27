@@ -20,7 +20,7 @@ def create_user(num):
                 'id_token': '{"name":"sztest","gender":1}'
                 }
         response = (requests.post(url, data=body)).json()
-        time.sleep(1)
+        time.sleep(0.3)
         user_uid = jsonpath.jsonpath(response, '$..uid')[0]
         user_token = jsonpath.jsonpath(response, '$..poke_session_id')[0]
         uid_list.append(user_uid)

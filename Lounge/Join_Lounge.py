@@ -18,9 +18,9 @@ import yaml
 from Lounge.Get_Clientid import Get_Clientid
 from Lounge.Read_Usertoken import Read_Uid_Token
 
-ROOM_ID = 'e6b1fe98-7f3d-11ec-9fcb-5254002d7e9a'
+ROOM_NID = 1486643677795405824
+ROOM_ID = 'dd13173a-7f59-11ec-9fcb-5254002d7e9a'
 CLIENTID_PATH = 'E:/pythonworkspace/python_study/Lounge/user_data/clientid'
-ROOM_NID = 1486593305181638656
 
 
 class Post(object):
