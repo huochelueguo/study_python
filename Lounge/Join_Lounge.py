@@ -18,11 +18,16 @@ import yaml
 from Lounge.Get_Clientid import Get_Clientid
 from Lounge.Read_Usertoken import Read_Uid_Token
 
+ROOM_ID = '4e5f9110-7f28-11ec-9fcb-5254002d7e9a'
+CLIENTID_PATH = 'E:/pythonworkspace/python_study/Lounge/user_data/clientid'
+ROOM_NID = 1486554403070758912
+
 
 class Post(object):
     """
     加房post接口
     """
+
     def __init__(self, token, client_id, room_id):
         self.token = 'poke_session_id=' + token
         self.client_id = client_id
@@ -48,6 +53,7 @@ class Join_Lounge(object):
     data_token： token列表
     data_clientid： clientid列表
     """
+
     def join(self, data_file, room_id):
         # 获取用户uid和token
         data = Read_Uid_Token(data_file).read()

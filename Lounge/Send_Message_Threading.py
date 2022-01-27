@@ -7,11 +7,12 @@
 @Time:NAME.py@Time:2021/1/9 18:06
 @ 多线程发送评论：使用uid获取clientid，将用户的uid/token/clientid组成一组数据，N组数据组成一个线程，分别取触发send_message
 """
+import time
 import uuid
 import random
 import threading
 from Lounge.Get_Clientid import Get_Clientid
-from Lounge.Join_Lounge import Join_Lounge
+from Lounge.Join_Lounge import Join_Lounge, ROOM_ID, CLIENTID_PATH
 from Lounge.User_Add_Clientid import Add_Clientid
 
 
@@ -55,14 +56,15 @@ class Send_Mess_Threading(object):
         for t in thread_list:
             # print(data)
             # print(thread_list)
+            time.sleep(0.5)
             t.start()
 
 
 if __name__ == '__main__':
     user_path = 'user_50'
     thread_count = 5
-    clientid_path = 'E:/pythonworkspace/python_study/Lounge/user_data/clientid'
-    room_id = "618282d5-7ea4-11ec-8b42-5254002d7e9a"
+    clientid_path = CLIENTID_PATH
+    room_id = ROOM_ID
     # 加入房间
     Join_Lounge().join(data_file=user_path, room_id=room_id)
     data = Add_Clientid(user_path=user_path, clientid_path=clientid_path).uid_token_clientid()

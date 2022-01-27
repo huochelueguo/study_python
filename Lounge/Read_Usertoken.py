@@ -19,7 +19,7 @@ class Read_Uid_Token(object):
         self.path = data_path
 
     def read(self):
-        with open(self.path, 'r') as f:
+        with open(self.path, 'r', encoding='utf-8') as f:
             data = yaml.load(f, Loader=yaml.FullLoader)
             return data[0].get('uid_list'), data[1].get('token_list')
 
