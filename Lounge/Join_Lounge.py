@@ -18,8 +18,8 @@ import yaml
 from Lounge.Get_Clientid import Get_Clientid
 from Lounge.Read_Usertoken import Read_Uid_Token
 
-ROOM_NID = 1486885689813807104
-ROOM_ID = '350ce2f3-7fe0-11ec-ac21-5254002d7e9a'
+ROOM_NID = 1486983230018465792
+ROOM_ID = '5a58f781-8016-11ec-ac21-5254002d7e9a'
 CLIENTID_PATH = 'E:/pythonworkspace/python_study/Lounge/user_data/clientid'
 
 

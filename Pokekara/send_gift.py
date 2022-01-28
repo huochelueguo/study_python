@@ -30,13 +30,13 @@ class SendCoinGift:
         #  接口部分，调用接口送出礼物后，服务端会发出第一次5004，is_summary为false,此时展示从左至右送礼消息
         cookie = 'poke_session_id=' + token
         header = {'Cookie': cookie, 'Content-Type': 'application/json'}
-        gift_list = [5001, 5002, 5004]
+        gift_list = [5001, 5002, 5004, 5361, 5353, 5354]
         # gift_list = [5001]
         gift_id = random.choice(gift_list)
         payload = {
             "action_type": 0,
             "amount": 1,
-            "group_id": "8c716348-028c-4e69-985f-eb071b71d43c",
+            "group_id": str(uuid.uuid4()),
             "lounge_type": 0,
             "mic_id": 1486316747673325569,
             "part_count": 0,
@@ -68,7 +68,7 @@ class SendCoinGift:
         }
         ws = Get_Clientid(token=token, uid=from_uid)
         ws.send_message(data=data)
-        return res.json()
+        # return res.json()
 
     def send_to_lounge_random_thred(self, thred_count, send_data):
         """
@@ -81,7 +81,7 @@ class SendCoinGift:
         for i in range(thred_count):
             thred_list.append(threading.Thread(target=self.send_to_lounge_random, kwargs=send_data))
         for j in thred_list:
-            time.sleep(0.05)
+            time.sleep(0.4)
             j.start()
 
 
@@ -100,11 +100,11 @@ if __name__ == '__main__':
             print(uid_token_clientid)
         else:
             # 从下面列表随机选择收礼用户UID
-            # uid_list = ['u1631851507772944570', 'u1631851508262603387', 'u1631851508743789077', 'u1631851509220699117',
-            #             'u1631851510712099790', 'u1631851511202067772', 'u1631851511702191247', 'u1631851512183538782',
-            #             'u1631851512683747505', 'u1631851513172051612']
+            uid_list = ['u1631851507772944570', 'u1631851508262603387', 'u1631851508743789077', 'u1631851509220699117',
+                        'u1631851510712099790', 'u1631851511202067772', 'u1631851511702191247', 'u1631851512183538782',
+                        'u1631851512683747505', 'u1631851513172051612']
 
-            uid_list = ['u1486639927451791360']
+            # uid_list = ['u1486639927451791360']
             for i in range(20):
                 send_gift_user_info = random.choice(uid_token_clientid)
                 token = send_gift_user_info[1]

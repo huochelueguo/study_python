@@ -63,11 +63,11 @@ class Send_Mess_Threading(object):
             while True:
                 for i in range(self.thred_count):
                     pool.submit(Send_Mess_Threading(user_data=data[i], room_id=room_id).send_txt)
-                    time.sleep(0.1)
+                    time.sleep(0.03)
 
 
 if __name__ == '__main__':
-    user_path = 'user_50'
+    user_path = 'user_500'
     clientid_path = CLIENTID_PATH
     room_id = ROOM_ID
     # 加入房间
@@ -80,7 +80,7 @@ if __name__ == '__main__':
     #     Send_Mess_Threading(thread_count=thread_count, user_data=data[i], room_id=room_id).send_thread()
 
     # 线程池发送
-    thread_count = 8  # 线程池线程数
-    send_mess_person_num = 50  # 发布评论用户数
+    thread_count = 60  # 线程池线程数
+    send_mess_person_num = 500  # 发布评论用户数
     Send_Mess_Threading(thread_count=send_mess_person_num, user_data=data, room_id=room_id).send_thread_pool(
         max_workers=thread_count)
