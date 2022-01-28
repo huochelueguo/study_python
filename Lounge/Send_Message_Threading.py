@@ -18,15 +18,14 @@ from Lounge.Get_Clientid import Get_Clientid
 from Lounge.Join_Lounge import Join_Lounge, ROOM_ID, CLIENTID_PATH
 from Lounge.User_Add_Clientid import Add_Clientid
 
-
 message = ["こんにちは！", "よろしくお願いします！", "うまい！", "やばい！", "www", "こんばんは！", "うんうん", "お邪魔します！",
            "いらっしゃい", "可愛い", "ありがとう！", "最高！", "はじめまして！", "初見です", "いいね！", "お疲れ様", "(′^ω^｀)",
-           "666", "太牛逼了，必须赞一个", "给力！！！！", "小老弟儿，来跟华子不"]
+           "666", "太牛逼了，必须赞一个", "给力！！！！", "小老弟儿，来跟华子不", f"{time.time()}"]
 
 
 class Send_Mess_Threading(object):
 
-    def __init__(self,  user_data, room_id, thread_count=None):
+    def __init__(self, user_data, room_id, thread_count=None):
         self.thred_count = thread_count
         self.user_data = user_data
         self.room_id = room_id
@@ -47,8 +46,8 @@ class Send_Mess_Threading(object):
         try:
             ws = Get_Clientid(token=self.user_data[1], uid=self.user_data[0])
             ws.send_message(data=data)
-            # print(os.getpid())
-            time.sleep(0.01)
+            print(f'当前时间:{time.time()}，当前用户{self.user_data[0]}，评论内容：{send_message}')
+
         except Exception as e:
             print(f'send_txt err:{e}')
 
@@ -63,11 +62,12 @@ class Send_Mess_Threading(object):
         with ThreadPoolExecutor(max_workers=max_workers) as pool:
             while True:
                 for i in range(self.thred_count):
-                    pool.submit(Send_Mess_Threading(user_data=data[i], room_id=room_id).send_txt())
+                    pool.submit(Send_Mess_Threading(user_data=data[i], room_id=room_id).send_txt)
+                    time.sleep(0.1)
 
 
 if __name__ == '__main__':
-    user_path = 'user_500'
+    user_path = 'user_50'
     clientid_path = CLIENTID_PATH
     room_id = ROOM_ID
     # 加入房间
@@ -80,15 +80,7 @@ if __name__ == '__main__':
     #     Send_Mess_Threading(thread_count=thread_count, user_data=data[i], room_id=room_id).send_thread()
 
     # 线程池发送
-    thread_count = 30    # 线程池线程数
-    send_mess_person_num = 150   # 发布评论用户数
-    Send_Mess_Threading(thread_count=send_mess_person_num, user_data=data, room_id=room_id).send_thread_pool(thread_count)
-
-
-
-
-
-
-
-
-
+    thread_count = 8  # 线程池线程数
+    send_mess_person_num = 50  # 发布评论用户数
+    Send_Mess_Threading(thread_count=send_mess_person_num, user_data=data, room_id=room_id).send_thread_pool(
+        max_workers=thread_count)

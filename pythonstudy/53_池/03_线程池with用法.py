@@ -15,8 +15,8 @@ import time
 
 
 def test1(n):
-    time.sleep(2)
-    print(f'第{n}次调用')
+    time.sleep(0.02)
+    print(f'当前时间:{time.time()}，第{n}次调用')
     return n * n
 
 
@@ -25,10 +25,12 @@ def call_back(future):
     print(res)
 
 
-with ThreadPoolExecutor(max_workers=10) as pool:    # 使用with ThreadpoolExecutor() as pool代替了原来的pool.shutdown()
+with ThreadPoolExecutor(max_workers=30) as pool:    # 使用with ThreadpoolExecutor() as pool代替了原来的pool.shutdown()
     result = []
-    for i in range(20):
-        res = pool.submit(test1, i)
-        result.append(res)
-    for j in result:
-        j.add_done_callback(call_back)
+    while True:
+        for i in range(500):
+            pool.submit(test1, i)
+            # res = pool.submit(test1, i)
+            # result.append(res)
+    # for j in result:
+    #     j.add_done_callback(call_back)
