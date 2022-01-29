@@ -81,7 +81,7 @@ class SendCoinGift:
         for i in range(thred_count):
             thred_list.append(threading.Thread(target=self.send_to_lounge_random, kwargs=send_data))
         for j in thred_list:
-            time.sleep(0.4)
+            time.sleep(0.1)
             j.start()
 
 
