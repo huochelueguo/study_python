@@ -19,11 +19,20 @@
         <p>对于列表嵌套字典的，可以设置仅展示value，同时可以和v-if配合使用，简单一个判断</p>
         <li v-for="dic in dict2" v-if="dic.score > 80">{{dic.score}}</li><br><hr>
     </ol>
+    <br><br>
+    <!-- 输入内容后，通过点击，将输入内容增加到列表中展示 -->
+    <input v-model="inputValue">输入文案，增加到列表</input>
+    <button @click="add">增加到列表</button>
+    <button @click="clean">清空列表</button>
+    <ul>
+        <li v-for="item in list">{{item}}</li>
+    </ul>
 </div>
 <script>
     new Vue({
         el: '#d1',
         data:{
+            inputValue:'',
             lists:['zhangsan', 'lisi', 'wangwu', 'zhangmazi'],
             dict1: {
                 'ningxia': 'yinchuan',
@@ -35,8 +44,19 @@
                 {score: 100},
                 {score: 20},
                 {score: 86}
-            ]
-        }
+            ],
+            list:[]
+        },
+        methods: {
+            add:function(){
+                this.list.push(this.inputValue)
+                this.inputValue=''
+            },
+            clean:function(){
+                this.list=[]
+                this.inputValue=''
+            }
+        },
     })
 </script>
 </body>
