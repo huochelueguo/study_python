@@ -16,6 +16,7 @@
     <button id="b1" value="正常写法" v-on:click="alert1">v-on:click</button>
     <button id="b2" value="简写为@" @click="alert1">简写@click</button>
     <button id="b3" value="双击@dblclick" @dblclick="alert1">双击@dblclick</button>
+    <button id="b4" value="2024学习" @click="alert2">2024学习</button>
     <h2 id="h2" @click="changefood">{{food}}</h2>
 </div>
 <script>
@@ -31,6 +32,9 @@
             changefood:function () {
                this.food += 'food'
                 // 通过this关键字，能够访问vue中的data数据
+            },
+            alert2:function(){
+                alert('this is 2024 btn')
             }
         },
     })

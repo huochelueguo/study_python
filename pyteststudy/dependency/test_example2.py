@@ -28,16 +28,17 @@ class Test_A:
         pass
 
 
-class Test_B:
-    # @pytest.mark.dependency()
-    # def test_a(self):
-    #     print('this is test_a')
+class Test_C:
+    @pytest.mark.dependency()
+    def test_c(self):
+        print('this is dependency/test_example2.py::Test_C::test_c')
+        assert 3 == 31
 
-    @pytest.mark.dependency(depends=['test_example2.py::Test_C::test_c'], scope='package')
+    @pytest.mark.dependency(depends=['test_a'], scope='class')
     # 因为有参数scope，因此将只在本类中找依赖，不会去别的类中寻找
     def test_b(self):
-        print('this is test_b')
+        pass
 
 
 if __name__ == '__main__':
-    pytest.main('dependency')
+    Test_C
