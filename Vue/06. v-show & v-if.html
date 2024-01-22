@@ -8,8 +8,8 @@
 <body>
 <div id="d1">
     <button @click="show">展示文案 v-show</button><br><br>
-    <span v-show="showtext">默认未不展示文案</span><br><br>
-<!--    showtext初始值false,因此无法展示文案，只有点击了按钮，调用了show方法，将showtext设置未true，才会展示文案-->
+    <span v-show="showtext">默认不展示文案，点击后根据实际状态更新文案显隐</span><br><br>
+<!--    showtext初始值false,因此无法展示文案，只有点击了按钮，调用了show方法，将showtext设置未true，才会展示文案；再次点击时，应该此时为true，所以再次隐藏文案-->
     <hr>
     <button @click="agebtn">展示文案 v-if</button><br><br>
     <span v-if="age>20">{{title}}</span><hr>
@@ -28,7 +28,16 @@
         },
         methods:{
             show: function () {
-                this.showtext = true;
+                // 如果为false，则展示文案，否则隐藏文案
+                if (this.showtext === false){
+                    this.showtext = true
+                    alert('click button1')
+                }
+                else 
+                {
+                    this.showtext = false
+                }
+                
             },
             agebtn: function () {
                 this.age +=1;
