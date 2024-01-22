@@ -42,6 +42,22 @@
                 }
             }
         },
+            male:'男',
+            message2:'this is v-model and v-if'
+        },
+        methods:{ 
+            // model绑定和v-if联动，通过change_model_text方法触发，更新值
+            change_model_text: function(){
+                if ( this.message2 ==='this is v-model and v-if'){
+                    this.message2 = '123'
+                    alert( this.message2)
+                }
+                else{
+                    this.message2 = 'this is v-model and v-if'
+                    alert( this.message2)
+                }
+            }
+        },
 
     })
 </script>
