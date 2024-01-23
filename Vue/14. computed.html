@@ -7,31 +7,41 @@
 </head>
 <body>
 <div id="d1">
+    <button @click="add">点击</button>
+    <h3 v-model="num2">{{num2}}</h3>>
     <p>调用methods:{{me()}}</p>
     <p>调用methods:{{me()}}</p>
     <p>调用computed:{{co}}</p>
     <p>调用computed:{{co}}</p>
-<!--    输出如下，因为num值未变，因此执行computed时只执行了一次-->
-<!--    调用methods:3-->
-<!--    调用methods:4-->
-<!--    调用computed:5-->
-<!--    调用computed:5-->
+<!--
+    初始值：因为num为2，初始值展示是
+    调用methods:3
+    调用methods:4
+    调用computed:5
+    调用computed:5
+
+    每点击一次按钮，因为div中存在改变的数据，所以methods的值都会+1，而computed的值因为没有改变，所以一直为5
+-->
 </div>
 <script>
     var num = 2;
     new Vue({
         el: '#d1',
-
+        data:{
+            num2:0
+        },
         methods:{
             me:function () {
                 return num +=1
+            },
+            add:function(){
+                return this.num2+=1
             }
         },
         computed:{
             co:function () {
                 return num +=1
             },
-
         }
     })
 </script>
