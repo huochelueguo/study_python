@@ -34,5 +34,7 @@ print(isinstance(b, Iterator))
 # 判断对象是否是可迭代对象，使用isinstance(对象, Iterable)
 print(isinstance(a, Iterable))
 
+for i in range(len(a)):
+    print(f'迭代器每次输出的是:{next(b)}')
 # 只有将列表等可迭代对象转换为迭代器才可以使用，否则报错
 next(a) # TypeError: 'list' object is not an iterator
