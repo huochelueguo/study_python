@@ -11,14 +11,14 @@ def foo():
 
     print('starting..')
     while True:
-        a = yield 666
-        print(f'a = {a}')
+        res = yield 4
+        print(f'res = {res}')
 
 
 # 这一步执行时：因为foo函数中有yield关键字，所以foo函数并不会真的执行，而是先得到一个生成器g(相当于一个对象)
 g = foo()
 # 调用next方法，foo函数正式开始执行，先执行foo函数中的print方法，
-# 然后进入while循环程序遇到yield关键字，然后把yiel当作return,return了一个4之后，程序停止;并没有执行赋值给res操作，此时next(g)语句执行完成
+# 然后进入while循环程序遇到yield关键字，然后把yield当作return,return了一个4之后，程序停止;并没有执行赋值给res操作，此时next(g)语句执行完成
 print(next(g))
 print('_' * 20)
 # 1.这个时候是从刚才那个next程序停止的地方开始执行的，也就是要执行res的赋值操作，
